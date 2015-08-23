@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Universidad de La Frontera
+License Type: Academic
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="orm.Diagnostico" table="diagnostico" lazy="false">
+		<meta attribute="class-description">
+			diagnostico m&#233;dico
+		</meta>
+		<id name="idDiagnostico" column="idDiagnostico" type="integer" unsaved-value="0">
+			<generator class="increment">
+			</generator>
+		</id>
+		<property name="nombre" column="nombre" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				nombre del diagnostico
+			</meta>
+		</property>
+		<property name="uuid" column="uuid" unique="true" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				identificador del diagnostico en openmrs
+			</meta>
+		</property>
+		<set name="ORM_Rce" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="idDiagnostico" not-null="true"/>
+			<one-to-many class="orm.Rce"/>
+		</set>
+		<set name="ORM_Actividad" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="idDiagnostico" not-null="true"/>
+			<one-to-many class="orm.Actividad"/>
+		</set>
+		<set name="ORM_Procedimiento" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="idDiagnostico" not-null="true"/>
+			<one-to-many class="orm.Procedimiento"/>
+		</set>
+	</class>
+</hibernate-mapping>

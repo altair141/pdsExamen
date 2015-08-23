@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Universidad de La Frontera
+License Type: Academic
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="orm.Paciente" table="paciente" lazy="false">
+		<meta attribute="class-description">
+			paciente
+		</meta>
+		<id name="idPaciente" column="idPaciente" type="integer" unsaved-value="0">
+			<generator class="increment">
+			</generator>
+		</id>
+		<property name="nroFichaMedica" column="nroFichaMedica" unique="true" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				n&#250;mero de ficha medica
+			</meta>
+		</property>
+		<many-to-one name="idPersona" column="idPersona" class="orm.Persona" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<set name="ORM_Reserva" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="idPaciente" not-null="true"/>
+			<one-to-many class="orm.Reserva"/>
+		</set>
+		<one-to-one name="hce" class="orm.Hce" cascade="save-update,lock" property-ref="idPaciente" lazy="no-proxy" access="field"/>
+	</class>
+</hibernate-mapping>

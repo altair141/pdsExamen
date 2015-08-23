@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Universidad de La Frontera
+License Type: Academic
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="orm.Rce" table="rce" lazy="false">
+		<meta attribute="class-description">
+			registro cl&#237;nico electr&#243;nico
+		</meta>
+		<id name="idRce" column="idRce" type="integer" unsaved-value="0">
+			<generator class="increment">
+			</generator>
+		</id>
+		<property name="tipoEncuentro" column="tipoEncuentro" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				tipo de encuentro
+			</meta>
+		</property>
+		<property name="uuid" column="uuid" unique="true" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				identificador &#250;nico de rce
+			</meta>
+		</property>
+		<many-to-one name="idHce" cascade="lock" column="idHce" class="orm.Hce" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<property name="idHoraMedica" column="idHoraMedica" type="integer" length="10" not-null="false" lazy="false">
+			<meta attribute="field-description">
+				identificar de la hora medica
+			</meta>
+		</property>
+		<property name="anamnesis" column="anamnesis" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				anamnesis de del rce, t&#233;rmino empleado para referirse&#160;a la informaci&#243;n proporcionada por el propio paciente
+		&#160;
+			</meta>
+		</property>
+		<property name="alergia" column="alergia" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				alergias que posee el paciente
+			</meta>
+		</property>
+		<property name="examenFisico" column="examenFisico" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				datos examen f&#237;sico del paciente
+			</meta>
+		</property>
+		<property name="indicacionMedica" column="indicacionMedica" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				indicaciones proporcionadas por el m&#233;dico
+			</meta>
+		</property>
+		<property name="indicacionCierreCaso" column="indicacionCierreCaso" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				indicaciones del m&#233;dico para cerrar el caso
+			</meta>
+		</property>
+		<property name="hipotesisDiagnostico" column="hipotesisDiagnostico" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				hip&#243;tesis de cual es la enfermedad que posee el paciente
+			</meta>
+		</property>
+		<property name="pacienteGes" column="pacienteGes" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				paciente con Garant&#237;as Expl&#237;citas en Salud
+			</meta>
+		</property>
+		<property name="patologiaGes" column="patologiaGes" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				enfermedad que garantizada en el AUGE
+			</meta>
+		</property>
+		<property name="pacienteCronico" column="pacienteCronico" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				paciente con enfermedad con un tiempo mayor de seis meses desde que dicha enfermedad fue diagnosticada
+			</meta>
+		</property>
+		<property name="receta" column="receta" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				transacci&#243;n terap&#233;utica entre el m&#233;dico y su paciente
+			</meta>
+		</property>
+		<many-to-one name="idDiagnostico" cascade="lock" column="idDiagnostico" class="orm.Diagnostico" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<many-to-one name="idActividad" cascade="lock" column="idActividad" class="orm.Actividad" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<many-to-one name="idProcedimiento" cascade="lock" column="idProcedimiento" class="orm.Procedimiento" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<set name="ORM_Certificado" table="rce_certificado" lazy="true" cascade="save-update,lock">
+			<key column="rceidRce" not-null="true"/>
+			<many-to-many column="certificadoid" class="orm.Certificado">
+			</many-to-many>
+		</set>
+		<one-to-one name="cierreCaso" class="orm.CierreCaso" cascade="save-update,lock" property-ref="idRce" lazy="no-proxy" access="field"/>
+	</class>
+</hibernate-mapping>

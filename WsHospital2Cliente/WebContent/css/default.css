@@ -1,0 +1,9 @@
+*/*Set's border, padding and margin to 0 for all values*/
+
+textarea  {
+   resize: none;
+}
+.fondo{
+	background-color: #FAFAFA;
+	
+}

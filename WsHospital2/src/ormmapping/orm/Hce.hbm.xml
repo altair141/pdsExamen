@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Universidad de La Frontera
+License Type: Academic
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="orm.Hce" table="hce" lazy="false">
+		<meta attribute="class-description">
+			historial cl&#237;nico electr&#243;nico
+		</meta>
+		<id name="idHce" column="idHce" type="integer" unsaved-value="0">
+			<generator class="increment">
+			</generator>
+		</id>
+		<many-to-one name="idPaciente" column="idPaciente" class="orm.Paciente" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<set name="ORM_Rce" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="idHce" not-null="true"/>
+			<one-to-many class="orm.Rce"/>
+		</set>
+	</class>
+</hibernate-mapping>
