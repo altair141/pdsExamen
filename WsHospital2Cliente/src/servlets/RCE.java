@@ -55,11 +55,21 @@ public class RCE extends HttpServlet {
 		String idHora = request.getParameter("idHoraMedica");
 		ServicioProxy s = new ServicioProxy();
 		String paciente = s.buscarPacienteBdLocalId(idPaciente);
-
+		String actividades=s.obtenerListaActividades();
+		System.out.println(actividades);
+		
+		String procedimientos=s.obtenerListaProcedimientos();
+		System.out.println(procedimientos);
+		String diagnosticos=s.obtenerListaDiagnosticos();
+		System.out.println(diagnosticos);
 		PacienteVO pacienteVo = Transformar.jsonbdPaciente(paciente);
 		request.setAttribute("paciente", pacienteVo.getNroFicha());
 		String idHce=s.obtenerIdHCE(idPaciente);
 		request.setAttribute("hce", idHce);
+		request.setAttribute("procedimientos", procedimientos);
+		request.setAttribute("actividades", actividades);
+		request.setAttribute("diagnosticos", diagnosticos);
+		
 		//obtener diagnosticos, procedimientos y actividades
 		
 		

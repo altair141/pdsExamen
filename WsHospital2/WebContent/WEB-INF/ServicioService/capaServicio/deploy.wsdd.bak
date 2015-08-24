@@ -20,14 +20,62 @@
       <parameter name="className" value="capaServicio.ServicioSoapBindingImpl"/>
       <parameter name="wsdlPortType" value="Servicio"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation name="buscarHorasControlPorIdPaciente" qname="operNS:buscarHorasControlPorIdPaciente" xmlns:operNS="http://capaServicio" returnQName="retNS:buscarHorasControlPorIdPacienteReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      <operation name="buscarPersonaPorIdLocal" qname="operNS:buscarPersonaPorIdLocal" xmlns:operNS="http://capaServicio" returnQName="retNS:buscarPersonaPorIdLocalReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="buscarPersonaLocalPorUuid" qname="operNS:buscarPersonaLocalPorUuid" xmlns:operNS="http://capaServicio" returnQName="retNS:buscarPersonaLocalPorUuidReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:uuid" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="sincronizarPersonaToLocal" qname="operNS:sincronizarPersonaToLocal" xmlns:operNS="http://capaServicio" returnQName="retNS:sincronizarPersonaToLocalReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:uuid" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="buscarPacientePorNombre" qname="operNS:buscarPacientePorNombre" xmlns:operNS="http://capaServicio" returnQName="retNS:buscarPacientePorNombreReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:nombre" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="visitaPorPacienteUuidRest" qname="operNS:visitaPorPacienteUuidRest" xmlns:operNS="http://capaServicio" returnQName="retNS:visitaPorPacienteUuidRestReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:uuid" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="encuentroUuidRest" qname="operNS:encuentroUuidRest" xmlns:operNS="http://capaServicio" returnQName="retNS:encuentroUuidRestReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:uuid" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="encuentroPorPacienteUuidRest" qname="operNS:encuentroPorPacienteUuidRest" xmlns:operNS="http://capaServicio" returnQName="retNS:encuentroPorPacienteUuidRestReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:uuid" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="registrarPaciente" qname="operNS:registrarPaciente" xmlns:operNS="http://capaServicio" returnQName="retNS:registrarPacienteReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:jsonPaciente" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="sincronizarPaciente" qname="operNS:sincronizarPaciente" xmlns:operNS="http://capaServicio" returnQName="retNS:sincronizarPacienteReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:uuid" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="buscarPacienteBdLocalId" qname="operNS:buscarPacienteBdLocalId" xmlns:operNS="http://capaServicio" returnQName="retNS:buscarPacienteBdLocalIdReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:idPaciente" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="buscarPacienteBdLocal" qname="operNS:buscarPacienteBdLocal" xmlns:operNS="http://capaServicio" returnQName="retNS:buscarPacienteBdLocalReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:nombre" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="sincronizarMedicoToLocal" qname="operNS:sincronizarMedicoToLocal" xmlns:operNS="http://capaServicio" returnQName="retNS:sincronizarMedicoToLocalReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:uuid" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="registrarCierreCasoMedico" qname="operNS:registrarCierreCasoMedico" xmlns:operNS="http://capaServicio" returnQName="retNS:registrarCierreCasoMedicoReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:json" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="obtenerHoraMedica" qname="operNS:obtenerHoraMedica" xmlns:operNS="http://capaServicio" returnQName="retNS:obtenerHoraMedicaReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:idHora" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="buscarHorasPorIdPaciente" qname="operNS:buscarHorasPorIdPaciente" xmlns:operNS="http://capaServicio" returnQName="retNS:buscarHorasPorIdPacienteReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:idPaciente" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
       <operation name="buscarHorasAPSPorIdPaciente" qname="operNS:buscarHorasAPSPorIdPaciente" xmlns:operNS="http://capaServicio" returnQName="retNS:buscarHorasAPSPorIdPacienteReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:idPaciente" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
-      <operation name="buscarHorasPorIdPaciente" qname="operNS:buscarHorasPorIdPaciente" xmlns:operNS="http://capaServicio" returnQName="retNS:buscarHorasPorIdPacienteReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      <operation name="buscarHorasControlPorIdPaciente" qname="operNS:buscarHorasControlPorIdPaciente" xmlns:operNS="http://capaServicio" returnQName="retNS:buscarHorasControlPorIdPacienteReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:idPaciente" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="obtenerListaDiagnosticos" qname="operNS:obtenerListaDiagnosticos" xmlns:operNS="http://capaServicio" returnQName="retNS:obtenerListaDiagnosticosReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="obtenerListaActividades" qname="operNS:obtenerListaActividades" xmlns:operNS="http://capaServicio" returnQName="retNS:obtenerListaActividadesReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="obtenerListaProcedimientos" qname="operNS:obtenerListaProcedimientos" xmlns:operNS="http://capaServicio" returnQName="retNS:obtenerListaProcedimientosReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
       </operation>
       <operation name="registrarPersona" qname="operNS:registrarPersona" xmlns:operNS="http://capaServicio" returnQName="retNS:registrarPersonaReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:jsonPersona" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
@@ -72,49 +120,7 @@
       <operation name="obtenerIdHCE" qname="operNS:obtenerIdHCE" xmlns:operNS="http://capaServicio" returnQName="retNS:obtenerIdHCEReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:idPaciente" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
-      <operation name="buscarPersonaLocalPorUuid" qname="operNS:buscarPersonaLocalPorUuid" xmlns:operNS="http://capaServicio" returnQName="retNS:buscarPersonaLocalPorUuidReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:uuid" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="buscarPersonaPorIdLocal" qname="operNS:buscarPersonaPorIdLocal" xmlns:operNS="http://capaServicio" returnQName="retNS:buscarPersonaPorIdLocalReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:id" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="sincronizarPersonaToLocal" qname="operNS:sincronizarPersonaToLocal" xmlns:operNS="http://capaServicio" returnQName="retNS:sincronizarPersonaToLocalReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:uuid" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="encuentroPorPacienteUuidRest" qname="operNS:encuentroPorPacienteUuidRest" xmlns:operNS="http://capaServicio" returnQName="retNS:encuentroPorPacienteUuidRestReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:uuid" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="buscarPacientePorNombre" qname="operNS:buscarPacientePorNombre" xmlns:operNS="http://capaServicio" returnQName="retNS:buscarPacientePorNombreReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:nombre" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="visitaPorPacienteUuidRest" qname="operNS:visitaPorPacienteUuidRest" xmlns:operNS="http://capaServicio" returnQName="retNS:visitaPorPacienteUuidRestReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:uuid" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="encuentroUuidRest" qname="operNS:encuentroUuidRest" xmlns:operNS="http://capaServicio" returnQName="retNS:encuentroUuidRestReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:uuid" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="registrarPaciente" qname="operNS:registrarPaciente" xmlns:operNS="http://capaServicio" returnQName="retNS:registrarPacienteReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:jsonPaciente" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="sincronizarPaciente" qname="operNS:sincronizarPaciente" xmlns:operNS="http://capaServicio" returnQName="retNS:sincronizarPacienteReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:uuid" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="buscarPacienteBdLocalId" qname="operNS:buscarPacienteBdLocalId" xmlns:operNS="http://capaServicio" returnQName="retNS:buscarPacienteBdLocalIdReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:idPaciente" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="buscarPacienteBdLocal" qname="operNS:buscarPacienteBdLocal" xmlns:operNS="http://capaServicio" returnQName="retNS:buscarPacienteBdLocalReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:nombre" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="sincronizarMedicoToLocal" qname="operNS:sincronizarMedicoToLocal" xmlns:operNS="http://capaServicio" returnQName="retNS:sincronizarMedicoToLocalReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:uuid" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="registrarCierreCasoMedico" qname="operNS:registrarCierreCasoMedico" xmlns:operNS="http://capaServicio" returnQName="retNS:registrarCierreCasoMedicoReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:json" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <operation name="obtenerHoraMedica" qname="operNS:obtenerHoraMedica" xmlns:operNS="http://capaServicio" returnQName="retNS:obtenerHoraMedicaReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
-        <parameter qname="pns:idHora" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
-      </operation>
-      <parameter name="allowedMethods" value="buscarHorasPorIdPaciente sincronizarPaciente encuentroPorPacienteUuidRest registrarPaciente personaNameRest obtenerHCE buscarPersonaPorIdLocal buscarPersonaLocalPorUuid buscarPacienteBdLocal obtenerHoraMedica buscarMedicoOpen conceptoRest visitaUuidRest visitaPorPacienteUuidRest registrarPersona pacienteRest buscarHorasAPSPorIdPaciente registrarRce mostrarPacientes medicoRest buscarPacienteBdLocalId pacienteUuidRest sincronizarPersonaToLocal buscarHorasControlPorIdPaciente medicoUuidRest registrarCierreCasoMedico obtenerIdHCE buscarPacientePorNombre sincronizarMedicoToLocal conceptoUuidRest mostrarPersonas encuentroUuidRest"/>
+      <parameter name="allowedMethods" value="buscarHorasPorIdPaciente sincronizarPaciente encuentroPorPacienteUuidRest registrarPaciente obtenerListaProcedimientos personaNameRest obtenerHCE buscarPersonaPorIdLocal buscarPersonaLocalPorUuid buscarPacienteBdLocal obtenerHoraMedica buscarMedicoOpen obtenerListaDiagnosticos conceptoRest visitaUuidRest visitaPorPacienteUuidRest registrarPersona pacienteRest buscarHorasAPSPorIdPaciente registrarRce mostrarPacientes medicoRest buscarPacienteBdLocalId pacienteUuidRest obtenerListaActividades sincronizarPersonaToLocal buscarHorasControlPorIdPaciente medicoUuidRest registrarCierreCasoMedico obtenerIdHCE buscarPacientePorNombre sincronizarMedicoToLocal conceptoUuidRest mostrarPersonas encuentroUuidRest"/>
 
   </service>
 </deployment>

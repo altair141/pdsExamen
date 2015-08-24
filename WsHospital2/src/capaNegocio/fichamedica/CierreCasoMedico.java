@@ -20,7 +20,8 @@ public class CierreCasoMedico {
 			cierre.setHoraInicioAtencion(cierreVo.getHoraInicioAtencion());
 			cierre.setTiempoControl(cierreVo.getTiempoControl());
 			cierre.setTipoCierre(cierreVo.getTipoCierre());
-			orm.Rce rce=orm.RceDAO.getRceByORMID(cierre.getIdRce().getIdRce());
+			orm.Rce rce=orm.RceDAO.getRceByORMID(cierreVo.getRce().getIdRce());
+			System.out.println("orm "+rce.getIdRce());
 			cierre.setIdRce(rce);
 			
 			if(orm.CierreCasoDAO.save(cierre)){
@@ -28,10 +29,15 @@ public class CierreCasoMedico {
 				return cierre.getId()+"";
 				
 			}				
+			return"error no registrado";
 		} catch (PersistentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return"error no registrado";
+		}catch(NullPointerException e){
+			e.printStackTrace();
+			return"error no registrado";
 		}
-		return"";
+		
 	}
 	}

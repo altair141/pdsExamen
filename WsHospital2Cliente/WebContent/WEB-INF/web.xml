@@ -79,4 +79,14 @@
     <servlet-name>DetalleHoraMedica</servlet-name>
     <url-pattern>/DetalleHoraMedica</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CrearRce</display-name>
+    <servlet-name>CrearRce</servlet-name>
+    <servlet-class>servlets.CrearRce</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CrearRce</servlet-name>
+    <url-pattern>/CrearRce</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -1,5 +1,8 @@
 package capaNegocio.fichamedica;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.orm.PersistentException;
 
 import capaNegocio.fichamedicaDomain.ActividadVO;
@@ -24,4 +27,28 @@ public class Actividad {
 			return null;
 		}
 	}
+	
+	public List<ActividadVO> listaActividades(){
+		List<ActividadVO> lista=new ArrayList<ActividadVO>();
+		Diagnostico diag=new Diagnostico();
+		try {
+			orm.Actividad[]  listaActividades=orm.ActividadDAO.listActividadByQuery(null, null);
+			for(orm.Actividad actividad:listaActividades ){
+				ActividadVO actiVo=new ActividadVO();
+				actiVo.setId(actividad.getId());
+				actiVo.setNombreActividad(actividad.getTipoActividad());
+				DiagnosticoVO d=diag.obtenerDiagnosticoPorId(actividad.getIdDiagnostico().getIdDiagnostico());
+				actiVo.setDiagnostico(d);								
+				lista.add(actiVo);
+			}
+			
+			return lista;
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+	
 }

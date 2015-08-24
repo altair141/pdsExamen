@@ -4,17 +4,213 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://capaServicio" xmlns="http://www.w3.org/2001/XMLSchema">
-   <element name="buscarHorasControlPorIdPaciente">
+   <element name="buscarPersonaPorIdLocal">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscarPersonaPorIdLocalResponse">
+    <complexType>
+     <sequence>
+      <element name="buscarPersonaPorIdLocalReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscarPersonaLocalPorUuid">
+    <complexType>
+     <sequence>
+      <element name="uuid" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscarPersonaLocalPorUuidResponse">
+    <complexType>
+     <sequence>
+      <element name="buscarPersonaLocalPorUuidReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sincronizarPersonaToLocal">
+    <complexType>
+     <sequence>
+      <element name="uuid" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sincronizarPersonaToLocalResponse">
+    <complexType>
+     <sequence>
+      <element name="sincronizarPersonaToLocalReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscarPacientePorNombre">
+    <complexType>
+     <sequence>
+      <element name="nombre" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscarPacientePorNombreResponse">
+    <complexType>
+     <sequence>
+      <element name="buscarPacientePorNombreReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="visitaPorPacienteUuidRest">
+    <complexType>
+     <sequence>
+      <element name="uuid" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="visitaPorPacienteUuidRestResponse">
+    <complexType>
+     <sequence>
+      <element name="visitaPorPacienteUuidRestReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="encuentroUuidRest">
+    <complexType>
+     <sequence>
+      <element name="uuid" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="encuentroUuidRestResponse">
+    <complexType>
+     <sequence>
+      <element name="encuentroUuidRestReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="encuentroPorPacienteUuidRest">
+    <complexType>
+     <sequence>
+      <element name="uuid" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="encuentroPorPacienteUuidRestResponse">
+    <complexType>
+     <sequence>
+      <element name="encuentroPorPacienteUuidRestReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrarPaciente">
+    <complexType>
+     <sequence>
+      <element name="jsonPaciente" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrarPacienteResponse">
+    <complexType>
+     <sequence>
+      <element name="registrarPacienteReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sincronizarPaciente">
+    <complexType>
+     <sequence>
+      <element name="uuid" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sincronizarPacienteResponse">
+    <complexType>
+     <sequence>
+      <element name="sincronizarPacienteReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscarPacienteBdLocalId">
     <complexType>
      <sequence>
       <element name="idPaciente" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
-   <element name="buscarHorasControlPorIdPacienteResponse">
+   <element name="buscarPacienteBdLocalIdResponse">
     <complexType>
      <sequence>
-      <element name="buscarHorasControlPorIdPacienteReturn" type="xsd:string"/>
+      <element name="buscarPacienteBdLocalIdReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscarPacienteBdLocal">
+    <complexType>
+     <sequence>
+      <element name="nombre" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscarPacienteBdLocalResponse">
+    <complexType>
+     <sequence>
+      <element name="buscarPacienteBdLocalReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sincronizarMedicoToLocal">
+    <complexType>
+     <sequence>
+      <element name="uuid" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sincronizarMedicoToLocalResponse">
+    <complexType>
+     <sequence>
+      <element name="sincronizarMedicoToLocalReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrarCierreCasoMedico">
+    <complexType>
+     <sequence>
+      <element name="json" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrarCierreCasoMedicoResponse">
+    <complexType>
+     <sequence>
+      <element name="registrarCierreCasoMedicoReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerHoraMedica">
+    <complexType>
+     <sequence>
+      <element name="idHora" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerHoraMedicaResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerHoraMedicaReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscarHorasPorIdPaciente">
+    <complexType>
+     <sequence>
+      <element name="idPaciente" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscarHorasPorIdPacienteResponse">
+    <complexType>
+     <sequence>
+      <element name="buscarHorasPorIdPacienteReturn" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
@@ -32,17 +228,47 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="buscarHorasPorIdPaciente">
+   <element name="buscarHorasControlPorIdPaciente">
     <complexType>
      <sequence>
       <element name="idPaciente" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
-   <element name="buscarHorasPorIdPacienteResponse">
+   <element name="buscarHorasControlPorIdPacienteResponse">
     <complexType>
      <sequence>
-      <element name="buscarHorasPorIdPacienteReturn" type="xsd:string"/>
+      <element name="buscarHorasControlPorIdPacienteReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerListaDiagnosticos">
+    <complexType/>
+   </element>
+   <element name="obtenerListaDiagnosticosResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerListaDiagnosticosReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerListaActividades">
+    <complexType/>
+   </element>
+   <element name="obtenerListaActividadesResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerListaActividadesReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerListaProcedimientos">
+    <complexType/>
+   </element>
+   <element name="obtenerListaProcedimientosResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerListaProcedimientosReturn" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
@@ -248,202 +474,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      </sequence>
     </complexType>
    </element>
-   <element name="buscarPersonaLocalPorUuid">
-    <complexType>
-     <sequence>
-      <element name="uuid" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="buscarPersonaLocalPorUuidResponse">
-    <complexType>
-     <sequence>
-      <element name="buscarPersonaLocalPorUuidReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="buscarPersonaPorIdLocal">
-    <complexType>
-     <sequence>
-      <element name="id" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="buscarPersonaPorIdLocalResponse">
-    <complexType>
-     <sequence>
-      <element name="buscarPersonaPorIdLocalReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="sincronizarPersonaToLocal">
-    <complexType>
-     <sequence>
-      <element name="uuid" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="sincronizarPersonaToLocalResponse">
-    <complexType>
-     <sequence>
-      <element name="sincronizarPersonaToLocalReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="encuentroPorPacienteUuidRest">
-    <complexType>
-     <sequence>
-      <element name="uuid" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="encuentroPorPacienteUuidRestResponse">
-    <complexType>
-     <sequence>
-      <element name="encuentroPorPacienteUuidRestReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="buscarPacientePorNombre">
-    <complexType>
-     <sequence>
-      <element name="nombre" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="buscarPacientePorNombreResponse">
-    <complexType>
-     <sequence>
-      <element name="buscarPacientePorNombreReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="visitaPorPacienteUuidRest">
-    <complexType>
-     <sequence>
-      <element name="uuid" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="visitaPorPacienteUuidRestResponse">
-    <complexType>
-     <sequence>
-      <element name="visitaPorPacienteUuidRestReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="encuentroUuidRest">
-    <complexType>
-     <sequence>
-      <element name="uuid" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="encuentroUuidRestResponse">
-    <complexType>
-     <sequence>
-      <element name="encuentroUuidRestReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="registrarPaciente">
-    <complexType>
-     <sequence>
-      <element name="jsonPaciente" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="registrarPacienteResponse">
-    <complexType>
-     <sequence>
-      <element name="registrarPacienteReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="sincronizarPaciente">
-    <complexType>
-     <sequence>
-      <element name="uuid" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="sincronizarPacienteResponse">
-    <complexType>
-     <sequence>
-      <element name="sincronizarPacienteReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="buscarPacienteBdLocalId">
-    <complexType>
-     <sequence>
-      <element name="idPaciente" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="buscarPacienteBdLocalIdResponse">
-    <complexType>
-     <sequence>
-      <element name="buscarPacienteBdLocalIdReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="buscarPacienteBdLocal">
-    <complexType>
-     <sequence>
-      <element name="nombre" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="buscarPacienteBdLocalResponse">
-    <complexType>
-     <sequence>
-      <element name="buscarPacienteBdLocalReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="sincronizarMedicoToLocal">
-    <complexType>
-     <sequence>
-      <element name="uuid" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="sincronizarMedicoToLocalResponse">
-    <complexType>
-     <sequence>
-      <element name="sincronizarMedicoToLocalReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="registrarCierreCasoMedico">
-    <complexType>
-     <sequence>
-      <element name="json" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="registrarCierreCasoMedicoResponse">
-    <complexType>
-     <sequence>
-      <element name="registrarCierreCasoMedicoReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="obtenerHoraMedica">
-    <complexType>
-     <sequence>
-      <element name="idHora" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
-   <element name="obtenerHoraMedicaResponse">
-    <complexType>
-     <sequence>
-      <element name="obtenerHoraMedicaReturn" type="xsd:string"/>
-     </sequence>
-    </complexType>
-   </element>
   </schema>
  </wsdl:types>
 
@@ -527,6 +557,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="sincronizarMedicoToLocalResponse">
+
+      <wsdl:part element="impl:sincronizarMedicoToLocalResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="pacienteRestRequest">
 
       <wsdl:part element="impl:pacienteRest" name="parameters">
@@ -538,14 +576,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="visitaUuidRestResponse">
 
       <wsdl:part element="impl:visitaUuidRestResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
-   <wsdl:message name="sincronizarMedicoToLocalResponse">
-
-      <wsdl:part element="impl:sincronizarMedicoToLocalResponse" name="parameters">
 
       </wsdl:part>
 
@@ -567,6 +597,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="buscarPersonaPorIdLocalResponse">
+
+      <wsdl:part element="impl:buscarPersonaPorIdLocalResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="medicoUuidRestRequest">
 
       <wsdl:part element="impl:medicoUuidRest" name="parameters">
@@ -575,9 +613,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="buscarPersonaPorIdLocalResponse">
+   <wsdl:message name="obtenerListaProcedimientosRequest">
 
-      <wsdl:part element="impl:buscarPersonaPorIdLocalResponse" name="parameters">
+      <wsdl:part element="impl:obtenerListaProcedimientos" name="parameters">
 
       </wsdl:part>
 
@@ -639,17 +677,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="registrarPersonaRequest">
+   <wsdl:message name="registrarCierreCasoMedicoRequest">
 
-      <wsdl:part element="impl:registrarPersona" name="parameters">
+      <wsdl:part element="impl:registrarCierreCasoMedico" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="registrarCierreCasoMedicoRequest">
+   <wsdl:message name="registrarPersonaRequest">
 
-      <wsdl:part element="impl:registrarCierreCasoMedico" name="parameters">
+      <wsdl:part element="impl:registrarPersona" name="parameters">
 
       </wsdl:part>
 
@@ -663,17 +701,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="medicoRestResponse">
+   <wsdl:message name="sincronizarPersonaToLocalRequest">
 
-      <wsdl:part element="impl:medicoRestResponse" name="parameters">
+      <wsdl:part element="impl:sincronizarPersonaToLocal" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="sincronizarPersonaToLocalRequest">
+   <wsdl:message name="medicoRestResponse">
 
-      <wsdl:part element="impl:sincronizarPersonaToLocal" name="parameters">
+      <wsdl:part element="impl:medicoRestResponse" name="parameters">
 
       </wsdl:part>
 
@@ -719,6 +757,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="buscarPacientePorNombreResponse">
+
+      <wsdl:part element="impl:buscarPacientePorNombreResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="buscarHorasAPSPorIdPacienteResponse">
 
       <wsdl:part element="impl:buscarHorasAPSPorIdPacienteResponse" name="parameters">
@@ -735,14 +781,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="buscarPacientePorNombreResponse">
-
-      <wsdl:part element="impl:buscarPacientePorNombreResponse" name="parameters">
-
-      </wsdl:part>
-
-   </wsdl:message>
-
    <wsdl:message name="buscarHorasControlPorIdPacienteResponse">
 
       <wsdl:part element="impl:buscarHorasControlPorIdPacienteResponse" name="parameters">
@@ -751,17 +789,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="buscarMedicoOpenRequest">
+   <wsdl:message name="encuentroPorPacienteUuidRestRequest">
 
-      <wsdl:part element="impl:buscarMedicoOpen" name="parameters">
+      <wsdl:part element="impl:encuentroPorPacienteUuidRest" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="encuentroPorPacienteUuidRestRequest">
+   <wsdl:message name="buscarMedicoOpenRequest">
 
-      <wsdl:part element="impl:encuentroPorPacienteUuidRest" name="parameters">
+      <wsdl:part element="impl:buscarMedicoOpen" name="parameters">
 
       </wsdl:part>
 
@@ -807,6 +845,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="buscarPacienteBdLocalResponse">
+
+      <wsdl:part element="impl:buscarPacienteBdLocalResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="registrarPersonaResponse">
 
       <wsdl:part element="impl:registrarPersonaResponse" name="parameters">
@@ -823,17 +869,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="buscarPacienteBdLocalResponse">
+   <wsdl:message name="pacienteUuidRestResponse">
 
-      <wsdl:part element="impl:buscarPacienteBdLocalResponse" name="parameters">
+      <wsdl:part element="impl:pacienteUuidRestResponse" name="parameters">
 
       </wsdl:part>
 
    </wsdl:message>
 
-   <wsdl:message name="pacienteUuidRestResponse">
+   <wsdl:message name="obtenerListaDiagnosticosResponse">
 
-      <wsdl:part element="impl:pacienteUuidRestResponse" name="parameters">
+      <wsdl:part element="impl:obtenerListaDiagnosticosResponse" name="parameters">
 
       </wsdl:part>
 
@@ -855,6 +901,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="obtenerListaActividadesRequest">
+
+      <wsdl:part element="impl:obtenerListaActividades" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="buscarPacientePorNombreRequest">
 
       <wsdl:part element="impl:buscarPacientePorNombre" name="parameters">
@@ -871,9 +925,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="buscarHorasAPSPorIdPacienteRequest">
+   <wsdl:message name="obtenerListaProcedimientosResponse">
 
-      <wsdl:part element="impl:buscarHorasAPSPorIdPaciente" name="parameters">
+      <wsdl:part element="impl:obtenerListaProcedimientosResponse" name="parameters">
 
       </wsdl:part>
 
@@ -882,6 +936,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="buscarPacienteBdLocalIdResponse">
 
       <wsdl:part element="impl:buscarPacienteBdLocalIdResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="buscarHorasAPSPorIdPacienteRequest">
+
+      <wsdl:part element="impl:buscarHorasAPSPorIdPaciente" name="parameters">
 
       </wsdl:part>
 
@@ -911,6 +973,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="buscarPersonaLocalPorUuidResponse">
+
+      <wsdl:part element="impl:buscarPersonaLocalPorUuidResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="personaNameRestResponse">
 
       <wsdl:part element="impl:personaNameRestResponse" name="parameters">
@@ -919,9 +989,9 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
-   <wsdl:message name="buscarPersonaLocalPorUuidResponse">
+   <wsdl:message name="obtenerListaDiagnosticosRequest">
 
-      <wsdl:part element="impl:buscarPersonaLocalPorUuidResponse" name="parameters">
+      <wsdl:part element="impl:obtenerListaDiagnosticos" name="parameters">
 
       </wsdl:part>
 
@@ -959,15 +1029,191 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="obtenerListaActividadesResponse">
+
+      <wsdl:part element="impl:obtenerListaActividadesResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:portType name="Servicio">
 
-      <wsdl:operation name="buscarHorasControlPorIdPaciente">
+      <wsdl:operation name="buscarPersonaPorIdLocal">
 
-         <wsdl:input message="impl:buscarHorasControlPorIdPacienteRequest" name="buscarHorasControlPorIdPacienteRequest">
+         <wsdl:input message="impl:buscarPersonaPorIdLocalRequest" name="buscarPersonaPorIdLocalRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:buscarHorasControlPorIdPacienteResponse" name="buscarHorasControlPorIdPacienteResponse">
+         <wsdl:output message="impl:buscarPersonaPorIdLocalResponse" name="buscarPersonaPorIdLocalResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarPersonaLocalPorUuid">
+
+         <wsdl:input message="impl:buscarPersonaLocalPorUuidRequest" name="buscarPersonaLocalPorUuidRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:buscarPersonaLocalPorUuidResponse" name="buscarPersonaLocalPorUuidResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sincronizarPersonaToLocal">
+
+         <wsdl:input message="impl:sincronizarPersonaToLocalRequest" name="sincronizarPersonaToLocalRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:sincronizarPersonaToLocalResponse" name="sincronizarPersonaToLocalResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarPacientePorNombre">
+
+         <wsdl:input message="impl:buscarPacientePorNombreRequest" name="buscarPacientePorNombreRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:buscarPacientePorNombreResponse" name="buscarPacientePorNombreResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="visitaPorPacienteUuidRest">
+
+         <wsdl:input message="impl:visitaPorPacienteUuidRestRequest" name="visitaPorPacienteUuidRestRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:visitaPorPacienteUuidRestResponse" name="visitaPorPacienteUuidRestResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="encuentroUuidRest">
+
+         <wsdl:input message="impl:encuentroUuidRestRequest" name="encuentroUuidRestRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:encuentroUuidRestResponse" name="encuentroUuidRestResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="encuentroPorPacienteUuidRest">
+
+         <wsdl:input message="impl:encuentroPorPacienteUuidRestRequest" name="encuentroPorPacienteUuidRestRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:encuentroPorPacienteUuidRestResponse" name="encuentroPorPacienteUuidRestResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrarPaciente">
+
+         <wsdl:input message="impl:registrarPacienteRequest" name="registrarPacienteRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:registrarPacienteResponse" name="registrarPacienteResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sincronizarPaciente">
+
+         <wsdl:input message="impl:sincronizarPacienteRequest" name="sincronizarPacienteRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:sincronizarPacienteResponse" name="sincronizarPacienteResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarPacienteBdLocalId">
+
+         <wsdl:input message="impl:buscarPacienteBdLocalIdRequest" name="buscarPacienteBdLocalIdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:buscarPacienteBdLocalIdResponse" name="buscarPacienteBdLocalIdResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarPacienteBdLocal">
+
+         <wsdl:input message="impl:buscarPacienteBdLocalRequest" name="buscarPacienteBdLocalRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:buscarPacienteBdLocalResponse" name="buscarPacienteBdLocalResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sincronizarMedicoToLocal">
+
+         <wsdl:input message="impl:sincronizarMedicoToLocalRequest" name="sincronizarMedicoToLocalRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:sincronizarMedicoToLocalResponse" name="sincronizarMedicoToLocalResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrarCierreCasoMedico">
+
+         <wsdl:input message="impl:registrarCierreCasoMedicoRequest" name="registrarCierreCasoMedicoRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:registrarCierreCasoMedicoResponse" name="registrarCierreCasoMedicoResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerHoraMedica">
+
+         <wsdl:input message="impl:obtenerHoraMedicaRequest" name="obtenerHoraMedicaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerHoraMedicaResponse" name="obtenerHoraMedicaResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarHorasPorIdPaciente">
+
+         <wsdl:input message="impl:buscarHorasPorIdPacienteRequest" name="buscarHorasPorIdPacienteRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:buscarHorasPorIdPacienteResponse" name="buscarHorasPorIdPacienteResponse">
 
        </wsdl:output>
 
@@ -985,13 +1231,49 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="buscarHorasPorIdPaciente">
+      <wsdl:operation name="buscarHorasControlPorIdPaciente">
 
-         <wsdl:input message="impl:buscarHorasPorIdPacienteRequest" name="buscarHorasPorIdPacienteRequest">
+         <wsdl:input message="impl:buscarHorasControlPorIdPacienteRequest" name="buscarHorasControlPorIdPacienteRequest">
 
        </wsdl:input>
 
-         <wsdl:output message="impl:buscarHorasPorIdPacienteResponse" name="buscarHorasPorIdPacienteResponse">
+         <wsdl:output message="impl:buscarHorasControlPorIdPacienteResponse" name="buscarHorasControlPorIdPacienteResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerListaDiagnosticos">
+
+         <wsdl:input message="impl:obtenerListaDiagnosticosRequest" name="obtenerListaDiagnosticosRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerListaDiagnosticosResponse" name="obtenerListaDiagnosticosResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerListaActividades">
+
+         <wsdl:input message="impl:obtenerListaActividadesRequest" name="obtenerListaActividadesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerListaActividadesResponse" name="obtenerListaActividadesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerListaProcedimientos">
+
+         <wsdl:input message="impl:obtenerListaProcedimientosRequest" name="obtenerListaProcedimientosRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerListaProcedimientosResponse" name="obtenerListaProcedimientosResponse">
 
        </wsdl:output>
 
@@ -1177,191 +1459,275 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="buscarPersonaLocalPorUuid">
-
-         <wsdl:input message="impl:buscarPersonaLocalPorUuidRequest" name="buscarPersonaLocalPorUuidRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:buscarPersonaLocalPorUuidResponse" name="buscarPersonaLocalPorUuidResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="buscarPersonaPorIdLocal">
-
-         <wsdl:input message="impl:buscarPersonaPorIdLocalRequest" name="buscarPersonaPorIdLocalRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:buscarPersonaPorIdLocalResponse" name="buscarPersonaPorIdLocalResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="sincronizarPersonaToLocal">
-
-         <wsdl:input message="impl:sincronizarPersonaToLocalRequest" name="sincronizarPersonaToLocalRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:sincronizarPersonaToLocalResponse" name="sincronizarPersonaToLocalResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="encuentroPorPacienteUuidRest">
-
-         <wsdl:input message="impl:encuentroPorPacienteUuidRestRequest" name="encuentroPorPacienteUuidRestRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:encuentroPorPacienteUuidRestResponse" name="encuentroPorPacienteUuidRestResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="buscarPacientePorNombre">
-
-         <wsdl:input message="impl:buscarPacientePorNombreRequest" name="buscarPacientePorNombreRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:buscarPacientePorNombreResponse" name="buscarPacientePorNombreResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="visitaPorPacienteUuidRest">
-
-         <wsdl:input message="impl:visitaPorPacienteUuidRestRequest" name="visitaPorPacienteUuidRestRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:visitaPorPacienteUuidRestResponse" name="visitaPorPacienteUuidRestResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="encuentroUuidRest">
-
-         <wsdl:input message="impl:encuentroUuidRestRequest" name="encuentroUuidRestRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:encuentroUuidRestResponse" name="encuentroUuidRestResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="registrarPaciente">
-
-         <wsdl:input message="impl:registrarPacienteRequest" name="registrarPacienteRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:registrarPacienteResponse" name="registrarPacienteResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="sincronizarPaciente">
-
-         <wsdl:input message="impl:sincronizarPacienteRequest" name="sincronizarPacienteRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:sincronizarPacienteResponse" name="sincronizarPacienteResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="buscarPacienteBdLocalId">
-
-         <wsdl:input message="impl:buscarPacienteBdLocalIdRequest" name="buscarPacienteBdLocalIdRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:buscarPacienteBdLocalIdResponse" name="buscarPacienteBdLocalIdResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="buscarPacienteBdLocal">
-
-         <wsdl:input message="impl:buscarPacienteBdLocalRequest" name="buscarPacienteBdLocalRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:buscarPacienteBdLocalResponse" name="buscarPacienteBdLocalResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="sincronizarMedicoToLocal">
-
-         <wsdl:input message="impl:sincronizarMedicoToLocalRequest" name="sincronizarMedicoToLocalRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:sincronizarMedicoToLocalResponse" name="sincronizarMedicoToLocalResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="registrarCierreCasoMedico">
-
-         <wsdl:input message="impl:registrarCierreCasoMedicoRequest" name="registrarCierreCasoMedicoRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:registrarCierreCasoMedicoResponse" name="registrarCierreCasoMedicoResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="obtenerHoraMedica">
-
-         <wsdl:input message="impl:obtenerHoraMedicaRequest" name="obtenerHoraMedicaRequest">
-
-       </wsdl:input>
-
-         <wsdl:output message="impl:obtenerHoraMedicaResponse" name="obtenerHoraMedicaResponse">
-
-       </wsdl:output>
-
-      </wsdl:operation>
-
    </wsdl:portType>
 
    <wsdl:binding name="ServicioSoapBinding" type="impl:Servicio">
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 
-      <wsdl:operation name="buscarHorasControlPorIdPaciente">
+      <wsdl:operation name="buscarPersonaPorIdLocal">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="buscarHorasControlPorIdPacienteRequest">
+         <wsdl:input name="buscarPersonaPorIdLocalRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="buscarHorasControlPorIdPacienteResponse">
+         <wsdl:output name="buscarPersonaPorIdLocalResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarPersonaLocalPorUuid">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="buscarPersonaLocalPorUuidRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="buscarPersonaLocalPorUuidResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sincronizarPersonaToLocal">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sincronizarPersonaToLocalRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sincronizarPersonaToLocalResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarPacientePorNombre">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="buscarPacientePorNombreRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="buscarPacientePorNombreResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="visitaPorPacienteUuidRest">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="visitaPorPacienteUuidRestRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="visitaPorPacienteUuidRestResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="encuentroUuidRest">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="encuentroUuidRestRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="encuentroUuidRestResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="encuentroPorPacienteUuidRest">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="encuentroPorPacienteUuidRestRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="encuentroPorPacienteUuidRestResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrarPaciente">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="registrarPacienteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="registrarPacienteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sincronizarPaciente">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sincronizarPacienteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sincronizarPacienteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarPacienteBdLocalId">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="buscarPacienteBdLocalIdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="buscarPacienteBdLocalIdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarPacienteBdLocal">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="buscarPacienteBdLocalRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="buscarPacienteBdLocalResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="sincronizarMedicoToLocal">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sincronizarMedicoToLocalRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sincronizarMedicoToLocalResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrarCierreCasoMedico">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="registrarCierreCasoMedicoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="registrarCierreCasoMedicoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerHoraMedica">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerHoraMedicaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerHoraMedicaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarHorasPorIdPaciente">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="buscarHorasPorIdPacienteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="buscarHorasPorIdPacienteResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -1387,17 +1753,71 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       </wsdl:operation>
 
-      <wsdl:operation name="buscarHorasPorIdPaciente">
+      <wsdl:operation name="buscarHorasControlPorIdPaciente">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="buscarHorasPorIdPacienteRequest">
+         <wsdl:input name="buscarHorasControlPorIdPacienteRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="buscarHorasPorIdPacienteResponse">
+         <wsdl:output name="buscarHorasControlPorIdPacienteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerListaDiagnosticos">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerListaDiagnosticosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerListaDiagnosticosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerListaActividades">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerListaActividadesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerListaActividadesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerListaProcedimientos">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerListaProcedimientosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerListaProcedimientosResponse">
 
             <wsdlsoap:body use="literal"/>
 
@@ -1668,258 +2088,6 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="obtenerIdHCEResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="buscarPersonaLocalPorUuid">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="buscarPersonaLocalPorUuidRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="buscarPersonaLocalPorUuidResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="buscarPersonaPorIdLocal">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="buscarPersonaPorIdLocalRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="buscarPersonaPorIdLocalResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="sincronizarPersonaToLocal">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="sincronizarPersonaToLocalRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="sincronizarPersonaToLocalResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="encuentroPorPacienteUuidRest">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="encuentroPorPacienteUuidRestRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="encuentroPorPacienteUuidRestResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="buscarPacientePorNombre">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="buscarPacientePorNombreRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="buscarPacientePorNombreResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="visitaPorPacienteUuidRest">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="visitaPorPacienteUuidRestRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="visitaPorPacienteUuidRestResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="encuentroUuidRest">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="encuentroUuidRestRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="encuentroUuidRestResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="registrarPaciente">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="registrarPacienteRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="registrarPacienteResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="sincronizarPaciente">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="sincronizarPacienteRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="sincronizarPacienteResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="buscarPacienteBdLocalId">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="buscarPacienteBdLocalIdRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="buscarPacienteBdLocalIdResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="buscarPacienteBdLocal">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="buscarPacienteBdLocalRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="buscarPacienteBdLocalResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="sincronizarMedicoToLocal">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="sincronizarMedicoToLocalRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="sincronizarMedicoToLocalResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="registrarCierreCasoMedico">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="registrarCierreCasoMedicoRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="registrarCierreCasoMedicoResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="obtenerHoraMedica">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="obtenerHoraMedicaRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="obtenerHoraMedicaResponse">
 
             <wsdlsoap:body use="literal"/>
 

@@ -44,10 +44,94 @@ public class ServicioProxy implements capaServicio.Servicio {
     return servicio;
   }
   
-  public java.lang.String buscarHorasControlPorIdPaciente(java.lang.String idPaciente) throws java.rmi.RemoteException{
+  public java.lang.String buscarPersonaPorIdLocal(java.lang.String id) throws java.rmi.RemoteException{
     if (servicio == null)
       _initServicioProxy();
-    return servicio.buscarHorasControlPorIdPaciente(idPaciente);
+    return servicio.buscarPersonaPorIdLocal(id);
+  }
+  
+  public java.lang.String buscarPersonaLocalPorUuid(java.lang.String uuid) throws java.rmi.RemoteException{
+    if (servicio == null)
+      _initServicioProxy();
+    return servicio.buscarPersonaLocalPorUuid(uuid);
+  }
+  
+  public java.lang.String sincronizarPersonaToLocal(java.lang.String uuid) throws java.rmi.RemoteException{
+    if (servicio == null)
+      _initServicioProxy();
+    return servicio.sincronizarPersonaToLocal(uuid);
+  }
+  
+  public java.lang.String buscarPacientePorNombre(java.lang.String nombre) throws java.rmi.RemoteException{
+    if (servicio == null)
+      _initServicioProxy();
+    return servicio.buscarPacientePorNombre(nombre);
+  }
+  
+  public java.lang.String visitaPorPacienteUuidRest(java.lang.String uuid) throws java.rmi.RemoteException{
+    if (servicio == null)
+      _initServicioProxy();
+    return servicio.visitaPorPacienteUuidRest(uuid);
+  }
+  
+  public java.lang.String encuentroUuidRest(java.lang.String uuid) throws java.rmi.RemoteException{
+    if (servicio == null)
+      _initServicioProxy();
+    return servicio.encuentroUuidRest(uuid);
+  }
+  
+  public java.lang.String encuentroPorPacienteUuidRest(java.lang.String uuid) throws java.rmi.RemoteException{
+    if (servicio == null)
+      _initServicioProxy();
+    return servicio.encuentroPorPacienteUuidRest(uuid);
+  }
+  
+  public java.lang.String registrarPaciente(java.lang.String jsonPaciente) throws java.rmi.RemoteException{
+    if (servicio == null)
+      _initServicioProxy();
+    return servicio.registrarPaciente(jsonPaciente);
+  }
+  
+  public java.lang.String sincronizarPaciente(java.lang.String uuid) throws java.rmi.RemoteException{
+    if (servicio == null)
+      _initServicioProxy();
+    return servicio.sincronizarPaciente(uuid);
+  }
+  
+  public java.lang.String buscarPacienteBdLocalId(java.lang.String idPaciente) throws java.rmi.RemoteException{
+    if (servicio == null)
+      _initServicioProxy();
+    return servicio.buscarPacienteBdLocalId(idPaciente);
+  }
+  
+  public java.lang.String buscarPacienteBdLocal(java.lang.String nombre) throws java.rmi.RemoteException{
+    if (servicio == null)
+      _initServicioProxy();
+    return servicio.buscarPacienteBdLocal(nombre);
+  }
+  
+  public java.lang.String sincronizarMedicoToLocal(java.lang.String uuid) throws java.rmi.RemoteException{
+    if (servicio == null)
+      _initServicioProxy();
+    return servicio.sincronizarMedicoToLocal(uuid);
+  }
+  
+  public java.lang.String registrarCierreCasoMedico(java.lang.String json) throws java.rmi.RemoteException{
+    if (servicio == null)
+      _initServicioProxy();
+    return servicio.registrarCierreCasoMedico(json);
+  }
+  
+  public java.lang.String obtenerHoraMedica(java.lang.String idHora) throws java.rmi.RemoteException{
+    if (servicio == null)
+      _initServicioProxy();
+    return servicio.obtenerHoraMedica(idHora);
+  }
+  
+  public java.lang.String buscarHorasPorIdPaciente(java.lang.String idPaciente) throws java.rmi.RemoteException{
+    if (servicio == null)
+      _initServicioProxy();
+    return servicio.buscarHorasPorIdPaciente(idPaciente);
   }
   
   public java.lang.String buscarHorasAPSPorIdPaciente(java.lang.String idPaciente) throws java.rmi.RemoteException{
@@ -56,10 +140,28 @@ public class ServicioProxy implements capaServicio.Servicio {
     return servicio.buscarHorasAPSPorIdPaciente(idPaciente);
   }
   
-  public java.lang.String buscarHorasPorIdPaciente(java.lang.String idPaciente) throws java.rmi.RemoteException{
+  public java.lang.String buscarHorasControlPorIdPaciente(java.lang.String idPaciente) throws java.rmi.RemoteException{
     if (servicio == null)
       _initServicioProxy();
-    return servicio.buscarHorasPorIdPaciente(idPaciente);
+    return servicio.buscarHorasControlPorIdPaciente(idPaciente);
+  }
+  
+  public java.lang.String obtenerListaDiagnosticos() throws java.rmi.RemoteException{
+    if (servicio == null)
+      _initServicioProxy();
+    return servicio.obtenerListaDiagnosticos();
+  }
+  
+  public java.lang.String obtenerListaActividades() throws java.rmi.RemoteException{
+    if (servicio == null)
+      _initServicioProxy();
+    return servicio.obtenerListaActividades();
+  }
+  
+  public java.lang.String obtenerListaProcedimientos() throws java.rmi.RemoteException{
+    if (servicio == null)
+      _initServicioProxy();
+    return servicio.obtenerListaProcedimientos();
   }
   
   public java.lang.String registrarPersona(java.lang.String jsonPersona) throws java.rmi.RemoteException{
@@ -150,90 +252,6 @@ public class ServicioProxy implements capaServicio.Servicio {
     if (servicio == null)
       _initServicioProxy();
     return servicio.obtenerIdHCE(idPaciente);
-  }
-  
-  public java.lang.String buscarPersonaLocalPorUuid(java.lang.String uuid) throws java.rmi.RemoteException{
-    if (servicio == null)
-      _initServicioProxy();
-    return servicio.buscarPersonaLocalPorUuid(uuid);
-  }
-  
-  public java.lang.String buscarPersonaPorIdLocal(java.lang.String id) throws java.rmi.RemoteException{
-    if (servicio == null)
-      _initServicioProxy();
-    return servicio.buscarPersonaPorIdLocal(id);
-  }
-  
-  public java.lang.String sincronizarPersonaToLocal(java.lang.String uuid) throws java.rmi.RemoteException{
-    if (servicio == null)
-      _initServicioProxy();
-    return servicio.sincronizarPersonaToLocal(uuid);
-  }
-  
-  public java.lang.String encuentroPorPacienteUuidRest(java.lang.String uuid) throws java.rmi.RemoteException{
-    if (servicio == null)
-      _initServicioProxy();
-    return servicio.encuentroPorPacienteUuidRest(uuid);
-  }
-  
-  public java.lang.String buscarPacientePorNombre(java.lang.String nombre) throws java.rmi.RemoteException{
-    if (servicio == null)
-      _initServicioProxy();
-    return servicio.buscarPacientePorNombre(nombre);
-  }
-  
-  public java.lang.String visitaPorPacienteUuidRest(java.lang.String uuid) throws java.rmi.RemoteException{
-    if (servicio == null)
-      _initServicioProxy();
-    return servicio.visitaPorPacienteUuidRest(uuid);
-  }
-  
-  public java.lang.String encuentroUuidRest(java.lang.String uuid) throws java.rmi.RemoteException{
-    if (servicio == null)
-      _initServicioProxy();
-    return servicio.encuentroUuidRest(uuid);
-  }
-  
-  public java.lang.String registrarPaciente(java.lang.String jsonPaciente) throws java.rmi.RemoteException{
-    if (servicio == null)
-      _initServicioProxy();
-    return servicio.registrarPaciente(jsonPaciente);
-  }
-  
-  public java.lang.String sincronizarPaciente(java.lang.String uuid) throws java.rmi.RemoteException{
-    if (servicio == null)
-      _initServicioProxy();
-    return servicio.sincronizarPaciente(uuid);
-  }
-  
-  public java.lang.String buscarPacienteBdLocalId(java.lang.String idPaciente) throws java.rmi.RemoteException{
-    if (servicio == null)
-      _initServicioProxy();
-    return servicio.buscarPacienteBdLocalId(idPaciente);
-  }
-  
-  public java.lang.String buscarPacienteBdLocal(java.lang.String nombre) throws java.rmi.RemoteException{
-    if (servicio == null)
-      _initServicioProxy();
-    return servicio.buscarPacienteBdLocal(nombre);
-  }
-  
-  public java.lang.String sincronizarMedicoToLocal(java.lang.String uuid) throws java.rmi.RemoteException{
-    if (servicio == null)
-      _initServicioProxy();
-    return servicio.sincronizarMedicoToLocal(uuid);
-  }
-  
-  public java.lang.String registrarCierreCasoMedico(java.lang.String json) throws java.rmi.RemoteException{
-    if (servicio == null)
-      _initServicioProxy();
-    return servicio.registrarCierreCasoMedico(json);
-  }
-  
-  public java.lang.String obtenerHoraMedica(java.lang.String idHora) throws java.rmi.RemoteException{
-    if (servicio == null)
-      _initServicioProxy();
-    return servicio.obtenerHoraMedica(idHora);
   }
   
   

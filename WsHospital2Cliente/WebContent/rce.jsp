@@ -2,6 +2,12 @@
 <%@page import="com.google.gson.JsonElement"%>
 <%@page import="com.google.gson.JsonObject"%>
 <%@page import="com.google.gson.JsonParser"%>
+<%@page import="capaNegocio.fichamedicaDomain.DiagnosticoVO"%>
+<%@page import="capaNegocio.fichamedicaDomain.ActividadVO"%>
+<%@page import="capaNegocio.fichamedicaDomain.ProcedimientoVO"%>
+<%@page import="utilitario.Transformar"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -27,33 +33,58 @@
 
 	<%
 		String folio = "";//request.getAttribute("display").toString();
-		String idhce = "";// request.getAttribute("idHce").toString();
-		String idHoraMedica = "";
-		String id="0";
-		try{
-			folio=request.getAttribute("paciente").toString();
-			idhce=request.getAttribute("hce").toString();
-			idHoraMedica=request.getParameter("idHoraMedica");
-			id=request.getParameter("idPaciente");
-		}catch(NullPointerException e){
-			
+			String idhce = "";// request.getAttribute("idHce").toString();
+			String idHoraMedica = "";
+			String id = "0";
+			String procedimientos = "";
+			String actividades = "";
+			String diagnosticos = "";
+			List<DiagnosticoVO> diagnostico = new ArrayList<DiagnosticoVO>();
+			List<ActividadVO> actividad = new ArrayList<ActividadVO>();
+			List<ProcedimientoVO> procedimiento = new ArrayList<ProcedimientoVO>();
+			try {
+		folio = request.getAttribute("paciente").toString();
+		idhce = request.getAttribute("hce").toString();
+		idHoraMedica = request.getParameter("idHoraMedica");
+		id = request.getParameter("idPaciente");
+		procedimientos = request.getAttribute("procedimientos")
+		.toString();
+		actividades = request.getAttribute("actividades").toString();
+		diagnosticos = request.getAttribute("diagnosticos").toString();
+
+		try {
+			diagnostico = Transformar.jsonToDiagnostico(diagnosticos);
+			procedimiento = Transformar.jsonToProcedimiento(procedimientos);
+			actividad = Transformar.jsonToActividad(actividades);
+
+		} catch (NullPointerException e) {
+
+		} catch (UnsupportedOperationException e) {
+
+		} catch (IllegalStateException e) {
+
 		}
+
+			} catch (NullPointerException e) {
+
+			}
 	%>
+
 	<div class="container">
 		<div class="jumbotron">
 
 			<div class="row">
 				<div class="col-lg-8">
-					<b>1.- Datos Atención Urgencia del día</b> 
-					
+					<b>1.- Datos Atención Urgencia del día</b>
+
 
 				</div>
 				<!-- InicioBotones-->
 				<div class="col-lg-2">
 					<form action="DetallePaciente" method="POST">
-						<input  name="idPersona" hidden class="idPaciente"
-							value="<%=id%>"> <input class="btn btn-default"
-							type="submit" value="Ver Datos Paciente">
+						<input name="idPersona" hidden class="idPaciente" value="<%=id%>">
+						<input class="btn btn-default" type="submit"
+							value="Ver Datos Paciente">
 					</form>
 				</div>
 				<div class="col-lg-1">
@@ -69,7 +100,7 @@
 			<br />
 			<div class="input-group">
 				<span class="input-group-addon">Folio Urgencia:</span> <input
-					type="text" class="form-control" disabled value="<%=folio%>" >
+					type="text" class="form-control" disabled value="<%=folio%>">
 				<span class="input-group-addon"></span>
 			</div>
 
@@ -78,10 +109,7 @@
 			<form method="post" action="CrearRce">
 				<input type="text" name="idhce" value="<%=idhce%>" hidden> <input
 					type="text" name="idHoraMedica" value="<%=idHoraMedica%>" hidden>
-				<div class="row">
-					
-
-				</div>
+				<div class="row"></div>
 
 				<br>
 				<ul class="nav nav-tabs">
@@ -133,26 +161,21 @@
 					<div class="col-lg-6">
 						<%
 							
-
-						
 						%>
 						<select class="form-control" id="selecdiag" name="diagnostico">
-							<option hidden value="0">Diagnostico</option>
+							<option hidden value="0">Diagnosticos</option>
 							<%
-							/*	JsonElement jelement = new JsonParser().parse(listaConceptos);
-								JsonObject jobject = jelement.getAsJsonObject();
-
-								JsonArray jarray = jobject.getAsJsonArray("results");
-
-								for (int i = 0; i < jarray.size(); i++) {
-									jobject = jarray.get(i).getAsJsonObject();
-									String uuidCon = jobject.get("uuid").getAsString();
-									String nombres = jobject.get("display").getAsString();*/
+								if (diagnostico!= null) {
+										for (DiagnosticoVO diag : diagnostico) {
+									 	String iddiagnostico=diag.getId()+"";									
+									    String nombrediagnostico=diag.getNombre();
 							%>
-							<option value=""></option>
+							<option value="<%=iddiagnostico%>"><%=nombrediagnostico%></option>
 							<%
-							//	}
+								}
+																						}
 							%>
+
 						</select>
 					</div>
 					<div class="col-lg-6">Sin Detalle GES Cita Actual</div>
@@ -323,7 +346,57 @@
 						</div>
 					</div>
 				</div>
+				<script>
+					$(function() {
+						$("#selecdiag").change(function() {
+							$("#procedimientos").prop('selectedIndex',0);
+							$('#actividades').prop('selectedIndex',0);
+							mostrarActividadPorDiagnostico();
+							mostrarProcedimientoPorDiagnostico();
+						});
+					});
+					//idem a la funcion de abajo
+					function mostrarProcedimientoPorDiagnostico() {
+						var valor = $("#selecdiag").val();
 
+						var largolista = document
+								.getElementById("procedimientos");
+						$("#procedimientos option").each(function() {
+							var diagActi = $(this).attr("value");
+							var idActi = diagActi.split(".");
+							
+							if (idActi[0] === valor) {
+								$(this).show();
+							} else {
+								$(this).hide();
+							}
+
+						});
+
+					}
+					function mostrarActividadPorDiagnostico() {
+						
+						//obtiene el valor de la etiqueta del diagnostico
+						var valor = $("#selecdiag").val();
+						//se selecciona la etiqueta correspondiente al select
+						var largolista = document.getElementById("actividades");
+					
+						//recorre la lista de opciones
+						$("#actividades option").each(function() {
+
+							var diagActi = $(this).attr("value");
+							var idActi = diagActi.split(".");
+							
+							if (idActi[0] === valor) {
+								$(this).show();
+							} else {
+								$(this).hide();
+							}
+
+						});
+
+					}
+				</script>
 				<br>
 				<div class="row">
 					<div class="col-lg-6">
@@ -340,17 +413,20 @@
 						</div>
 						<div class="clearfix visible-lg"></div>
 						<div class="col-lg-12">
-							<select multiple class="form-control" id="sel2"
-								style="height: 150px;" name="actividad">
-								<option value="1">ATENCIONES SALA IRA ERA</option>
-								<option value="2">CIERRES ADMINISTRATIVOS ESPECIALES</option>
-								<option value="3">CONSULTA</option>
-								<option value="4">CONSULTAS MORBILIDAD URGENCIA</option>
-								<option value="5">ODON. PROCEDIMIENTOS
-									MEDICO-QUIRURGICO</option>
-								<option value="6">ODONTOLOGIA GENERAL</option>
-								<option value="7">ODONTOLOGIA INGRESOS</option>
-								<option value="8">ODONTOLOGIA URGENCIA</option>
+							<select class="form-control" id="actividades" name="actividad">
+								<option hidden value="0">Actividades</option>
+								<%
+									if (actividad != null) {
+										for (ActividadVO acti : actividad) {
+											String iddiagnostico = acti.getDiagnostico().getId() + "";
+											String idActividad = acti.getId() + "";
+											String nombreActividad = acti.getNombreActividad();
+								%>
+								<option value="<%=iddiagnostico%>.<%=idActividad%>"><%=nombreActividad%></option>
+								<%
+									}
+									}
+								%>
 							</select>
 						</div>
 
@@ -371,16 +447,21 @@
 						</div>
 						<div class="clearfix visible-lg"></div>
 						<div class="col-lg-12">
-							<select multiple class="form-control" id="sel2"
-								style="height: 150px;" name=procedimiento>
-								<option value="1">CARDIOLOGIA</option>
-								<option value="2">CURACIONES</option>
-								<option value="3">DERMATOLOGIA Y TEGUMENTOS</option>
-								<option value="4">GATROENTEROLOGIA</option>
-								<option value="5">GINECOLOGIA Y OBSTETRICIA</option>
-								<option value="6">INFORMES MEDICOS</option>
-								<option value="7">KINESIOLOGIA RESP.</option>
-								<option value="8">MISCELANEOS</option>
+							<select class="form-control" id="procedimientos"
+								name=procedimiento>
+								<option hidden value="0">Procedimientos</option>
+								<%
+									if (procedimiento != null) {
+										for (ProcedimientoVO proce : procedimiento) {
+											String iddiagnostico = proce.getDiagnostico().getId() + "";
+											String idproce = proce.getId() + "";
+											String nombreproce = proce.getNombre();
+								%>
+								<option value="<%=iddiagnostico%>.<%=idproce%>"><%=nombreproce%></option>
+								<%
+									}
+									}
+								%>
 							</select>
 						</div>
 					</div>
@@ -393,7 +474,7 @@
 					<div class="clearfix visible-lg"></div>
 					<div class="col-lg-2">Tipo Cierre Clínico:</div>
 					<div class="col-lg-9">
-						<select class="form-control" id="sel2" name="tipoCierre">
+						<select class="form-control" id="tipoCierre" name="tipoCierre">
 							<option value="0">...</option>
 							<option value="Con atención">Con atención</option>
 							<option value="No se atendio">No se atendio</option>
@@ -403,7 +484,7 @@
 					<div class="clearfix visible-lg"></div>
 					<div class="col-lg-2">Destino:</div>
 					<div class="col-lg-9">
-						<select class="form-control" id="sel2" name="destino">
+						<select class="form-control" id="destino" name="destino">
 							<option value="0">...</option>
 							<option value="Domicilio">Domicilio</option>
 							<option value="Internado">Internado</option>
@@ -413,7 +494,8 @@
 					<div class="clearfix visible-lg"></div>
 					<div class="col-lg-2">Fecha Atención:</div>
 					<div class="col-lg-5">
-						<input type="date" class="form-control" name="fechaAtencion" max="2015-08-12">
+						<input type="date" class="form-control" name="fechaAtencion"
+							max="2015-08-12">
 
 					</div>
 					<div class="clearfix visible-lg"></div>
@@ -437,7 +519,8 @@
 					<div class="clearfix visible-lg"></div>
 					<div class="col-lg-2">Tiempo Control:</div>
 					<div class="col-lg-9">
-						<select class="form-control" id="sel2" name="tiempoControl">
+						<select class="form-control" id="tiempoControl"
+							name="tiempoControl">
 							<option value="0">...</option>
 							<option value="No corresponde">No corresponde</option>
 							<option value="proxima visita">Proxima visita</option>
@@ -493,7 +576,6 @@
 	<div>
 		<%
 			//String hce = //ws.obtenerRces(idhce);
-			
 		%>
 
 
@@ -521,25 +603,23 @@
 								</tr>
 							</thead>
 							<tbody>
-							<%
-							
-							String matriz[][]=new String[5][5];//TransformarJson.hce(hce);
-							
-							for (int i = 0; i < matriz[0].length; i++) {
+								<%
+									String matriz[][] = new String[5][5];//TransformarJson.hce(hce);
+
+									for (int i = 0; i < matriz[0].length; i++) {
 								%>
 								<tr>
-								<td><%=matriz[0][i] %></td>
-								<td><%=matriz[1][i]%></td>
-								<td><%=matriz[2][i] %></td>
-								<td><%=matriz[4][i]%></td>
-								<td><%=matriz[3][i] %></td>
-								
+									<td><%=matriz[0][i]%></td>
+									<td><%=matriz[1][i]%></td>
+									<td><%=matriz[2][i]%></td>
+									<td><%=matriz[4][i]%></td>
+									<td><%=matriz[3][i]%></td>
+
 								</tr>
 								<%
-							}
-							
-							%>
-							
+									}
+								%>
+
 							</tbody>
 						</table>
 

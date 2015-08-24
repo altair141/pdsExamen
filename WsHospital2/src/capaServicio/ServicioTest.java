@@ -26,6 +26,7 @@ import com.sun.jersey.api.client.filter.HTTPBasicAuthFilter;
 import utilitario.Transformar;
 import capaNegocio.fichamedicaDomain.ActividadVO;
 import capaNegocio.fichamedicaDomain.CertificadoVO;
+import capaNegocio.fichamedicaDomain.CierreCasoMedicoVO;
 import capaNegocio.fichamedicaDomain.DiagnosticoVO;
 import capaNegocio.fichamedicaDomain.HceVO;
 import capaNegocio.fichamedicaDomain.ProcedimientoVO;
@@ -146,7 +147,7 @@ public class ServicioTest {
 		HceVO idHce = new HceVO(1);
 		rcevo.setIdHce(idHce);
 		rcevo.setIdHoraMedica(0);
-		rcevo.setUuid("dfgdfg");
+		rcevo.setUuid("dfgdfgsd3f3dssddfsdassd");
 		ProcedimientoVO procedimiento = new ProcedimientoVO(1);
 		rcevo.setIdProcedimiento(procedimiento);
 		rcevo.setIndicacionCierreCaso("asdasdas");
@@ -172,9 +173,10 @@ public class ServicioTest {
 
 		String asd = Transformar.Rce(rcevo);
 		Servicio s = new Servicio();
-		System.out.println("idrce" + s.registrarRce(asd));
+		 
+		 String id=s.registrarRce(asd);
 		RceVO rceVo = Transformar.jsonToRce(asd);
-
+		rcevo.setIdRce(Transformar.stringToInt(id));
 		System.out.println(asd);
 
 		String tipoCierre = "asd";
@@ -184,7 +186,23 @@ public class ServicioTest {
 		String fechaCierreClinico = "2015-09-19";
 		String horaCierreCLinico = "13:00";
 		String tiempoControl = "no teiene";
-
+		
+		Date fechINi=Transformar.stringToDate(fechaAtencion);
+		Date fechaCie=Transformar.stringToDate(fechaCierreClinico);
+		
+		CierreCasoMedicoVO cie=new CierreCasoMedicoVO();
+		cie.setDestino(destino);
+		cie.setFechaAtencion(fechINi);
+		cie.setFechaCierreClinico(fechaCie);
+		cie.setHoraCierreClienico(horaCierreCLinico);
+		cie.setHoraInicioAtencion(horaInicioAtencion);
+		System.out.println(rcevo.getIdRce());
+		cie.setRce(rcevo);
+		cie.setTiempoControl(tiempoControl);
+		cie.setTipoCierre(tipoCierre);
+		String jsonCierre=Transformar.cierreCaso(cie);
+		System.out.println(jsonCierre);
+		System.out.println(s.registrarCierreCasoMedico(jsonCierre));
 	}
 
 	@Test
@@ -204,7 +222,6 @@ public class ServicioTest {
 				jobject = jarray.get(i).getAsJsonObject();
 				String uuid = jobject.get("uuid").getAsString();
 
-			
 				System.out.println("sincroni" + s.sincronizarPaciente(uuid));
 			}
 		} catch (NullPointerException e) {
@@ -286,55 +303,61 @@ public class ServicioTest {
 	@Test
 	public void testObtenerHCE() {
 		Servicio s = new Servicio();
-		System.out.println("asd"+s.obtenerHCE("3"));
+		System.out.println("asd" + s.obtenerHCE("3"));
 	}
+
 	@Test
 	public void testobtenerIdHCE() {
 		Servicio s = new Servicio();
-		System.out.println("asd"+s.obtenerIdHCE("3"));
+		System.out.println("asd" + s.obtenerIdHCE("3"));
 	}
+
 	@Test
 	public void testobtenerHoraMedica() {
 		Servicio s = new Servicio();
-		
-		String hora=s.obtenerHoraMedica("1");
+
+		String hora = s.obtenerHoraMedica("1");
 		System.out.println(hora);
-		JsonElement jelement2 = new JsonParser()
-				.parse(hora);
+		JsonElement jelement2 = new JsonParser().parse(hora);
 		JsonObject jobject2 = jelement2.getAsJsonObject();
 		JsonArray jarray2 = jobject2.getAsJsonArray("results");
 		jobject2 = jarray2.get(0).getAsJsonObject();
 		JsonObject boxJson = jobject2.get("box").getAsJsonObject();
-		JsonObject establecimientoJson = boxJson.get("establecimiento").getAsJsonObject();		
-		System.out.println( establecimientoJson.get("nombre").getAsString());
+		JsonObject establecimientoJson = boxJson.get("establecimiento")
+				.getAsJsonObject();
+		System.out.println(establecimientoJson.get("nombre").getAsString());
 	}
+
 	@Test
-	public void buscarHorasPorIdPaciente(){
+	public void buscarHorasPorIdPaciente() {
 		Servicio s = new Servicio();
 		System.out.println(s.buscarHorasPorIdPaciente("1"));
 	}
+
 	@Test
-	public void buscarHoraAPSPorIdPaciente(){
+	public void buscarHoraAPSPorIdPaciente() {
 		Servicio s = new Servicio();
 		System.out.println(s.buscarHorasAPSPorIdPaciente("1"));
 	}
+
 	@Test
-	public void buscarHorasControlPorIdPaciente(){
+	public void buscarHorasControlPorIdPaciente() {
 		Servicio s = new Servicio();
 		System.out.println(s.buscarHorasControlPorIdPaciente("1"));
 	}
-	
+
 	@Test
-	public void pacienteopen(){
-		PacienteOpen p=new PacienteOpen();
+	public void pacienteopen() {
+		PacienteOpen p = new PacienteOpen();
 		p.setIdentifier("12236");
 		p.setPersonUUid("19a2b3f8-4467-4266-8f8a-44b014faae3a");
-		Paciente pac=new Paciente();
+		Paciente pac = new Paciente();
 		System.out.println(pac.registrarPacienteOpenmrs(p));
-		
+
 	}
+
 	@Test
-	public void personaopen(){
+	public void personaopen() {
 		PersonaVO p = new PersonaVO();
 		p.setApellidos("Scarlet");
 		p.setDireccion("florencia, italia");
@@ -342,70 +365,89 @@ public class ServicioTest {
 		Date fecha = Transformar.stringToDate("1969-03-29");
 		p.setFechaNacimiento(fecha);
 		p.setNombre("Elsa");
-		Persona per=new Persona();
-		String res=per.registrarPersonaOpenmrs(p);
+		Persona per = new Persona();
+		String res = per.registrarPersonaOpenmrs(p);
 		System.out.println(res);
-		
-		PacienteOpen ps=new PacienteOpen();
+
+		PacienteOpen ps = new PacienteOpen();
 		ps.setIdentifier("12236");
 		ps.setPersonUUid(res);
-		Paciente pac=new Paciente();
+		Paciente pac = new Paciente();
 		System.out.println(pac.registrarPacienteOpenmrs(ps));
-		/*try {
-
-			ClientConfig clientConfig = new DefaultClientConfig();
-			Client client = Client.create(clientConfig);
-			client.addFilter(new HTTPBasicAuthFilter("admin", "Admin123"));
-			WebResource webResource = client
-					.resource("http://localhost:8080/openmrs/ws/rest/v1/person");
-
-			String input = "{\"gender\":\"M\", \"birthdate\":\"1978-12-04\" ,\"names\": [{\"givenName\":\"johnathan\", \"familyName\":\"Confort\"}],\"addresses\":[{\"preferred\":\"true\",\"address1\":\"av.nunca viva\"}]}";
-
-			ClientResponse response = webResource.type("application/json")
-			   .post(ClientResponse.class, input);
-
-			if (response.getStatus() != 201) {
-				throw new RuntimeException("Failed : HTTP error code : "
-				     + response.getStatus());
-			}
-
-			System.out.println("Output from Server .... \n");
-			String output = response.getEntity(String.class);
-			System.out.println(output);
-
-		  } catch (Exception e) {
-
-			e.printStackTrace();
-
-		  }*/
+		/*
+		 * try {
+		 * 
+		 * ClientConfig clientConfig = new DefaultClientConfig(); Client client
+		 * = Client.create(clientConfig); client.addFilter(new
+		 * HTTPBasicAuthFilter("admin", "Admin123")); WebResource webResource =
+		 * client .resource("http://localhost:8080/openmrs/ws/rest/v1/person");
+		 * 
+		 * String input =
+		 * "{\"gender\":\"M\", \"birthdate\":\"1978-12-04\" ,\"names\": [{\"givenName\":\"johnathan\", \"familyName\":\"Confort\"}],\"addresses\":[{\"preferred\":\"true\",\"address1\":\"av.nunca viva\"}]}"
+		 * ;
+		 * 
+		 * ClientResponse response = webResource.type("application/json")
+		 * .post(ClientResponse.class, input);
+		 * 
+		 * if (response.getStatus() != 201) { throw new
+		 * RuntimeException("Failed : HTTP error code : " +
+		 * response.getStatus()); }
+		 * 
+		 * System.out.println("Output from Server .... \n"); String output =
+		 * response.getEntity(String.class); System.out.println(output);
+		 * 
+		 * } catch (Exception e) {
+		 * 
+		 * e.printStackTrace();
+		 * 
+		 * }
+		 */
 	}
-	
+
 	@Test
-	public void provadno(){
-		String horaMedica="Aug 12, 2015";
+	public void provadno() {
+		String horaMedica = "Aug 12, 2015";
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String dateInString = "2014-02-12 12:00:00";	
-		Date date=null;
-		
-		String json="{\"results\":[{\"id\":1,\"medico\":{\"id\":1,\"especialidad\":{\"id\":1,\"nombre\":\"médicina general\"},\"hospital\":{\"id\":1,\"nombre\":\"hospital regional\"},\"persona\":{\"id\":5,\"nombre\":\"1 - dr. casa\",\"estado\":\"true\",\"uuid\":\"84c3facf-c11c-460d-9f7e-420cc88adab2\"}},\"box\":{\"Box\":1,\"nroHabitacion\":\"12-4\",\"establecimiento\":{\"id\":1,\"nombre\":\"hospital regional\"}},\"asp\":\"true\",\"fecha\":\"2015-08-20 12:00:00\",\"uuid\":\"asdsfstdrgtrt\"}]}";
-		HoraMedicaVO h=Transformar.jsonTOHoraMedica(json);
+		String dateInString = "2014-02-12 12:00:00";
+		Date date = null;
+
+		String json = "{\"results\":[{\"id\":1,\"medico\":{\"id\":1,\"especialidad\":{\"id\":1,\"nombre\":\"médicina general\"},\"hospital\":{\"id\":1,\"nombre\":\"hospital regional\"},\"persona\":{\"id\":5,\"nombre\":\"1 - dr. casa\",\"estado\":\"true\",\"uuid\":\"84c3facf-c11c-460d-9f7e-420cc88adab2\"}},\"box\":{\"Box\":1,\"nroHabitacion\":\"12-4\",\"establecimiento\":{\"id\":1,\"nombre\":\"hospital regional\"}},\"asp\":\"true\",\"fecha\":\"2015-08-20 12:00:00\",\"uuid\":\"asdsfstdrgtrt\"}]}";
+		HoraMedicaVO h = Transformar.jsonTOHoraMedica(json);
 		try {
 
-			 date = formatter.parse(dateInString);
-			 h.setFecha(date);
-			 
+			date = formatter.parse(dateInString);
+			h.setFecha(date);
+
 			System.out.println(date);
 			System.out.println(formatter.format(date));
 
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
-		Gson gson =new GsonBuilder()
-		   .setDateFormat("yyyy-MM-dd HH:mm:ss").create();
+
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss")
+				.create();
 		String listaResultado = gson.toJson(h);
-		String respuesta="{\"results\":[" + listaResultado + "]}";
-		
+		String respuesta = "{\"results\":[" + listaResultado + "]}";
+
 		System.out.println(respuesta);
+	}
+
+	@Test
+	public void testobtenerListaProcedimientos() {
+		Servicio s = new Servicio();
+		System.out.println(s.obtenerListaProcedimientos());
+	}
+
+	@Test
+	public void testobtenerListaActividades() {
+		Servicio s = new Servicio();
+		System.out.println(s.obtenerListaActividades());
+	}
+
+	@Test
+	public void testobtenerListaDiagnosticos() {
+		Servicio s = new Servicio();
+		System.out.println(s.obtenerListaDiagnosticos());
 	}
 }

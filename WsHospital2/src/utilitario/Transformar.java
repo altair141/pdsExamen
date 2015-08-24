@@ -475,7 +475,7 @@ public class Transformar {
 					.getAsString());
 			cierreCaso.setFechaCierreClinico(fechaCierre);
 
-			cierreCaso.setHoraCierreClienico(jobject.get("horaCierreClinico")
+			cierreCaso.setHoraCierreClienico(jobject.get("horaCierreClienico")
 					.getAsString());
 			cierreCaso.setHoraInicioAtencion(jobject.get("horaInicioAtencion")
 					.getAsString());
@@ -485,12 +485,15 @@ public class Transformar {
 			JsonObject personaJson = jobject.get("rce").getAsJsonObject();
 			RceVO rce = new RceVO(stringToInt(personaJson.get("idRce")
 					.getAsString()));
+			System.out.println("transformacion"+personaJson.get("idRce").getAsString());
 			cierreCaso.setRce(rce);
 
 			return cierreCaso;
 		} catch (NullPointerException e) {
+			e.printStackTrace();
 			return null;
 		} catch (UnsupportedOperationException e) {
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -848,5 +851,30 @@ public class Transformar {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		String reportDate = df.format(fecha);
 		return reportDate;
+	}
+	public static String diagnosticoLista(
+			List<capaNegocio.fichamedicaDomain.DiagnosticoVO> diagnosticos) {
+		Gson gson = new Gson();
+		String listaResultado = gson.toJson(diagnosticos);
+		return "{\"results\":" + listaResultado + "}";
+	}
+	public static String actividadLista(
+			List<capaNegocio.fichamedicaDomain.ActividadVO> actividades) {
+		Gson gson = new Gson();
+		String listaResultado = gson.toJson(actividades);
+		return "{\"results\":" + listaResultado + "}";
+	}
+	public static String procedimientosLista(
+			List<capaNegocio.fichamedicaDomain.ProcedimientoVO> procedimientos) {
+		Gson gson = new Gson();
+		String listaResultado = gson.toJson(procedimientos);
+		return "{\"results\":" + listaResultado + "}";
+	}
+	public static String cierreCaso(capaNegocio.fichamedicaDomain.CierreCasoMedicoVO cierreCaso) {
+		Gson gson =  new GsonBuilder()
+		   .setDateFormat("yyyy-MM-dd").create();
+		String listaResultado = gson.toJson(cierreCaso);
+		return "{\"results\":[" + listaResultado + "]}";
+
 	}
 }

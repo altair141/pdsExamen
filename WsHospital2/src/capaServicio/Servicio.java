@@ -9,11 +9,17 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import utilitario.Transformar;
+import capaNegocio.fichamedica.Actividad;
 import capaNegocio.fichamedica.CierreCasoMedico;
+import capaNegocio.fichamedica.Diagnostico;
 import capaNegocio.fichamedica.Hce;
+import capaNegocio.fichamedica.Procedimiento;
 import capaNegocio.fichamedica.Rce;
+import capaNegocio.fichamedicaDomain.ActividadVO;
 import capaNegocio.fichamedicaDomain.CierreCasoMedicoVO;
+import capaNegocio.fichamedicaDomain.DiagnosticoVO;
 import capaNegocio.fichamedicaDomain.HceVO;
+import capaNegocio.fichamedicaDomain.ProcedimientoVO;
 import capaNegocio.fichamedicaDomain.RceVO;
 import capaNegocio.hospital.HoraMedica;
 import capaNegocio.hospital.Reserva;
@@ -506,12 +512,14 @@ public class Servicio {
 	public String registrarCierreCasoMedico(String json) {
 		try {
 			CierreCasoMedicoVO cierreCaso = Transformar.cierreCasoMedico(json);
-
+			System.out.println("id rce"+cierreCaso.getRce().getIdRce());
 			CierreCasoMedico cierre = new CierreCasoMedico();
+			
 			String idCierre = cierre.registrarCierreCasoMedico(cierreCaso);
 
 			return idCierre;
 		} catch (NullPointerException e) {
+			e.printStackTrace();
 			return "no registrado";
 		}
 	}
@@ -598,5 +606,42 @@ public class Servicio {
 		Hce hce = new Hce();
 		int idHce = hce.obtenerIdHce(paciente);
 		return idHce+"";
+	}
+	
+	public String obtenerListaDiagnosticos(){
+		try{
+		Diagnostico d=new Diagnostico();
+		List<DiagnosticoVO>lista=d.listaDiagnosticos();
+		if(lista==null){
+			return "{\"results\":[]}";
+		}
+		return Transformar.diagnosticoLista(lista);
+		}catch(NullPointerException e){
+			return "{\"results\":[]}";
+		}
+	}
+	public String obtenerListaActividades(){
+		try{
+			Actividad d=new Actividad();
+		List<ActividadVO>lista=d.listaActividades();
+		if(lista==null){
+			return "{\"results\":[]}";
+		}
+		return Transformar.actividadLista(lista);
+		}catch(NullPointerException e){
+			return "{\"results\":[]}";
+		}
+	}
+	public String obtenerListaProcedimientos(){
+		try{
+			Procedimiento d=new Procedimiento();
+		List<ProcedimientoVO>lista=d.listaProcedimientos();
+		if(lista==null){
+			return "{\"results\":[]}";
+		}
+		return Transformar.procedimientosLista(lista);
+		}catch(NullPointerException e){
+			return "{\"results\":[]}";
+		}
 	}
 }
