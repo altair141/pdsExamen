@@ -1,0 +1,1 @@
+@call RunSample ormsamples.CreateTaller2DatabaseSchema
