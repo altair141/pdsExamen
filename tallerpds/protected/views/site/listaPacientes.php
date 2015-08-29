@@ -87,7 +87,7 @@ function seleccionado(datoPersona,uuid) {
  								echo "<tr>";
  								echo"<td hidden id='uuid".$i."'>".$pacientes[$i]["persona"]["id"]."</td>";
  								echo "<td id='nombre".$i."'>".$pacientes[$i]["persona"]["nombre"]." ".$pacientes[$i]["persona"]["apellidos"]."</td>";
- 								echo "<td style='width: 10%;'><button type='button' class='btn btn-default text-right' onclick='seleccionado(nombre".$i.", uuid".$i.")'>Seleccionar</button></td>";
+ 								echo "<td style='width: 10%;'><button type='button' class='btn btn-success text-right' onclick='seleccionado(nombre".$i.", uuid".$i.")'>Seleccionar</button></td>";
  								echo"</tr>";
  							}
  						}

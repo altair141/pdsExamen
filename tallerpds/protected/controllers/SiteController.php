@@ -59,7 +59,18 @@ class SiteController extends Controller
 			$idPaciente=$_POST['idPaciente'];
 			$idHoraMedica=$_POST['idHora'];
 			$this->render('horaMedica',array('idPaciente'=>$idPaciente,'idHoraMedica'=>$idHoraMedica));
-		}else{
+		}elseif(isset($_POST['rceGuardar'])){
+			$idPaciente=$_POST['idPaciente'];
+			
+
+			$this->render('index');
+		}elseif(isset($_POST['abrirRce'])){
+			$idPaciente=$_POST['idPaciente'];
+			$idRce=$_POST['idRce'];
+
+			$this->render('abrirRce',array('idPaciente'=>$idPaciente,'idRce'=>$idRce));
+		}
+		else{
 			$this->render('listaPacientes');
 		}
 

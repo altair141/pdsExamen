@@ -92,7 +92,7 @@ $id=$paciente["results"][0]["id"];
 					</form>
 				</div>
 				<div class="span2">	
-					<form action="rce" method="POST" class="span2">
+					<form  method="POST" class="span2">
 						<div hidden>
 							<input hidden type="text" name="idPaciente" value="<?php echo $id; ?>"/> 
 							<input type="text" hidden name="idHoraMedica" value="0" />

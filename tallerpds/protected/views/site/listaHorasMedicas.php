@@ -79,10 +79,10 @@ nombreMedico.value=medico.innerHTML;
 								//
 							echo "<tr>";
 							echo "<td hidden id='id".$i."'>".$listaHoras["results"][$i]["id"]."</td>";
-							echo "<td id='hospital".$i."'>".$listaHoras["results"][$i]["establecimiento"]["nombre"]." ".$apellido."</td>";
+							echo "<td id='hospital".$i."'>".$listaHoras["results"][$i]["establecimiento"]["nombre"]."</td>";
 							echo "<td id='fecha".$i."'>".$listaHoras["results"][$i]["fecha"]."</td>";
-							echo "<td id='medico".$i."'>".$listaHoras["results"][$i]["medico"]["persona"]["nombre"]."  </td>";
-							echo "<td style='width: 10%;'><button type='button' class='btn btn-default text-right' onclick='seleccionado(id".$i.",hospital".$i.",fecha".$i.",medico".$i.");'>Seleccionar</button></td>";
+							echo "<td id='medico".$i."'>".$listaHoras["results"][$i]["medico"]["persona"]["nombre"]." ".$apellido."  </td>";
+							echo "<td style='width: 10%;'><button type='button' class='btn btn-success text-right' onclick='seleccionado(id".$i.",hospital".$i.",fecha".$i.",medico".$i.");'>Seleccionar</button></td>";
 							echo "</tr>";
 							}
 						}

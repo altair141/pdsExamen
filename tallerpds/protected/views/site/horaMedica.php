@@ -9,10 +9,10 @@ $nombreHospital="";
 if(isset($idHoraMedica)){
 
 	$jsonHoraMedica=Yii::app()->cliente->obtenerHoraMedica($idHoraMedica);
-	echo $jsonHoraMedica;
+	//echo $jsonHoraMedica;
 	if(strcmp($jsonHoraMedica,"{\"results\":[]}") !== 0){
 		$hora=json_decode($jsonHoraMedica,TRUE);
-		var_dump($hora);
+		//var_dump($hora);
 		$fecha=$hora["results"][0]["fecha"];
 		$tipoHora=$hora["results"][0]["asp"];
 		$medico=$hora["results"][0]["medico"]["persona"]["nombre"];
@@ -119,7 +119,7 @@ if(isset($idHoraMedica)){
 										name="idHoraMedica" value="<?php echo $idHoraMedica; ?>" /> <input type="text" 
 										class="form-control" id="idPaciente" name="idPaciente" value="<?php echo $idPaciente; ?>"/>
 								</div>
-								<button type="submit" class="btn btn-success">Registrar
+								<button type="submit" name="rce" class="btn btn-success">Registrar
 									RCE</button>
 
 							</form>

@@ -8,7 +8,7 @@ class MiCliente extends CApplicationComponent{
                 // para que reconozca nuevas funciones del WS 
                 ini_set (  'soap.wsdl_cache_enable'  ,  0  );
                 ini_set (  'soap.wsdl_cache_ttl'  ,  0  );
-                $this->client = new SoapClient("http://localhost:8080/WsHospital2/services/Servicio?wsdl");
+                $this->client = new SoapClient("http://localhost:8080/WsHospital3/services/Servicio?wsdl");
         }
         return $this->client;
     }
@@ -40,5 +40,35 @@ class MiCliente extends CApplicationComponent{
             $param=array("idPaciente"=>$idPaciente);
             return $this->getClienteInt()->obtenerHCE($param)->obtenerHCEReturn;
         }
-}
+        public function obtenerIdHCE($idPaciente){
+            $param=array("idPaciente"=>$idPaciente);
+            return $this->getClienteInt()->obtenerIdHCE($param)->obtenerIdHCEReturn;
+        }
+        public function obtenerListaProcedimientos(){
+            return $this->getClienteInt()->obtenerListaProcedimientos()->obtenerListaProcedimientosReturn;
+        }
+        public function obtenerListaDiagnosticos(){
+            return $this->getClienteInt()->obtenerListaDiagnosticos()->obtenerListaDiagnosticosReturn;
+        }
+        public function obtenerListaActividades(){
+            return $this->getClienteInt()->obtenerListaActividades()->obtenerListaActividadesReturn;
+        }
+        public function obtenerRcePorId($idRce){
+            $param=array("idRce"=>$idRce);
+            return $this->getClienteInt()->obtenerRcePorId($param)->obtenerRcePorIdReturn;
+        }        
+
+        public function obtenerDiagnosticoporId($idDiagnostico){
+             $param=array("idDiagnostico"=>$idDiagnostico);
+            return $this->getClienteInt()->obtenerDiagnosticoporId($param)->obtenerDiagnosticoporIdReturn;
+        }
+        public function obtenerActividadporId($idActividad){
+            $param=array("idActividad"=>$idActividad);
+            return $this->getClienteInt()->obtenerActividadporId($param)->obtenerActividadporIdReturn;
+        }
+        public function obtenerProcedimientosporId($idProcedimiento){
+            $param=array("idProcedimiento"=>$idProcedimiento);
+            return $this->getClienteInt()->obtenerProcedimientosporId($param)->obtenerProcedimientosporIdReturn;
+        }
+    }
 ?>
