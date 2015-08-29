@@ -32,9 +32,11 @@
 		String horaMedica = "";
 		String medico = "";
 		String hora = "";
+		String idPaciente="";
 		try {
 			paciente = request.getAttribute("paciente").toString();
-
+			idPaciente=request.getAttribute("idPaciente").toString();
+			
 			listaRce = request.getAttribute("listaRce").toString();
 
 		} catch (NullPointerException e) {
@@ -51,9 +53,20 @@
 
 			</center>
 			<br>
+			<script>
+function seleccionado(uuid, datoPersona) {
+	$("#formAbrirRCE").show();
+	var id = document.getElementById("uuid");
+	var nombre = document.getElementById("datosPaciente");
+	id.value = uuid.innerHTML;
+	nombre.value = datoPersona.innerHTML;
+
+}
+</script>
 			<table class="table table-striped">
 				<thead>
 					<tr>
+						<th hidden></th>
 						<th>ESTABLECIMIENTO</th>
 						<th>FECHA</th>
 						<th>PRESTADOR</th>
@@ -63,16 +76,19 @@
 				</thead>
 				<tbody>
 					<%
+						String idRce = "";
 						if (!listaRce.equals("{\"results\":[]}")
 								&& (!paciente
 										.equals("{\"results\":[{\"id\":0,\"persona\":{\"id\":0}}]}"))) {
 							String nombreMedico = "";
+
 							try {
 								JsonElement jelement = new JsonParser().parse(listaRce);
 								JsonObject jobject = jelement.getAsJsonObject();
 								JsonArray jarray = jobject.getAsJsonArray("results");
 								for (int i = 0; i < jarray.size(); i++) {
 									jobject = jarray.get(i).getAsJsonObject();
+									idRce = jobject.get("idRce").getAsString();
 									estadoCaso = jobject.get("tipoEncuentro").getAsString();
 									horaMedica = jobject.get("idHoraMedica").getAsString();
 									ServicioProxy s = new ServicioProxy();
@@ -124,12 +140,21 @@
 									}
 					%>
 					<tr>
+						<td id="uuid<%=i%>" hidden><%=idRce%></td>
 						<td><%=establecimiento%></td>
 						<td><%=fecha%></td>
 						<td><%=medico%></td>
-						<td><%=resumen%></td>
+						<td id="resumen<%=i%>"><%=resumen%></td>
 						<td><%=estadoCaso%></td>
-						<td></td>
+						<td>
+						<form action="AbrirRce" method="post" id="formAbrirRCE">
+						<input hidden type="text" name="idRce" value="<%=idRce%>">
+						<input hidden type="text" name="idPaciente" value="<%=idPaciente%>">
+							<button type='submit' 
+								class='btn btn-success text-right'>Abrir
+								RCE</button>
+							</form>	
+						</td>
 					</tr>
 					<%
 						}
@@ -141,7 +166,8 @@
 					%>
 				</tbody>
 			</table>
-
+			
+			
 			<div class="text-right">
 				<a href="BuscarPaciente" class="btn btn-default ">Volver</a>
 			</div>

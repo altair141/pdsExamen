@@ -274,7 +274,7 @@ public class Transformar {
 			JsonArray jarray = jobject.getAsJsonArray("results");
 			jobject = jarray.get(0).getAsJsonObject();
 			rce.setTipoEncuentro(jobject.get("tipoEncuentro").getAsString());
-			rce.setIdHoraMedica(StringToInt(jobject.get("idHoraMedica")
+			rce.setIdHoraMedica(stringToInt(jobject.get("idHoraMedica")
 					.getAsString()));
 			rce.setAnamnesis(jobject.get("anamnesis").getAsString());
 			rce.setAlergia(jobject.get("alergia").getAsString());
@@ -292,27 +292,27 @@ public class Transformar {
 
 			JsonObject hceJson = jobject.get("idHce").getAsJsonObject();
 			String idHce = hceJson.get("id").getAsString();
-			HceVO hce = new HceVO(StringToInt(idHce));
+			HceVO hce = new HceVO(stringToInt(idHce));
 			rce.setIdHce(hce);
 
 			JsonObject diagnosticojson = jobject.get("idDiagnostico")
 					.getAsJsonObject();
 			String idDiagnostico = diagnosticojson.get("id").getAsString();
 			DiagnosticoVO diagnostico = new DiagnosticoVO(
-					StringToInt(idDiagnostico));
+					stringToInt(idDiagnostico));
 			rce.setIdDiagnostico(diagnostico);
 
 			JsonObject actividadjson = jobject.get("idActividad")
 					.getAsJsonObject();
 			String idActividad = actividadjson.get("id").getAsString();
-			ActividadVO actividad = new ActividadVO(StringToInt(idActividad));
+			ActividadVO actividad = new ActividadVO(stringToInt(idActividad));
 			rce.setIdActividad(actividad);
 
 			JsonObject procedimientojson = jobject.get("idProcedimiento")
 					.getAsJsonObject();
 			String idprocedimiento = procedimientojson.get("id").getAsString();
 			ProcedimientoVO procedimiento = new ProcedimientoVO(
-					StringToInt(idprocedimiento));
+					stringToInt(idprocedimiento));
 			rce.setIdProcedimiento(procedimiento);
 
 			JsonArray listaCertificadosjson = jobject
@@ -323,7 +323,7 @@ public class Transformar {
 						.getAsJsonObject();
 				String idCertificado = certificadosJson.get("id").getAsString();
 				CertificadoVO certificado = new CertificadoVO(
-						StringToInt(idCertificado));
+						stringToInt(idCertificado));
 				rce.agregarCertificado(certificado);
 
 			}
@@ -476,7 +476,7 @@ public class Transformar {
 
 	}
 
-	public static int StringToInt(String texto) {
+	public static int stringToInt(String texto) {
 		try {
 			int numero = Integer.parseInt(texto);
 			return numero;
@@ -589,7 +589,11 @@ public class Transformar {
 		String reportDate = df.format(fecha);
 		return reportDate;
 	}
-
+	public static String datetoStringRce(Date fecha) {
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		String reportDate = df.format(fecha);
+		return reportDate;
+	}
 	public static List<DiagnosticoVO> jsonToDiagnostico(String jsonDiagnostico) {
 		List<DiagnosticoVO> listaDiagnostico = new ArrayList<DiagnosticoVO>();
 
@@ -615,6 +619,30 @@ public class Transformar {
 		}
 	}
 
+	public static DiagnosticoVO jsonToDiagnosticoNoLista(String jsonDiagnostico) {
+		DiagnosticoVO diagnostico = new DiagnosticoVO();
+
+		try {
+			JsonElement jelement = new JsonParser().parse(jsonDiagnostico);
+			JsonObject jobject = jelement.getAsJsonObject();
+			JsonArray jarray = jobject.getAsJsonArray("results");
+			
+			
+				jobject = jarray.get(0).getAsJsonObject();
+				diagnostico.setNombre(jobject.get("nombre").getAsString());
+				diagnostico.setId(jobject.get("id").getAsInt());
+				diagnostico.setUuid(jobject.get("uuid").getAsString());
+				
+			
+			return diagnostico;
+		} catch (NullPointerException e) {
+			return null;
+		} catch (UnsupportedOperationException e) {
+			return null;
+		} catch (IllegalStateException e) {
+			return null;
+		}
+	}
 	public static List<ActividadVO> jsonToActividad(String jsonActividad) {
 		List<ActividadVO> listaActividad = new ArrayList<ActividadVO>();
 
@@ -649,7 +677,38 @@ public class Transformar {
 			return null;
 		}
 	}
+	public static ActividadVO jsonToActividadNoLista(String jsonActividad) {
+		
 
+		try {
+
+			JsonElement jelement = new JsonParser().parse(jsonActividad);
+			JsonObject jobject = jelement.getAsJsonObject();
+			JsonArray jarray = jobject.getAsJsonArray("results");
+		
+				ActividadVO actividad = new ActividadVO();
+				DiagnosticoVO diagnostico = new DiagnosticoVO();
+				jobject = jarray.get(0).getAsJsonObject();
+				actividad.setNombreActividad(jobject.get("nombreActividad")
+						.getAsString());
+				System.out.println(actividad.getNombreActividad());
+				actividad.setId(jobject.get("id").getAsInt());
+				JsonObject diagnostic = jobject.get("diagnostico")
+						.getAsJsonObject();
+				diagnostico.setId(diagnostic.get("id").getAsInt());
+				diagnostico.setNombre(diagnostic.get("nombre").getAsString());
+				diagnostico.setUuid(diagnostic.get("uuid").getAsString());
+				actividad.setDiagnostico(diagnostico);
+
+			return actividad;
+		} catch (NullPointerException e) {
+			return null;
+		} catch (UnsupportedOperationException e) {
+			return null;
+		} catch (IllegalStateException e) {
+			return null;
+		}
+	}
 	public static List<ProcedimientoVO> jsonToProcedimiento(
 			String jsonProcedimiento) {
 		List<ProcedimientoVO> listaProcedimiento = new ArrayList<ProcedimientoVO>();
@@ -684,6 +743,39 @@ public class Transformar {
 		}
 	}
 
+	public static ProcedimientoVO jsonToProcedimientoNoLista(
+			String jsonProcedimiento) {
+	
+		try {
+
+			JsonElement jelement = new JsonParser().parse(jsonProcedimiento);
+			JsonObject jobject = jelement.getAsJsonObject();
+
+			JsonArray jarray = jobject.getAsJsonArray("results");
+			
+				ProcedimientoVO procedimiento = new ProcedimientoVO();
+				DiagnosticoVO diagnostico = new DiagnosticoVO();
+				jobject = jarray.get(0).getAsJsonObject();
+				procedimiento.setNombre(jobject.get("nombre").getAsString());
+				procedimiento.setId(jobject.get("id").getAsInt());
+				JsonObject diagnostic = jobject.get("diagnostico")
+						.getAsJsonObject();
+				diagnostico.setId(diagnostic.get("id").getAsInt());
+				diagnostico.setNombre(diagnostic.get("nombre").getAsString());
+				diagnostico.setUuid(diagnostic.get("uuid").getAsString());
+				procedimiento.setDiagnostico(diagnostico);
+				
+			
+			return procedimiento;
+		} catch (NullPointerException e) {
+			return null;
+		} catch (UnsupportedOperationException e) {
+			return null;
+		} catch (IllegalStateException e) {
+			return null;
+		}
+	}
+	
 	public static String jsonPacienteUuid(String jsonPaciente) {
 
 		try {
@@ -735,6 +827,314 @@ public class Transformar {
 		}
 		return texto;
 	}
+	public static RceVO jsonToRce2(String json) {
+		RceVO rce = new RceVO();
+		try {
+			JsonElement jelement = new JsonParser().parse(json);
+			JsonObject jobject = jelement.getAsJsonObject();
+			JsonArray jarray = jobject.getAsJsonArray("results");
+			jobject = jarray.get(0).getAsJsonObject();
 
+			String tipoEncuentro = jobject.get("tipoEncuentro").getAsString();
+			System.out.println("0 "+tipoEncuentro);
+			rce.setTipoEncuentro(tipoEncuentro);
+
+			String uuid = jobject.get("uuid").getAsString();
+			System.out.println("1 "+uuid);
+			rce.setUuid(uuid);
+
+			JsonObject hceJson = jobject.get("idHce").getAsJsonObject();
+			String idHce = hceJson.get("id").getAsString();
+			System.out.println("2 "+idHce);
+			HceVO hce = new HceVO(stringToInt(idHce));
+			rce.setIdHce(hce);
+
+			String idHoraMedica = jobject.get("idHoraMedica").getAsString();
+			System.out.println("3 "+idHoraMedica);
+			rce.setIdHoraMedica(stringToInt(idHoraMedica));
+			
+			String anamnesis=jobject.get("anamnesis").getAsString();
+			System.out.println("4 "+anamnesis);
+			rce.setAnamnesis(anamnesis);
+			
+			String alergia=jobject.get("alergia").getAsString();
+			System.out.println("5 "+alergia);
+			rce.setAlergia(alergia);
+			
+			String examenFisico=jobject.get("examenFisico").getAsString();
+			System.out.println("6 "+examenFisico);			
+			rce.setExamenFisico(examenFisico);
+			
+			String indicacionMedica=jobject.get("indicacionMedica").getAsString();
+			System.out.println("7 "+indicacionMedica);
+			rce.setIndicacionMedica(indicacionMedica);
+			
+			String indicacionCasocierre=jobject.get("indicacionCierreCaso").getAsString();
+			System.out.println("8 "+indicacionCasocierre);
+			rce.setIndicacionCierreCaso(indicacionCasocierre);
+			
+			String hipotesisDiagnos=jobject.get("hipotesisDiagnostico").getAsString();
+			System.out.println("9 "+hipotesisDiagnos);
+			rce.setHipotesisDiagnostico(hipotesisDiagnos);
+			
+			String pacienteGes=jobject.get("pacienteGes").getAsString();
+			System.out.println("10 "+pacienteGes);
+			rce.setPacienteGes(pacienteGes);
+			
+			String patologiaGes=jobject.get("patologiaGes").getAsString();
+			System.out.println("11 "+patologiaGes);
+			rce.setPatologiaGes(patologiaGes);
+			
+			String pacienteCroni=jobject.get("pacienteCronico").getAsString();
+			System.out.println("12 "+pacienteCroni);
+			rce.setPacienteCronico(pacienteCroni);
+			
+			String receta=jobject.get("receta").getAsString();
+			System.out.println("13 "+receta);
+			rce.setReceta(receta);	
+			
+			JsonObject diagnosticojson = jobject.get("idDiagnostico").getAsJsonObject();
+			String idDiagnostico = diagnosticojson.get("id").getAsString();
+			System.out.println("14 "+idDiagnostico);
+			DiagnosticoVO diagnostico = new DiagnosticoVO(stringToInt(idDiagnostico));
+			rce.setIdDiagnostico(diagnostico);
+			
+			JsonObject actividadjson = jobject.get("idActividad").getAsJsonObject();
+			String idActividad = actividadjson.get("id").getAsString();
+			System.out.println("15 "+idActividad);
+			ActividadVO actividad = new ActividadVO(stringToInt(idActividad));
+			rce.setIdActividad(actividad);
+			
+			
+			JsonObject procedimientojson = jobject.get("idProcedimiento").getAsJsonObject();
+			String idprocedimiento = procedimientojson.get("id").getAsString();
+			System.out.println("16 "+idprocedimiento);
+			ProcedimientoVO procedimiento = new ProcedimientoVO(stringToInt(idprocedimiento));
+			rce.setIdProcedimiento(procedimiento);
+			
+			String tipoCierre=jobject.get("tipoCierre").getAsString();
+			System.out.println("17 "+tipoCierre);
+			rce.setTipoCierre(tipoCierre);
+			
+			String destino=jobject.get("destino").getAsString();
+			System.out.println("18 "+destino);
+			rce.setDestino(destino);
+			
+			
+			String fecha=jobject.get("fechaAtencion").getAsString();
+			System.out.println("19 "+ fecha);
+			Date fechaAten = stringToDate(fecha);
+			rce.setFechaAtencion(fechaAten);
+			
+			String horaInicio=jobject.get("horaInicioAtencion").getAsString();
+			System.out.println("20"+ horaInicio);
+			rce.setHoraInicioAtencion(horaInicio);
+			
+			String fechaFin=jobject.get("fechaCierreClinico").getAsString();
+			System.out.println("21 "+fechaFin);
+			Date fechaCierre = stringToDate(fechaFin);
+			rce.setFechaCierreClinico(fechaCierre);
+			
+			String horaFin=jobject.get("horaCierreClienico").getAsString();
+			System.out.println("22 "+horaFin); 
+			rce.setHoraCierreClienico(horaFin);
+			String tiempoControl=jobject.get("tiempoControl").getAsString();
+			System.out.println("23 "+tiempoControl);
+			rce.setTiempoControl(tiempoControl); 
+			JsonArray listaCertificadosjson = jobject.getAsJsonArray("listaCertificados");
+
+			for (int i = 0; i < listaCertificadosjson.size(); i++) {
+				JsonObject certificadosJson = listaCertificadosjson.get(i).getAsJsonObject();
+				String idCertificado = certificadosJson.get("id").getAsString();
+				System.out.println((24+i)+" "+ idCertificado);
+				CertificadoVO certificado = new CertificadoVO(stringToInt(idCertificado));
+				rce.agregarCertificado(certificado);
+
+			}
+			
+			return rce;
+		} catch (NullPointerException e) {
+			return null;
+		} catch (IllegalStateException e) {
+			return null;
+		}
+	}
+
+	/**
+	 * 
+	 * @param json string con el json de datos del rce con id de la bd local
+	 * @return objeto rce
+	 */
+	public static RceVO jsonToRce3(String json) {
+		RceVO rce = new RceVO();
+		try {
+			JsonElement jelement = new JsonParser().parse(json);
+			JsonObject jobject = jelement.getAsJsonObject();
+			JsonArray jarray = jobject.getAsJsonArray("results");
+			jobject = jarray.get(0).getAsJsonObject();
+
+			String tipoEncuentro = jobject.get("tipoEncuentro").getAsString();
+			System.out.println("0 "+tipoEncuentro);
+			rce.setTipoEncuentro(tipoEncuentro);
+			
+			String id=jobject.get("idRce").getAsString();
+			System.out.println(id);
+			rce.setIdRce(stringToInt(id));
+			String uuid = jobject.get("uuid").getAsString();
+			System.out.println("1 "+uuid);
+			rce.setUuid(uuid);
+
+			JsonObject hceJson = jobject.get("idHce").getAsJsonObject();
+			String idHce = hceJson.get("id").getAsString();
+			System.out.println("2 "+idHce);
+			
+			HceVO hce = new HceVO(stringToInt(idHce));
+			rce.setIdHce(hce);
+
+			String idHoraMedica = jobject.get("idHoraMedica").getAsString();
+			System.out.println("3 "+idHoraMedica);
+			rce.setIdHoraMedica(stringToInt(idHoraMedica));
+			
+			String anamnesis=jobject.get("anamnesis").getAsString();
+			System.out.println("4 "+anamnesis);
+			rce.setAnamnesis(anamnesis);
+			
+			String alergia=jobject.get("alergia").getAsString();
+			System.out.println("5 "+alergia);
+			rce.setAlergia(alergia);
+			
+			String examenFisico=jobject.get("examenFisico").getAsString();
+			System.out.println("6 "+examenFisico);			
+			rce.setExamenFisico(examenFisico);
+			
+			String indicacionMedica=jobject.get("indicacionMedica").getAsString();
+			System.out.println("7 "+indicacionMedica);
+			rce.setIndicacionMedica(indicacionMedica);
+			
+			String indicacionCasocierre=jobject.get("indicacionCierreCaso").getAsString();
+			System.out.println("8 "+indicacionCasocierre);
+			rce.setIndicacionCierreCaso(indicacionCasocierre);
+			
+			String hipotesisDiagnos=jobject.get("hipotesisDiagnostico").getAsString();
+			System.out.println("9 "+hipotesisDiagnos);
+			rce.setHipotesisDiagnostico(hipotesisDiagnos);
+			
+			String pacienteGes=jobject.get("pacienteGes").getAsString();
+			System.out.println("10 "+pacienteGes);
+			rce.setPacienteGes(pacienteGes);
+			
+			String patologiaGes=jobject.get("patologiaGes").getAsString();
+			System.out.println("11 "+patologiaGes);
+			rce.setPatologiaGes(patologiaGes);
+			
+			String pacienteCroni=jobject.get("pacienteCronico").getAsString();
+			System.out.println("12 "+pacienteCroni);
+			rce.setPacienteCronico(pacienteCroni);
+			
+			String receta=jobject.get("receta").getAsString();
+			System.out.println("13 "+receta);
+			rce.setReceta(receta);	
+			
+			JsonObject diagnosticojson = jobject.get("idDiagnostico").getAsJsonObject();
+			String idDiagnostico = diagnosticojson.get("id").getAsString();
+			System.out.println("14 "+idDiagnostico);
+			DiagnosticoVO diagnostico = new DiagnosticoVO(stringToInt(idDiagnostico));
+			rce.setIdDiagnostico(diagnostico);
+			
+			JsonObject actividadjson = jobject.get("idActividad").getAsJsonObject();
+			String idActividad = actividadjson.get("id").getAsString();
+			System.out.println("15 "+idActividad);
+			ActividadVO actividad = new ActividadVO(stringToInt(idActividad));
+			rce.setIdActividad(actividad);
+			
+			
+			JsonObject procedimientojson = jobject.get("idProcedimiento").getAsJsonObject();
+			String idprocedimiento = procedimientojson.get("id").getAsString();
+			System.out.println("16 "+idprocedimiento);
+			ProcedimientoVO procedimiento = new ProcedimientoVO(stringToInt(idprocedimiento));
+			rce.setIdProcedimiento(procedimiento);
+			
+			String tipoCierre=jobject.get("tipoCierre").getAsString();
+			System.out.println("17 "+tipoCierre);
+			rce.setTipoCierre(tipoCierre);
+			
+			String destino=jobject.get("destino").getAsString();
+			System.out.println("18 "+destino);
+			rce.setDestino(destino);
+			
+			
+			String fecha=jobject.get("fechaAtencion").getAsString();
+			System.out.println("19 "+ fecha);
+			Date fechaAten = stringToDate(fecha);
+			rce.setFechaAtencion(fechaAten);
+			
+			String horaInicio=jobject.get("horaInicioAtencion").getAsString();
+			System.out.println("20"+ horaInicio);
+			rce.setHoraInicioAtencion(horaInicio);
+			
+			String fechaFin=jobject.get("fechaCierreClinico").getAsString();
+			System.out.println("21 "+fechaFin);
+			Date fechaCierre = stringToDate(fechaFin);
+			rce.setFechaCierreClinico(fechaCierre);
+			
+			String horaFin=jobject.get("horaCierreClienico").getAsString();
+			System.out.println("22 "+horaFin); 
+			rce.setHoraCierreClienico(horaFin);
+			String tiempoControl=jobject.get("tiempoControl").getAsString();
+			System.out.println("23 "+tiempoControl);
+			rce.setTiempoControl(tiempoControl); 
+			JsonArray listaCertificadosjson = jobject.getAsJsonArray("listaCertificados");
+
+			for (int i = 0; i < listaCertificadosjson.size(); i++) {
+				JsonObject certificadosJson = listaCertificadosjson.get(i).getAsJsonObject();
+				String idCertificado = certificadosJson.get("id").getAsString();
+				System.out.println((24+i)+" "+ idCertificado);
+				CertificadoVO certificado = new CertificadoVO(stringToInt(idCertificado));
+				rce.agregarCertificado(certificado);
+
+			}
+			
+			return rce;
+		} catch (NullPointerException e) {
+			return null;
+		} catch (IllegalStateException e) {
+			return null;
+		}
+	}
+
+	public static String certificadoCual(String idCertificado){
+		if(idCertificado.equals("1")||idCertificado.equals("2")){
+			return "certificado1";
+		}else if(idCertificado.equals("3")||idCertificado.equals("4")){
+			return "certificado2";
+		}else if(idCertificado.equals("5")||idCertificado.equals("6")){
+			return "certificado3";
+		}else if(idCertificado.equals("7")||idCertificado.equals("8")){
+			return "certificado4";
+		}else if(idCertificado.equals("9")||idCertificado.equals("10")){
+			return "certificado5";
+		}else if(idCertificado.equals("11")||idCertificado.equals("12")){
+			return "certificado6";
+		}else if(idCertificado.equals("13")||idCertificado.equals("14")){
+			return "certificado7";
+		}else if(idCertificado.equals("15")||idCertificado.equals("16")){
+			return "certificado8";
+		}else if(idCertificado.equals("17")||idCertificado.equals("18")){
+			return "certificado9";
+		}else if(idCertificado.equals("19")||idCertificado.equals("20")){
+			return "certificado10";
+		}else if(idCertificado.equals("21")||idCertificado.equals("22")){
+			return "certificado11";
+		}else if(idCertificado.equals("23")||idCertificado.equals("24")){
+			return "certificado12";
+		}else if(idCertificado.equals("25")||idCertificado.equals("26")){
+			return "certificado13";
+		}else if(idCertificado.equals("27")||idCertificado.equals("28")){
+			return "certificado14";
+		}else {
+			return "certificado15";
+		}
+		
+	}
 
 }

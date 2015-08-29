@@ -143,5 +143,64 @@ public class Rce {
 	}
 	
 	
-
+	public RceVO obtenerRcePorId(int id){
+		try { 
+		
+		orm.Rce	rcebd = orm.RceDAO.getRceByORMID(id);
+		
+		RceVO rceVo=new RceVO();
+		rceVo.setIdRce(rcebd.getIdRce());
+		rceVo.setTipoEncuentro(rcebd.getTipoEncuentro());
+		Diagnostico diagnostico=new Diagnostico();
+		DiagnosticoVO diag=diagnostico.obtenerDiagnosticoPorId(rcebd.getIdDiagnostico().getIdDiagnostico());
+		
+		rceVo.setAlergia(rcebd.getAlergia());
+		rceVo.setAnamnesis(rcebd.getAnamnesis());
+		rceVo.setExamenFisico(rcebd.getExamenFisico());
+		rceVo.setHipotesisDiagnostico(rcebd.getHipotesisDiagnostico());
+		rceVo.setIdDiagnostico(diag);
+		Actividad actividad=new Actividad();
+		ActividadVO actividadVO=actividad.obtenerActividadPorId(rcebd.getIdActividad().getId());
+		rceVo.setIdActividad(actividadVO);
+		Hce hce=new Hce();
+		HceVO hceVo=hce.ontenerHcePorId(rcebd.getIdHce().getIdHce());
+		rceVo.setIdHce(hceVo);
+		rceVo.setIdHoraMedica(rcebd.getIdHoraMedica());
+		Procedimiento proce=new Procedimiento();
+		ProcedimientoVO procedimientoVo=proce.obtenerProcedimientoPorId(rcebd.getIdProcedimiento().getId());
+		rceVo.setIdProcedimiento(procedimientoVo);
+		rceVo.setIndicacionCierreCaso(rcebd.getIndicacionCierreCaso());
+		rceVo.setIndicacionMedica(rcebd.getIndicacionMedica());
+		rceVo.setPacienteCronico(rcebd.getPacienteCronico());
+		rceVo.setPacienteGes(rcebd.getPacienteGes());
+		rceVo.setPatologiaGes(rcebd.getPatologiaGes());
+		rceVo.setReceta(rcebd.getReceta());
+		rceVo.setUuid(rcebd.getUuid());
+		
+		rceVo.setTipoCierre(rcebd.getTipoCierre());
+		rceVo.setDestino(rcebd.getDestino());
+		rceVo.setFechaAtencion(rcebd.getFechaAtencion());
+		rceVo.setHoraInicioAtencion(rcebd.getHoraInicioAtencion());
+		rceVo.setFechaCierreClinico(rcebd.getFechaCierreClinico());
+		rceVo.setHoraCierreClienico(rcebd.getHoraCierreClinico());
+		rceVo.setTiempoControl(rcebd.getTiempoControl());
+		
+		List<CertificadoVO> listaCertificados=new ArrayList<CertificadoVO>();
+		for(orm.Certificado certificado: rcebd.certificado.toArray()){
+			CertificadoVO certificadoVo=new CertificadoVO();
+			certificadoVo.setId(certificado.getId());
+			listaCertificados.add(certificadoVo);
+		}
+			
+		
+		rceVo.setListaCertificados(listaCertificados);
+		return rceVo;
+		} catch (PersistentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}catch(NullPointerException e){
+			return null;
+		}
+	}
 }

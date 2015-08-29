@@ -4,6 +4,48 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://capaServicio" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="obtenerProcedimientosporId">
+    <complexType>
+     <sequence>
+      <element name="idProcedimiento" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerProcedimientosporIdResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerProcedimientosporIdReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerActividadporId">
+    <complexType>
+     <sequence>
+      <element name="idActividad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerActividadporIdResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerActividadporIdReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerDiagnosticoporId">
+    <complexType>
+     <sequence>
+      <element name="idDiagnostico" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerDiagnosticoporIdResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerDiagnosticoporIdReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
    <element name="personaNameRest">
     <complexType>
      <sequence>
@@ -15,6 +57,20 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     <complexType>
      <sequence>
       <element name="personaNameRestReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerRcePorId">
+    <complexType>
+     <sequence>
+      <element name="idRce" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerRcePorIdResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerRcePorIdReturn" type="xsd:string"/>
      </sequence>
     </complexType>
    </element>
@@ -537,6 +593,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="obtenerDiagnosticoporIdResponse">
+
+      <wsdl:part element="impl:obtenerDiagnosticoporIdResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="buscarPersonaLocalPorUuidRequest">
 
       <wsdl:part element="impl:buscarPersonaLocalPorUuid" name="parameters">
@@ -561,6 +625,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="obtenerActividadporIdRequest">
+
+      <wsdl:part element="impl:obtenerActividadporId" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="buscarPersonaPorIdLocalRequest">
 
       <wsdl:part element="impl:buscarPersonaPorIdLocal" name="parameters">
@@ -572,6 +644,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="registrarRceResponse">
 
       <wsdl:part element="impl:registrarRceResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerRcePorIdRequest">
+
+      <wsdl:part element="impl:obtenerRcePorId" name="parameters">
 
       </wsdl:part>
 
@@ -761,6 +841,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="obtenerProcedimientosporIdRequest">
+
+      <wsdl:part element="impl:obtenerProcedimientosporId" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="buscarMedicoOpenResponse">
 
       <wsdl:part element="impl:buscarMedicoOpenResponse" name="parameters">
@@ -921,6 +1009,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="obtenerActividadporIdResponse">
+
+      <wsdl:part element="impl:obtenerActividadporIdResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="pacienteUuidRestResponse">
 
       <wsdl:part element="impl:pacienteUuidRestResponse" name="parameters">
@@ -953,6 +1049,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="obtenerRcePorIdResponse">
+
+      <wsdl:part element="impl:obtenerRcePorIdResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
    <wsdl:message name="mostrarPacientesRequest">
 
       <wsdl:part element="impl:mostrarPacientes" name="parameters">
@@ -980,6 +1084,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="pacienteUuidRestRequest">
 
       <wsdl:part element="impl:pacienteUuidRest" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDiagnosticoporIdRequest">
+
+      <wsdl:part element="impl:obtenerDiagnosticoporId" name="parameters">
 
       </wsdl:part>
 
@@ -1028,6 +1140,14 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
    <wsdl:message name="mostrarPersonasResponse">
 
       <wsdl:part element="impl:mostrarPersonasResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerProcedimientosporIdResponse">
+
+      <wsdl:part element="impl:obtenerProcedimientosporIdResponse" name="parameters">
 
       </wsdl:part>
 
@@ -1099,6 +1219,42 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    <wsdl:portType name="Servicio">
 
+      <wsdl:operation name="obtenerProcedimientosporId">
+
+         <wsdl:input message="impl:obtenerProcedimientosporIdRequest" name="obtenerProcedimientosporIdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerProcedimientosporIdResponse" name="obtenerProcedimientosporIdResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerActividadporId">
+
+         <wsdl:input message="impl:obtenerActividadporIdRequest" name="obtenerActividadporIdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerActividadporIdResponse" name="obtenerActividadporIdResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDiagnosticoporId">
+
+         <wsdl:input message="impl:obtenerDiagnosticoporIdRequest" name="obtenerDiagnosticoporIdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerDiagnosticoporIdResponse" name="obtenerDiagnosticoporIdResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="personaNameRest">
 
          <wsdl:input message="impl:personaNameRestRequest" name="personaNameRestRequest">
@@ -1106,6 +1262,18 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
        </wsdl:input>
 
          <wsdl:output message="impl:personaNameRestResponse" name="personaNameRestResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerRcePorId">
+
+         <wsdl:input message="impl:obtenerRcePorIdRequest" name="obtenerRcePorIdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerRcePorIdResponse" name="obtenerRcePorIdResponse">
 
        </wsdl:output>
 
@@ -1549,6 +1717,60 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 
+      <wsdl:operation name="obtenerProcedimientosporId">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerProcedimientosporIdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerProcedimientosporIdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerActividadporId">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerActividadporIdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerActividadporIdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDiagnosticoporId">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerDiagnosticoporIdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerDiagnosticoporIdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
       <wsdl:operation name="personaNameRest">
 
          <wsdlsoap:operation soapAction=""/>
@@ -1560,6 +1782,24 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="personaNameRestResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerRcePorId">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerRcePorIdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerRcePorIdResponse">
 
             <wsdlsoap:body use="literal"/>
 

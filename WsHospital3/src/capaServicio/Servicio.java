@@ -672,5 +672,56 @@ public class Servicio {
 			return "false";
 		}
 	}
+	public String obtenerRcePorId(String idRce){
+		int id=Transformar.stringToInt(idRce);
+		Rce rce=new Rce();
+		RceVO rceVo=rce.obtenerRcePorId(id);
+		return Transformar.Rce(rceVo);
+	}
 
+	public String obtenerDiagnosticoporId(String idDiagnostico){
+		int id=Transformar.stringToInt(idDiagnostico);
+		Diagnostico diag=new Diagnostico();
+		try{
+		DiagnosticoVO diagnostico=diag.obtenerDiagnosticoPorId(id);
+		if(diagnostico==null){
+			return "{\"results\":[]}";
+		}
+		return Transformar.diagnostico(diagnostico);
+		}catch(NullPointerException e){
+			return "{\"results\":[]}";
+		}catch(IllegalStateException e){
+			return "{\"results\":[]}";
+		}
+	}
+	public String obtenerActividadporId(String idActividad){
+		int id=Transformar.stringToInt(idActividad);
+		Actividad diag=new Actividad();
+		try{
+		ActividadVO actividad=diag.obtenerActividadPorId(id);
+		if(actividad==null){
+			return "{\"results\":[]}";
+		}
+		return Transformar.actividad(actividad);
+		}catch(NullPointerException e){
+			return "{\"results\":[]}";
+		}catch(IllegalStateException e){
+			return "{\"results\":[]}";
+		}
+	}
+	public String obtenerProcedimientosporId(String idProcedimiento){
+		int id=Transformar.stringToInt(idProcedimiento);
+		Procedimiento diag=new Procedimiento();
+		try{
+			ProcedimientoVO actividad=diag.obtenerProcedimientoPorId(id);
+		if(actividad==null){
+			return "{\"results\":[]}";
+		}
+		return Transformar.procedimiento(actividad);
+		}catch(NullPointerException e){
+			return "{\"results\":[]}";
+		}catch(IllegalStateException e){
+			return "{\"results\":[]}";
+		}
+	}
 }

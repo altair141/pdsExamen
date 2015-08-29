@@ -113,7 +113,7 @@ function seleccionado(uuid, datoPersona) {
 							<td hidden id="uuid<%=i%>"><%=uuid%></td>
 							<td id='nombre<%=i%>'><%=nombres%></td>
 							<td style='width: 10%;'>
-								<button type='button' class='btn btn-default text-right'
+								<button type='button' class='btn btn-success text-right'
 									onclick="seleccionado(uuid<%=i%>,nombre<%=i%>);">Seleccionar</button>
 
 							</td>
@@ -152,7 +152,7 @@ function seleccionado(uuid, datoPersona) {
 
 				<div class="row">
 					<div class="form-group col-lg-5">
-						<button type="submit" class="btn btn-default">Ver detalle</button>
+						<button type="submit" class="btn btn-success">Ver detalle</button>
 					</div>
 				</div>
 			</form>

@@ -89,4 +89,14 @@
     <servlet-name>CrearRce</servlet-name>
     <url-pattern>/CrearRce</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AbrirRce</display-name>
+    <servlet-name>AbrirRce</servlet-name>
+    <servlet-class>servlets.AbrirRce</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AbrirRce</servlet-name>
+    <url-pattern>/AbrirRce</url-pattern>
+  </servlet-mapping>
 </web-app>

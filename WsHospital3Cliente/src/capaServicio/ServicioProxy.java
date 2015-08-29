@@ -44,10 +44,34 @@ public class ServicioProxy implements capaServicio.Servicio {
     return servicio;
   }
   
+  public java.lang.String obtenerProcedimientosporId(java.lang.String idProcedimiento) throws java.rmi.RemoteException{
+    if (servicio == null)
+      _initServicioProxy();
+    return servicio.obtenerProcedimientosporId(idProcedimiento);
+  }
+  
+  public java.lang.String obtenerActividadporId(java.lang.String idActividad) throws java.rmi.RemoteException{
+    if (servicio == null)
+      _initServicioProxy();
+    return servicio.obtenerActividadporId(idActividad);
+  }
+  
+  public java.lang.String obtenerDiagnosticoporId(java.lang.String idDiagnostico) throws java.rmi.RemoteException{
+    if (servicio == null)
+      _initServicioProxy();
+    return servicio.obtenerDiagnosticoporId(idDiagnostico);
+  }
+  
   public java.lang.String personaNameRest(java.lang.String uuid) throws java.rmi.RemoteException{
     if (servicio == null)
       _initServicioProxy();
     return servicio.personaNameRest(uuid);
+  }
+  
+  public java.lang.String obtenerRcePorId(java.lang.String idRce) throws java.rmi.RemoteException{
+    if (servicio == null)
+      _initServicioProxy();
+    return servicio.obtenerRcePorId(idRce);
   }
   
   public java.lang.String registrarPaciente(java.lang.String jsonPaciente) throws java.rmi.RemoteException{

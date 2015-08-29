@@ -1010,6 +1010,12 @@ public class Transformar {
 		return "{\"results\":" + listaResultado + "}";
 	}
 
+	public static String diagnostico(
+			capaNegocio.fichamedicaDomain.DiagnosticoVO diagnostico) {
+		Gson gson = new Gson();
+		String listaResultado = gson.toJson(diagnostico);
+		return "{\"results\":[" + listaResultado + "]}";
+	}
 	public static String actividadLista(
 			List<capaNegocio.fichamedicaDomain.ActividadVO> actividades) {
 		Gson gson = new Gson();
@@ -1017,11 +1023,24 @@ public class Transformar {
 		return "{\"results\":" + listaResultado + "}";
 	}
 
+	public static String actividad(
+			capaNegocio.fichamedicaDomain.ActividadVO actividad) {
+		Gson gson = new Gson();
+		String listaResultado = gson.toJson(actividad);
+		return "{\"results\":[" + listaResultado + "]}";
+	}
+
 	public static String procedimientosLista(
 			List<capaNegocio.fichamedicaDomain.ProcedimientoVO> procedimientos) {
 		Gson gson = new Gson();
 		String listaResultado = gson.toJson(procedimientos);
 		return "{\"results\":" + listaResultado + "}";
+	}
+	public static String procedimiento(
+			capaNegocio.fichamedicaDomain.ProcedimientoVO procedimiento) {
+		Gson gson = new Gson();
+		String listaResultado = gson.toJson(procedimiento);
+		return "{\"results\":[" + listaResultado + "]}";
 	}
 
 	public static VisitaVO jsonVisita(String jsonVisita) {

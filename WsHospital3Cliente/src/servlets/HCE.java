@@ -51,7 +51,7 @@ String idPaciente=request.getParameter("idPaciente");
 		
 		ServicioProxy s=new ServicioProxy();
 		String paciente=s.buscarPacienteBdLocalId(idPaciente);
-		
+		request.setAttribute("idPaciente", idPaciente);
 		PacienteVO pacienteVo=Transformar.jsonbdPaciente(paciente);
 		request.setAttribute("paciente", pacienteVo.getNroFicha());
 		String listaRce=s.obtenerHCE(idPaciente);

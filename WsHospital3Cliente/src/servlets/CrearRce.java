@@ -60,81 +60,81 @@ public class CrearRce extends HttpServlet {
 			String idActividad = request.getParameter("actividad");
 			String activi[]=idActividad.split("\\.");
 			System.out.println(activi[1]);
-			actividad.setId(Transformar.StringToInt(activi[1]));
+			actividad.setId(Transformar.stringToInt(activi[1]));
 			r.setIdActividad(actividad);
 			// procedimiento
 			ProcedimientoVO procedimiento = new ProcedimientoVO();
 			String idProcedimiento = request.getParameter("procedimiento");
 			String procedi[]=idProcedimiento.split("\\.");
 			System.out.println(procedi[1]);
-			procedimiento.setId(Transformar.StringToInt(procedi[1]));
+			procedimiento.setId(Transformar.stringToInt(procedi[1]));
 			r.setIdProcedimiento(procedimiento);
 			// diagnostico
 			DiagnosticoVO diagnostico = new DiagnosticoVO();
 			String idDiagnostico = request.getParameter("diagnostico");
-			diagnostico.setId(Transformar.StringToInt(idDiagnostico));
+			diagnostico.setId(Transformar.stringToInt(idDiagnostico));
 			r.setIdDiagnostico(diagnostico);
 
 			// ----------------------------------------------certificados------------------------------------------
 			CertificadoVO certi = new CertificadoVO();
 			String ce1 = request.getParameter("certialcoholemiaradio");
-			certi.setId(Transformar.StringToInt(ce1));
+			certi.setId(Transformar.stringToInt(ce1));
 			r.agregarCertificado(certi);
 			CertificadoVO certi2 = new CertificadoVO();
 			String ce2 = request.getParameter("certivfamiliarradio");
-			certi2.setId(Transformar.StringToInt(ce2));
+			certi2.setId(Transformar.stringToInt(ce2));
 			r.agregarCertificado(certi2);
 			CertificadoVO certi3 = new CertificadoVO();
 			String ce3 = request.getParameter("certidrogasradio");
-			certi3.setId(Transformar.StringToInt(ce3));
+			certi3.setId(Transformar.stringToInt(ce3));
 			r.agregarCertificado(certi3);
 			CertificadoVO certi4 = new CertificadoVO();
 			String ce4 = request.getParameter("certilecionesradio");
-			certi4.setId(Transformar.StringToInt(ce4));
+			certi4.setId(Transformar.stringToInt(ce4));
 			r.agregarCertificado(certi4);
 			CertificadoVO certi5 = new CertificadoVO();
 			String ce5 = request.getParameter("certisuicidioradio");
-			certi5.setId(Transformar.StringToInt(ce5));
+			certi5.setId(Transformar.stringToInt(ce5));
 			r.agregarCertificado(certi5);
 			CertificadoVO certi6 = new CertificadoVO();
 			String ce6 = request.getParameter("certianimalradio");
-			certi6.setId(Transformar.StringToInt(ce6));
+			certi6.setId(Transformar.stringToInt(ce6));
 			r.agregarCertificado(certi6);
 			CertificadoVO certi7 = new CertificadoVO();
 			String ce7 = request.getParameter("certiotrosradio");
-			certi7.setId(Transformar.StringToInt(ce7));
+			certi7.setId(Transformar.stringToInt(ce7));
 			r.agregarCertificado(certi7);
 			CertificadoVO certi8 = new CertificadoVO();
 			String ce8 = request.getParameter("certivgeneroradio");
-			certi8.setId(Transformar.StringToInt(ce8));
+			certi8.setId(Transformar.stringToInt(ce8));
 			r.agregarCertificado(certi8);
 			CertificadoVO certi9 = new CertificadoVO();
 			String ce9 = request.getParameter("certisaludcompatibleradio");
-			certi9.setId(Transformar.StringToInt(ce9));
+			certi9.setId(Transformar.stringToInt(ce9));
 			r.agregarCertificado(certi9);
 			CertificadoVO certi10 = new CertificadoVO();
 			String ce10 = request.getParameter("certiatenciondiagnosticoradio");
-			certi10.setId(Transformar.StringToInt(ce10));
+			certi10.setId(Transformar.stringToInt(ce10));
 			r.agregarCertificado(certi10);
 			CertificadoVO certi11 = new CertificadoVO();
 			String ce11 = request.getParameter("certiatencionprofecionalradio");
-			certi11.setId(Transformar.StringToInt(ce11));
+			certi11.setId(Transformar.stringToInt(ce11));
 			r.agregarCertificado(certi11);
 			CertificadoVO certi12 = new CertificadoVO();
 			String ce12 = request.getParameter("certiderivacioninternaradio");
-			certi12.setId(Transformar.StringToInt(ce12));
+			certi12.setId(Transformar.stringToInt(ce12));
 			r.agregarCertificado(certi12);
 			CertificadoVO certi13 = new CertificadoVO();
 			String ce13 = request.getParameter("certicitacionkntradio");
-			certi13.setId(Transformar.StringToInt(ce13));
+			certi13.setId(Transformar.stringToInt(ce13));
 			r.agregarCertificado(certi13);
 			CertificadoVO certi14 = new CertificadoVO();
 			String ce14 = request.getParameter("certiordencuracionradio");
-			certi14.setId(Transformar.StringToInt(ce14));
+			certi14.setId(Transformar.stringToInt(ce14));
 			r.agregarCertificado(certi14);
 			CertificadoVO certi15 = new CertificadoVO();
 			String ce15 = request.getParameter("certiordencitacionradio");
-			certi15.setId(Transformar.StringToInt(ce15));
+			certi15.setId(Transformar.stringToInt(ce15));
 			r.agregarCertificado(certi15);
 	
 			// -------------------------------------------fin
@@ -145,7 +145,7 @@ public class CrearRce extends HttpServlet {
 			// hce
 			HceVO hce = new HceVO();
 			String idhce = request.getParameter("idhce");
-			hce.setId(Transformar.StringToInt(idhce));
+			hce.setId(Transformar.stringToInt(idhce));
 			r.setIdHce(hce);
 
 			String anamnesis = request.getParameter("anamnesis");
@@ -172,7 +172,7 @@ public class CrearRce extends HttpServlet {
 			
 			r.setReceta(receta);
 			String idHoraMedica = request.getParameter("idHoraMedica");
-			r.setIdHoraMedica(Transformar.StringToInt(idHoraMedica));
+			r.setIdHoraMedica(Transformar.stringToInt(idHoraMedica));
 			r.setTiempoControl(request.getParameter("tiempoControl"));
 			// falta el paso de crear el encuentro en openmrs
 			r.setUuid(request.getParameter("uuidEncuentro"));

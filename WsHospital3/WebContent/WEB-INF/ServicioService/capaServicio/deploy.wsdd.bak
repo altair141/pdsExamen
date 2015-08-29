@@ -20,8 +20,20 @@
       <parameter name="className" value="capaServicio.ServicioSoapBindingImpl"/>
       <parameter name="wsdlPortType" value="Servicio"/>
       <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="obtenerProcedimientosporId" qname="operNS:obtenerProcedimientosporId" xmlns:operNS="http://capaServicio" returnQName="retNS:obtenerProcedimientosporIdReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:idProcedimiento" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="obtenerActividadporId" qname="operNS:obtenerActividadporId" xmlns:operNS="http://capaServicio" returnQName="retNS:obtenerActividadporIdReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:idActividad" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="obtenerDiagnosticoporId" qname="operNS:obtenerDiagnosticoporId" xmlns:operNS="http://capaServicio" returnQName="retNS:obtenerDiagnosticoporIdReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:idDiagnostico" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
       <operation name="personaNameRest" qname="operNS:personaNameRest" xmlns:operNS="http://capaServicio" returnQName="retNS:personaNameRestReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:uuid" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="obtenerRcePorId" qname="operNS:obtenerRcePorId" xmlns:operNS="http://capaServicio" returnQName="retNS:obtenerRcePorIdReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:idRce" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
       <operation name="registrarPaciente" qname="operNS:registrarPaciente" xmlns:operNS="http://capaServicio" returnQName="retNS:registrarPacienteReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:jsonPaciente" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
@@ -126,7 +138,7 @@
       <operation name="horaesAps" qname="operNS:horaesAps" xmlns:operNS="http://capaServicio" returnQName="retNS:horaesApsReturn" xmlns:retNS="http://capaServicio" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:idHoramedica" xmlns:pns="http://capaServicio" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
       </operation>
-      <parameter name="allowedMethods" value="buscarHorasPorIdPaciente sincronizarPaciente encuentroPorPacienteUuidRest registrarEncuentro registrarPaciente obtenerListaProcedimientos personaNameRest obtenerHCE buscarPersonaPorIdLocal buscarPersonaLocalPorUuid buscarPacienteBdLocal obtenerHoraMedica buscarMedicoOpen obtenerListaDiagnosticos conceptoRest registrarVisita visitaUuidRest visitaPorPacienteUuidRest horaesAps pacienteRest registrarPersona buscarHorasAPSPorIdPaciente registrarRce medicoRest mostrarPacientes buscarPacienteBdLocalId pacienteUuidRest obtenerListaActividades sincronizarPersonaToLocal buscarHorasControlPorIdPaciente medicoUuidRest obtenerIdHCE buscarPacientePorNombre sincronizarMedicoToLocal conceptoUuidRest mostrarPersonas encuentroUuidRest"/>
+      <parameter name="allowedMethods" value="buscarHorasPorIdPaciente sincronizarPaciente obtenerRcePorId encuentroPorPacienteUuidRest registrarEncuentro registrarPaciente obtenerListaProcedimientos personaNameRest obtenerHCE buscarPersonaPorIdLocal buscarPersonaLocalPorUuid buscarPacienteBdLocal obtenerHoraMedica obtenerActividadporId buscarMedicoOpen obtenerListaDiagnosticos conceptoRest registrarVisita visitaUuidRest visitaPorPacienteUuidRest horaesAps pacienteRest registrarPersona buscarHorasAPSPorIdPaciente registrarRce medicoRest mostrarPacientes obtenerProcedimientosporId buscarPacienteBdLocalId pacienteUuidRest obtenerListaActividades sincronizarPersonaToLocal buscarHorasControlPorIdPaciente medicoUuidRest obtenerDiagnosticoporId obtenerIdHCE buscarPacientePorNombre sincronizarMedicoToLocal conceptoUuidRest mostrarPersonas encuentroUuidRest"/>
 
   </service>
 </deployment>
