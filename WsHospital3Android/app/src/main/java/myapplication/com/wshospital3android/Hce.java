@@ -72,11 +72,11 @@ public class Hce  extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                 Toast.makeText(getApplicationContext(), "este es " + list2.getItemAtPosition(position), Toast.LENGTH_LONG).show();
-               /* String valor = (String) parent.getItemAtPosition(position);
+                 //Toast.makeText(getApplicationContext(), "este es " + list2.getItemAtPosition(position), Toast.LENGTH_LONG).show();
+                String valor = (String) parent.getItemAtPosition(position);
                 Intent intent = new Intent(Hce.this, Rce.class);
                 intent.putExtra("NOMBRE", valor);
-                startActivity(intent);*/
+                startActivity(intent);
             }
         });
 }
@@ -162,7 +162,7 @@ public class Hce  extends Activity {
             List<RceVO> listaRce= Transformar.jsonToListaRce(resul);
             for(RceVO rce:listaRce){
                 arrayList.add(rce.getIdRce()+"");
-                arrayList2.add(Transformar.datetoStringRce(rce.getFechaAtencion()));
+                arrayList2.add(rce.getTipoEncuentro());
             }
             adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.lista, arrayList);
             list2.setAdapter(adapter);
