@@ -318,7 +318,9 @@ public class ServicioTest {
 	@Test
 	public void testBuscarPacienteBdLocalId() {
 		Servicio s = new Servicio();
-		System.out.println(s.buscarPacienteBdLocalId("3"));
+		PacienteVO pa=Transformar.jsonBDPaciente(s.buscarPacienteBdLocalId("3"));
+		System.out.println(pa.getPersona().getUuid());
+		
 		// {"results":[{"id":0,"persona":{"id":0}}]}
 	}
 
@@ -531,4 +533,10 @@ public class ServicioTest {
 		Servicio s = new Servicio();
 		System.out.println(s.obtenerRcePorId("1"));
 	}
+	@Test
+	public void obtenerHcePacientePorNombre(){
+		Servicio s=new Servicio();
+		System.out.println(s.obtenerHcePacientePorNombre("12236 - Elsa Scarlet"));
+	}
 }
+

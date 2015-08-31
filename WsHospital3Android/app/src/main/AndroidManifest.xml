@@ -20,6 +20,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Hce"
+            android:label="Hce" >
+        </activity>
+        <activity
+            android:name=".Rce"
+            android:label="Rce" >
+        </activity>
     </application>
 
 </manifest>

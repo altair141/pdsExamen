@@ -344,7 +344,7 @@ public class Transformar {
 				Date fechaNacimiento = stringToDate(fecha);
 				persona.setFechaNacimiento(fechaNacimiento);
 			} catch (NullPointerException e) {
-				System.out.println("error ql");
+				System.out.println("error ");
 			}
 			persona.setNombre(personaJson.get("nombre").getAsString());
 

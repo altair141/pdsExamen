@@ -7,6 +7,9 @@ import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
 import utilitario.Transformar;
+import capaNegocio.fichamedica.Hce;
+import capaNegocio.fichamedicaDomain.HceVO;
+import capaNegocio.fichamedicaDomain.RceVO;
 import capaNegocio.personasDomain.PacienteVO;
 import capaNegocio.personasDomain.PersonaVO;
 import capaNegocio.rest.PacienteOpen;
@@ -28,7 +31,7 @@ public class Paciente {
 	 * @return String con el id del paciente
 	 */
 	public String registrarPaciente(PacienteVO pacienteVO) {
-		
+
 		try {
 			PersistentTransaction ts = orm.Taller2PersistentManager.instance()
 					.getSession().beginTransaction();
@@ -172,13 +175,14 @@ public class Paciente {
 			return respuesta;
 		}
 	}
-	public PacienteVO obtenerPacientePorIdPaciente(int id){
-		PacienteVO pacienteVO=new PacienteVO(); 
+
+	public PacienteVO obtenerPacientePorIdPaciente(int id) {
+		PacienteVO pacienteVO = new PacienteVO();
 		orm.Paciente listaPacientes[];
 		try {
 			listaPacientes = orm.PacienteDAO.listPacienteByQuery(null, null);
 			for (orm.Paciente paciente : listaPacientes) {
-				if(paciente.getIdPaciente()==id){
+				if (paciente.getIdPaciente() == id) {
 					pacienteVO.setId(id);
 					pacienteVO.setNroFicha(paciente.getNroFichaMedica());
 					break;
@@ -189,16 +193,18 @@ public class Paciente {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
-		}		
+		}
 	}
+
 	public PersonaVO obtenerPersonaPorIdPaciente(int id) {
 		PersonaVO persona = new PersonaVO();
 		orm.Paciente listaPacientes[];
 		try {
 			listaPacientes = orm.PacienteDAO.listPacienteByQuery(null, null);
 			for (orm.Paciente paciente : listaPacientes) {
-				if(paciente.getIdPaciente()==id){
-					orm.Persona per=orm.PersonaDAO.getPersonaByORMID(paciente.getIdPersona().getIdPersona());
+				if (paciente.getIdPaciente() == id) {
+					orm.Persona per = orm.PersonaDAO.getPersonaByORMID(paciente
+							.getIdPersona().getIdPersona());
 					persona.setId(per.getIdPersona());
 					persona.setDireccion(per.getDireccion());
 					persona.setApellidos(per.getApellidos());
@@ -215,7 +221,7 @@ public class Paciente {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
-		}			
+		}
 	}
 
 	/**
@@ -225,18 +231,19 @@ public class Paciente {
 	 * @return
 	 */
 	public String registrarPacienteOpenmrs(PacienteOpen paciente) {
-		String persona=paciente.getPersonUUid();
-		String identificador=paciente.getIdentifier();
-		String tipo=paciente.getIdentifierType();
-		String localizacion=paciente.getLocation();
-		String mensaje="no registrado";
+		String persona = paciente.getPersonUUid();
+		String identificador = paciente.getIdentifier();
+		String tipo = paciente.getIdentifierType();
+		String localizacion = paciente.getLocation();
+		String mensaje = "no registrado";
 		/*
-		 * {"person": "5131784a-ac5f-4f2a-aaa3-ad0ebb927db1", //se optiene al crear una persona
-		 * "identifiers": [{"identifier":"1234", //es creado por mi
-		 *  "identifierType":"8d79403a-c2cc-11de-8d13-0010c6dffd0f", //es la uuid de la tabla patient_identifier_type
-		 *  "location":"8d6c993e-c2cc-11de-8d13-0010c6dffd0f",// es la uuid de la tabla location
-		 *   "preferred":true}]}// es un dato xalla que tiene que estar es predeterminado
-		 * 
+		 * {"person": "5131784a-ac5f-4f2a-aaa3-ad0ebb927db1", //se optiene al
+		 * crear una persona "identifiers": [{"identifier":"1234", //es creado
+		 * por mi "identifierType":"8d79403a-c2cc-11de-8d13-0010c6dffd0f", //es
+		 * la uuid de la tabla patient_identifier_type
+		 * "location":"8d6c993e-c2cc-11de-8d13-0010c6dffd0f",// es la uuid de la
+		 * tabla location "preferred":true}]}// es un dato xalla que tiene que
+		 * estar es predeterminado
 		 */
 		try {
 
@@ -246,32 +253,69 @@ public class Paciente {
 			WebResource webResource = client
 					.resource("http://localhost:8080/openmrs/ws/rest/v1/patient");
 
-			String input = "{\"person\": \""+persona+"\", \"identifiers\": [{\"identifier\":\""+identificador+"\",  \"identifierType\":\""+tipo+"\",\"location\":\""+localizacion+"\", \"preferred\":true}]}";
-//
+			String input = "{\"person\": \"" + persona
+					+ "\", \"identifiers\": [{\"identifier\":\""
+					+ identificador + "\",  \"identifierType\":\"" + tipo
+					+ "\",\"location\":\"" + localizacion
+					+ "\", \"preferred\":true}]}";
+			//
 			ClientResponse response = webResource.type("application/json")
-			   .post(ClientResponse.class, input);
+					.post(ClientResponse.class, input);
 
 			if (response.getStatus() != 201) {
 				throw new RuntimeException("Failed : HTTP error code : "
-				     + response.getStatus());
+						+ response.getStatus());
 			}
 
-			if(response.getStatus() == 201){
-				String respuesta="{\"results\":["+response.getEntity(String.class)+"]}";
-				
-			return respuesta;
-			}else{
+			if (response.getStatus() == 201) {
+				String respuesta = "{\"results\":["
+						+ response.getEntity(String.class) + "]}";
+
+				return respuesta;
+			} else {
 				return mensaje;
 			}
 
-		  } catch (Exception e) {
+		} catch (Exception e) {
 
 			e.printStackTrace();
 			return mensaje;
-		  }
-		
-
+		}
 	}
 
+	public List<RceVO> obtenerhce(String fichaMedica) {
+		int idHce = 0;
+		Hce hce = new Hce();
+		try {
+			orm.Paciente listaPacientes[] = orm.PacienteDAO
+					.listPacienteByQuery(null, null);
+			for (orm.Paciente paciente : listaPacientes) {
+				
+				if (paciente.getNroFichaMedica().equals(fichaMedica)) {
+					
+					PacienteVO p = new PacienteVO();
+					p.setId(paciente.getIdPaciente());
+
+					idHce = hce.obtenerIdHce(p);
+					
+					break;
+				}
+			}
+
+		} catch (PersistentException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (NullPointerException e) {
+
+		}
+		if (idHce != 0) {
+			HceVO hceVo = hce.ontenerHcePorId(idHce);
+			
+			List<RceVO> listRce = hce.obtenerHce(hceVo);			
+			return listRce;
+		} else {
+			return null;
+		}
+	}
 
 }

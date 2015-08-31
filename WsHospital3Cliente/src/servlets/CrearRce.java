@@ -15,6 +15,8 @@ import capaNegocio.fichamedicaDomain.DiagnosticoVO;
 import capaNegocio.fichamedicaDomain.HceVO;
 import capaNegocio.fichamedicaDomain.ProcedimientoVO;
 import capaNegocio.fichamedicaDomain.RceVO;
+import capaNegocio.hospitalDomain.EncuentroVO;
+import capaNegocio.personasDomain.PacienteVO;
 import capaServicio.ServicioProxy;
 import utilitario.Transformar;
 
@@ -199,6 +201,38 @@ public class CrearRce extends HttpServlet {
 			String jsonRce=Transformar.Rce2(r);
 			String resultado=s.registrarRce(jsonRce);
 			System.out.println(resultado);
+			
+			try{
+			String uuidEncuentro="";
+			if(!idHoraMedica.equals("0")){
+			String boleanHora=s.horaesAps(idHoraMedica);
+			uuidEncuentro=Transformar.tipoEncuentro(boleanHora);
+			}else{
+				uuidEncuentro="b2e7b81b-d27b-481f-b92e-8c836b5af6a9";
+			}
+			EncuentroVO en=new EncuentroVO();
+			String idPaciente=request.getParameter("idPaciente");
+			System.out.println(idPaciente);
+			String paciente=s.buscarPacienteBdLocalId(idPaciente);
+			System.out.println(paciente);
+			PacienteVO p=Transformar.jsonBDPaciente(paciente);
+			System.out.println(p.getPersona().getUuid());
+			en.setPaciente(p.getPersona().getUuid());
+			en.setTipoEncuentro(uuidEncuentro);
+			en.setFechaTime(Transformar.datetoStringRce(fechaAten)+" "+horaInicioAtencion+":00");
+			System.out.println(en.getFechaTime());
+			String encuentroJson=Transformar.encuentro(en);
+			s.registrarEncuentro(encuentroJson);
+			}catch(NullPointerException e){
+				request.setAttribute("resultado", "ERROR al guardar en openmrs, existo de almacenamiento en la bd local  ");
+				getServletContext().getRequestDispatcher("/inicio.jsp").forward(
+						request, response);
+			}catch(IllegalStateException e){
+				request.setAttribute("resultado", "ERROR al guardar en openmrs, existo de almacenamiento en la bd local  ");
+				getServletContext().getRequestDispatcher("/inicio.jsp").forward(
+						request, response);
+			}
+			
 			if(resultado.equals("no registrado")||resultado.equals("error no registrado")){
 				request.setAttribute("resultado", "Falla detectada al crear RCE, Cierre de caso médico no registrado");				
 				getServletContext().getRequestDispatcher("/inicio.jsp")
@@ -207,24 +241,7 @@ public class CrearRce extends HttpServlet {
 			request.setAttribute("resultado", "RCE creado exitosamente");				
 			getServletContext().getRequestDispatcher("/inicio.jsp")
 					.forward(request, response);
-/*
-				
-		
-				//if(resultad.equals("no registrado")||resultad.equals("error no registrado")){
 
-					//request.setAttribute("resultado", "Falla detectada al crear RCE, Cierre de caso médico no registrado");				
-					//getServletContext().getRequestDispatcher("/inicio.jsp")
-					//		.forward(request, response);
-			//	}
-		/*		request.setAttribute("resultado", "RCE creado exitosamente");				
-				getServletContext().getRequestDispatcher("/inicio.jsp")
-						.forward(request, response);
-			} catch (NullPointerException e) {
-				e.printStackTrace();
-				request.setAttribute("resultado", "ERROR al crear RCE");
-				getServletContext().getRequestDispatcher("/inicio.jsp")
-						.forward(request, response);
-			}*/
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 			request.setAttribute("resultado", "ERROR al crear RCE");

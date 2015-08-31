@@ -124,7 +124,7 @@
 						<div class="form-group">
 							<form action="HoraMedica" method="POST">
 								<input hidden type="text" name="idPaciente" value="<%=id%>"/>
-								<button type="submit" class="btn btn-default">Ver Horas
+								<button type="submit" class="btn btn-success">Ver Horas
 									médicas</button>
 							</form>
 						</div>
@@ -133,7 +133,7 @@
 							<form action="RCE" method="POST">
 								<input hidden type="text" name="idPaciente" value="<%=id %>"/> <input 
 									type="text" hidden name="idHoraMedica" value="0" />
-								<button type="submit" class="btn btn-default">Registrar
+								<button type="submit" class="btn btn-success">Registrar
 									RCE</button>
 							</form>
 						</div>
@@ -146,7 +146,7 @@
 								<form action="HCE" method="POST">
 									<input hidden type="text" name="idPaciente" value="<%=id %>"/>
 
-									<button type="submit" class="btn btn-default">Ver HCE</button>
+									<button type="submit" class="btn btn-success">Ver HCE</button>
 								</form>
 							</div>
 						</center>

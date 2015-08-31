@@ -86,11 +86,13 @@ case "12": $mes_nombre="Diciembre"; break;
 						</form>
 					</div>
 					<div class="span2">
-
-					
-						<button type="button" class="btn btn-success" data-toggle="modal"
-							data-target="#exampleModal" data-whatever="@fat">Ver
+							<form  method="POST">
+							<input name="idPaciente" hidden class="idPaciente" value="<?php echo $idPaciente; ?>">
+							<button enabled class="btn btn-success" type="submit" name="hce">Ver
 							historial Clínico</button>
+						</form>
+					
+						
 					</div>
 				</div>	
 							

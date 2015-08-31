@@ -4222,3 +4222,14 @@ REQUEST_URI=/Yii/tallerpds/site/listaPacientes.ml
 in C:\wamp\www\Yii\tallerpds\protected\views\site\abrirRce.php (453)
 in C:\wamp\www\Yii\tallerpds\protected\controllers\SiteController.php (71)
 in C:\wamp\www\Yii\tallerpds\index.php (13)
+2015/08/29 21:52:07 [error] [php] Undefined index: idPaciente (C:\wamp\www\Yii\tallerpds\protected\controllers\SiteController.php:56)
+Stack trace:
+#0 C:\wamp\www\Yii\framework\web\CController.php(286): SiteController->runAction()
+#1 C:\wamp\www\Yii\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#2 C:\wamp\www\Yii\framework\web\CWebApplication.php(282): SiteController->run()
+#3 C:\wamp\www\Yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#4 C:\wamp\www\Yii\framework\base\CApplication.php(184): CWebApplication->processRequest()
+#5 C:\wamp\www\Yii\tallerpds\index.php(13): CWebApplication->run()
+REQUEST_URI=/Yii/tallerpds/site/listaPacientes.ml
+in C:\wamp\www\Yii\tallerpds\protected\controllers\SiteController.php (56)
+in C:\wamp\www\Yii\tallerpds\index.php (13)

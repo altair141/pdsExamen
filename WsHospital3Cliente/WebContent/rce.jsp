@@ -89,11 +89,13 @@
 					</form>
 				</div>
 				<div class="col-lg-1">
-
-					<input hidden name="idHce" class="idPaciente" value="<%=idhce%>">
-					<button type="button" class="btn btn-default" data-toggle="modal"
-						data-target="#exampleModal" data-whatever="@fat">Ver
-						historial Clínico</button>
+					<form action="HCE" method="POST">
+						<input name="idPaciente" hidden class="idPaciente" value="<%=id%>">
+						<input class="btn btn-default" type="submit"
+							value="Ver historial Clínico">
+					</form>	
+					
+					
 
 				</div>
 			</div>
@@ -110,8 +112,8 @@
 
 			<!--      formulario    -->
 			<form method="post" action="CrearRce">
-			<input name="uuidEncuentro" type="text" value="<%=uuidEncuentro %>" >
-				<input name="idPaciente"  class="idPaciente" value="<%=id%>">
+			<input name="uuidEncuentro" hidden type="text" value="<%=uuidEncuentro %>" >
+				<input name="idPaciente" hidden class="idPaciente" value="<%=id%>">
 				<input type="text" name="idhce" value="<%=idhce%>" hidden> <input
 					type="text" name="idHoraMedica" value="<%=idHoraMedica%>" hidden>
 				<div class="row"></div>
@@ -578,65 +580,7 @@
 	</div>
 
 
-	<div>
-		<%
-			//String hce = //ws.obtenerRces(idhce);
-		%>
-
-
-		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<h4 class="modal-title" id="exampleModalLabel">Totas las
-							atenciones</h4>
-					</div>
-					<div class="modal-body">
-						<table class="table table-striped">
-							<thead>
-								<tr>
-									<th>ESTABLECIMIENTO</th>
-									<th>FECHA</th>
-									<th>PRESTADOR</th>
-									<th>RESUMEN</th>
-									<th>ESTADO DEL CASO</th>
-								</tr>
-							</thead>
-							<tbody>
-								<%
-									String matriz[][] = new String[5][5];//TransformarJson.hce(hce);
-
-									for (int i = 0; i < matriz[0].length; i++) {
-								%>
-								<tr>
-									<td><%=matriz[0][i]%></td>
-									<td><%=matriz[1][i]%></td>
-									<td><%=matriz[2][i]%></td>
-									<td><%=matriz[4][i]%></td>
-									<td><%=matriz[3][i]%></td>
-
-								</tr>
-								<%
-									}
-								%>
-
-							</tbody>
-						</table>
-
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	
 
 
 </body>

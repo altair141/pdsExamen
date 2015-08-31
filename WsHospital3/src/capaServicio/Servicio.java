@@ -724,4 +724,17 @@ public class Servicio {
 			return "{\"results\":[]}";
 		}
 	}
+	public String obtenerHcePacientePorNombre(String fichaMedica){
+		
+		String respuesta="";
+		Paciente paciente=new Paciente(); 
+		List<RceVO>listaRce= paciente.obtenerhce(fichaMedica);
+		respuesta=Transformar.Rce(listaRce);
+		
+		if(respuesta!=null){
+			return respuesta;
+		}else{
+			return "{\"results\":[]}";
+		}
+	}
 }

@@ -220,6 +220,60 @@ public class Transformar {
 		String listaResultado = gson.toJson(pacientes);
 		return listaResultado;
 	}
+	public static PacienteVO jsonBDPaciente(String jsonPaciente) {
+		try {
+			PersonaVO persona = new PersonaVO();
+			PacienteVO paciente = new PacienteVO();
+			JsonElement jelement = new JsonParser().parse(jsonPaciente);
+			JsonObject jobject = jelement.getAsJsonObject();
+			JsonArray jarray = jobject.getAsJsonArray("results");
+			jobject = jarray.get(0).getAsJsonObject();
+			String nroFicha = jobject.get("nroFicha").getAsString();
+			System.out.println(nroFicha);
+			paciente.setNroFicha(nroFicha);
+			int id = stringToInt(jobject.get("id").getAsString());
+			System.out.println(id);
+			paciente.setId(id);
+			JsonObject personaJson = jobject.get("persona").getAsJsonObject();
+			int idPersona = stringToInt(personaJson.get("id").getAsString());
+			System.out.println(idPersona);
+			persona.setId(idPersona);
+			String apellidos = personaJson.get("apellidos").getAsString();
+			persona.setApellidos(apellidos);
+			System.out.println(apellidos);
+			String direccion = personaJson.get("direccion").getAsString();
+			System.out.println(direccion);
+			persona.setDireccion(direccion);
+			String estado = personaJson.get("estado").getAsString();
+			System.out.println(estado);
+			persona.setEstado(estado);
+			String uuid = personaJson.get("uuid").getAsString();
+			System.out.println(uuid);
+			persona.setUuid(uuid);
+			String fecha = personaJson.get("fechaNacimiento").getAsString();
+			System.out.println("fechaTras" + fecha);
+			try {
+				Date fechaNacimiento = stringToDate(fecha);
+				persona.setFechaNacimiento(fechaNacimiento);
+			} catch (NullPointerException e) {
+				System.out.println("error ");
+			}
+			persona.setNombre(personaJson.get("nombre").getAsString());
+
+			paciente.setPersona(persona);
+			return paciente;
+		} catch (NullPointerException e) {
+
+			System.out.println("error nulo");
+			return null;
+		} catch (UnsupportedOperationException e) {
+			System.out.println("error no soportado");
+			return null;
+		} catch (IllegalStateException e) {
+			System.out.println("error ileal");
+			return null;
+		}
+	}
 
 	public static PacienteVO pacienteConPersonaSinidSinUuid(String jsonPaciente) {
 		PersonaVO persona = new PersonaVO();
@@ -1102,6 +1156,149 @@ public class Transformar {
 		}
 	}
 
+	/**
+	 * 
+	 * @param json string con el json de datos del rce con id de la bd local
+	 * @return objeto rce
+	 */
+	public static List<RceVO> jsonToListaRce(String json) {
+		List<RceVO> listaRce=new ArrayList<RceVO>();
+		try {
+			JsonElement jelement = new JsonParser().parse(json);
+			JsonObject jobject = jelement.getAsJsonObject();
+			JsonArray jarray = jobject.getAsJsonArray("results");
+			for (int j = 0; j < jarray.size(); j++) {
+			jobject = jarray.get(j).getAsJsonObject();
+			RceVO rce = new RceVO();
+			String tipoEncuentro = jobject.get("tipoEncuentro").getAsString();
+			System.out.println("0 "+tipoEncuentro);
+			rce.setTipoEncuentro(tipoEncuentro);
+			
+			String id=jobject.get("idRce").getAsString();
+			System.out.println(id);
+			rce.setIdRce(stringToInt(id));
+			String uuid = jobject.get("uuid").getAsString();
+			System.out.println("1 "+uuid);
+			rce.setUuid(uuid);
+
+			JsonObject hceJson = jobject.get("idHce").getAsJsonObject();
+			String idHce = hceJson.get("id").getAsString();
+			System.out.println("2 "+idHce);
+			
+			HceVO hce = new HceVO(stringToInt(idHce));
+			rce.setIdHce(hce);
+
+			String idHoraMedica = jobject.get("idHoraMedica").getAsString();
+			System.out.println("3 "+idHoraMedica);
+			rce.setIdHoraMedica(stringToInt(idHoraMedica));
+			
+			String anamnesis=jobject.get("anamnesis").getAsString();
+			System.out.println("4 "+anamnesis);
+			rce.setAnamnesis(anamnesis);
+			
+			String alergia=jobject.get("alergia").getAsString();
+			System.out.println("5 "+alergia);
+			rce.setAlergia(alergia);
+			
+			String examenFisico=jobject.get("examenFisico").getAsString();
+			System.out.println("6 "+examenFisico);			
+			rce.setExamenFisico(examenFisico);
+			
+			String indicacionMedica=jobject.get("indicacionMedica").getAsString();
+			System.out.println("7 "+indicacionMedica);
+			rce.setIndicacionMedica(indicacionMedica);
+			
+			String indicacionCasocierre=jobject.get("indicacionCierreCaso").getAsString();
+			System.out.println("8 "+indicacionCasocierre);
+			rce.setIndicacionCierreCaso(indicacionCasocierre);
+			
+			String hipotesisDiagnos=jobject.get("hipotesisDiagnostico").getAsString();
+			System.out.println("9 "+hipotesisDiagnos);
+			rce.setHipotesisDiagnostico(hipotesisDiagnos);
+			
+			String pacienteGes=jobject.get("pacienteGes").getAsString();
+			System.out.println("10 "+pacienteGes);
+			rce.setPacienteGes(pacienteGes);
+			
+			String patologiaGes=jobject.get("patologiaGes").getAsString();
+			System.out.println("11 "+patologiaGes);
+			rce.setPatologiaGes(patologiaGes);
+			
+			String pacienteCroni=jobject.get("pacienteCronico").getAsString();
+			System.out.println("12 "+pacienteCroni);
+			rce.setPacienteCronico(pacienteCroni);
+			
+			String receta=jobject.get("receta").getAsString();
+			System.out.println("13 "+receta);
+			rce.setReceta(receta);	
+			
+			JsonObject diagnosticojson = jobject.get("idDiagnostico").getAsJsonObject();
+			String idDiagnostico = diagnosticojson.get("id").getAsString();
+			System.out.println("14 "+idDiagnostico);
+			DiagnosticoVO diagnostico = new DiagnosticoVO(stringToInt(idDiagnostico));
+			rce.setIdDiagnostico(diagnostico);
+			
+			JsonObject actividadjson = jobject.get("idActividad").getAsJsonObject();
+			String idActividad = actividadjson.get("id").getAsString();
+			System.out.println("15 "+idActividad);
+			ActividadVO actividad = new ActividadVO(stringToInt(idActividad));
+			rce.setIdActividad(actividad);
+			
+			
+			JsonObject procedimientojson = jobject.get("idProcedimiento").getAsJsonObject();
+			String idprocedimiento = procedimientojson.get("id").getAsString();
+			System.out.println("16 "+idprocedimiento);
+			ProcedimientoVO procedimiento = new ProcedimientoVO(stringToInt(idprocedimiento));
+			rce.setIdProcedimiento(procedimiento);
+			
+			String tipoCierre=jobject.get("tipoCierre").getAsString();
+			System.out.println("17 "+tipoCierre);
+			rce.setTipoCierre(tipoCierre);
+			
+			String destino=jobject.get("destino").getAsString();
+			System.out.println("18 "+destino);
+			rce.setDestino(destino);
+			
+			
+			String fecha=jobject.get("fechaAtencion").getAsString();
+			System.out.println("19 "+ fecha);
+			Date fechaAten = stringToDate(fecha);
+			rce.setFechaAtencion(fechaAten);
+			
+			String horaInicio=jobject.get("horaInicioAtencion").getAsString();
+			System.out.println("20"+ horaInicio);
+			rce.setHoraInicioAtencion(horaInicio);
+			
+			String fechaFin=jobject.get("fechaCierreClinico").getAsString();
+			System.out.println("21 "+fechaFin);
+			Date fechaCierre = stringToDate(fechaFin);
+			rce.setFechaCierreClinico(fechaCierre);
+			
+			String horaFin=jobject.get("horaCierreClienico").getAsString();
+			System.out.println("22 "+horaFin); 
+			rce.setHoraCierreClienico(horaFin);
+			String tiempoControl=jobject.get("tiempoControl").getAsString();
+			System.out.println("23 "+tiempoControl);
+			rce.setTiempoControl(tiempoControl); 
+			JsonArray listaCertificadosjson = jobject.getAsJsonArray("listaCertificados");
+
+			for (int i = 0; i < listaCertificadosjson.size(); i++) {
+				JsonObject certificadosJson = listaCertificadosjson.get(i).getAsJsonObject();
+				String idCertificado = certificadosJson.get("id").getAsString();
+				System.out.println((24+i)+" "+ idCertificado);
+				CertificadoVO certificado = new CertificadoVO(stringToInt(idCertificado));
+				rce.agregarCertificado(certificado);
+
+			}
+			listaRce.add(rce);
+			}
+			return listaRce;
+		} catch (NullPointerException e) {
+			return null;
+		} catch (IllegalStateException e) {
+			return null;
+		}
+	}
 	public static String certificadoCual(String idCertificado){
 		if(idCertificado.equals("1")||idCertificado.equals("2")){
 			return "certificado1";

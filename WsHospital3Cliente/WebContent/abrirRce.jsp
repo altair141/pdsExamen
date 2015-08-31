@@ -65,9 +65,11 @@
 				<div class="col-lg-1">
 
 					<input hidden name="idHce" class="idPaciente" value="<%=idhce%>">
-					<button type="button" class="btn btn-default" data-toggle="modal"
-						data-target="#exampleModal" data-whatever="@fat">Ver
-						historial Clínico</button>
+					<form action="HCE" method="POST">
+						<input name="idPaciente" hidden class="idPaciente" value="<%=id%>">
+						<input class="btn btn-default" type="submit"
+							value="Ver historial Clínico">
+					</form>	
 
 				</div>
 			</div>
