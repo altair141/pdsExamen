@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: 
+License Type: Evaluation
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="orm.Rce" table="rce" lazy="false">
+		<meta attribute="class-description">
+			registro cl&#237;nico electr&#243;nico
+		</meta>
+		<id name="idRce" column="idRce" type="integer" unsaved-value="0">
+			<generator class="increment">
+			</generator>
+		</id>
+		<property name="tipoEncuentro" column="tipoEncuentro" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				tipo de encuentro
+			</meta>
+		</property>
+		<many-to-one name="idHce" cascade="lock" column="idHce" class="orm.Hce" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<many-to-one name="idHoraMedica" cascade="lock" column="idHoraMedica" class="orm.HoraMedica" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<property name="anamnesis" column="anamnesis" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				anamnesis de del rce, t&#233;rmino empleado para referirse&#160;a la informaci&#243;n proporcionada por el propio paciente
+		&#160;
+			</meta>
+		</property>
+		<property name="alergia" column="alergia" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				alergias que posee el paciente
+			</meta>
+		</property>
+		<property name="examenFisico" column="examenFisico" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				datos examen f&#237;sico del paciente
+			</meta>
+		</property>
+		<property name="indicacionMedica" column="indicacionMedica" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				indicaciones proporcionadas por el m&#233;dico
+			</meta>
+		</property>
+		<property name="indicacionCierreCaso" column="indicacionCierreCaso" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				indicaciones del m&#233;dico para cerrar el caso
+			</meta>
+		</property>
+		<property name="hipotesisDiagnostico" column="hipotesisDiagnostico" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				hip&#243;tesis de cual es la enfermedad que posee el paciente
+			</meta>
+		</property>
+		<property name="pacienteGes" column="pacienteGes" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				paciente con Garant&#237;as Expl&#237;citas en Salud
+			</meta>
+		</property>
+		<property name="patologiaGes" column="patologiaGes" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				enfermedad que garantizada en el AUGE
+			</meta>
+		</property>
+		<property name="pacienteCronico" column="pacienteCronico" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				paciente con enfermedad con un tiempo mayor de seis meses desde que dicha enfermedad fue diagnosticada
+			</meta>
+		</property>
+		<property name="tipoCierre" column="tipoCierre" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				tipo cierre de caso, representa el estado de la atenci&#243;n recibida por parte del m&#233;dico
+			</meta>
+		</property>
+		<property name="destino" column="destino" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				lugar al cual se derivar&#225; el paciente luego de realizar la consulta m&#233;dica
+			</meta>
+		</property>
+		<property name="fechaAtencion" column="fechaAtencion" type="date" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				fecha de atenci&#243;n m&#233;dica
+			</meta>
+		</property>
+		<property name="horaInicioAtencion" column="horaInicioAtencion" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				hora de inicio de la atenci&#243;n medica
+			</meta>
+		</property>
+		<property name="fechaCierreClinico" column="fechaCierreClinico" type="date" not-null="false" lazy="false">
+			<meta attribute="field-description">
+				fecha de termino del caso clinico
+			</meta>
+		</property>
+		<property name="horaCierreClinico" column="horaCierreClinico" type="string" length="255" not-null="false" lazy="false">
+			<meta attribute="field-description">
+				hora de termino del caso clinico
+			</meta>
+		</property>
+		<property name="tiempoControl" column="tiempoControl" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				tiempo de seguimiento de controles posteriores
+			</meta>
+		</property>
+		<set name="ORM_Certificado" table="rce_certificado" lazy="true" cascade="save-update,lock">
+			<key column="rceidRce" not-null="true"/>
+			<many-to-many column="certificadoid" class="orm.Certificado">
+			</many-to-many>
+		</set>
+		<set name="ORM_Actividad" table="rce_actividad" lazy="true" cascade="save-update,lock">
+			<key column="rceidRce" not-null="true"/>
+			<many-to-many column="actividadid" class="orm.Actividad">
+			</many-to-many>
+		</set>
+		<set name="ORM_Procedimiento" table="rce_procedimiento" lazy="true" cascade="save-update,lock">
+			<key column="rceidRce" not-null="true"/>
+			<many-to-many column="procedimientoid" class="orm.Procedimiento">
+			</many-to-many>
+		</set>
+		<set name="ORM_DiagnosticoidDiagnostico" table="rce_diagnostico" lazy="true" cascade="save-update,lock">
+			<key column="rceidRce" not-null="true"/>
+			<many-to-many column="diagnosticoidDiagnostico" class="orm.Diagnostico">
+			</many-to-many>
+		</set>
+		<set name="ORM_Receta" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="idRce" not-null="true"/>
+			<one-to-many class="orm.Receta"/>
+		</set>
+	</class>
+</hibernate-mapping>

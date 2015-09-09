@@ -5,7 +5,7 @@ if(isset($idPaciente)){
 	$idHce=Yii::app()->cliente->obtenerIdHCE($idPaciente);
 	$jsonPacien=Yii::app()->cliente->buscarPacienteBdLocalId($idPaciente);
 	$pacien=json_decode($jsonPacien,TRUE);
-	$folio=$pacien["results"][0]["nroFicha"];
+	$folio=$pacien["results"][0]["nroFicha"]." - ".$pacien["results"][0]["nombre"]." ".$pacien["results"][0]["apellidos"];
 //	echo $idHce;
 }
 $rce="";
@@ -13,6 +13,7 @@ $jsonRce="";
 if(isset($idRce)){
 	$rce=Yii::app()->cliente->obtenerRcePorId($idRce);
 	$jsonRce=json_decode($rce,TRUE);
+	//var_dump($rce);
 }
 $idHoraMedica="";
 if(isset($idHoraMedica)){
@@ -65,6 +66,7 @@ case "12": $mes_nombre="Diciembre"; break;
 					//echo $dia_nombre." ".$dia_mes." de ".$mes_nombre." de ".$year."  "; ?>
 					<?php
  					//echo  $horas?>
+				
 				
 <div class="container">
 		<div class="jumbotron">
@@ -131,7 +133,7 @@ case "12": $mes_nombre="Diciembre"; break;
 						<textarea  disabled class="span5" rows="3" placeholder="ANAMNESIS" style="  resize: none;"
 							name="anamnesis">
 							<?php if(isset($idRce)): ?>
-								<?php echo $jsonRce["results"][0]["anamnesis"]; ?>
+								<?php echo trim($jsonRce["results"][0]["anamnesis"]) ?>
 							<?php endif; ?>	
 							</textarea>
 
@@ -140,27 +142,27 @@ case "12": $mes_nombre="Diciembre"; break;
 						<textarea disabled class="span6" rows="3" placeholder="ALERGIAS" style="  resize: none;"
 							name="alergias">
 							<?php if(isset($idRce)): ?>
-								<?php echo $jsonRce["results"][0]["alergia"]; ?>
+								<?php echo trim($jsonRce["results"][0]["alergia"]) ?>
 							<?php endif; ?>	
 							</textarea>
 					</div>
 				</div>
 				<div class="row">
 					<div class="span5">
-						<textarea style="  resize: none;" disabled class="span5" rows="3"
+						<textarea style="resize: none;" disabled class="span5" rows="3"
 							placeholder="EXAMEN FÍSICO" name="examenFisico">
 							<?php if(isset($idRce)): ?>
-								<?php echo $jsonRce["results"][0]["examenFisico"]; ?>
+								<?php echo trim($jsonRce["results"][0]["examenFisico"]) ?>
 							<?php endif; ?>	
 							</textarea>
 						
 
 					</div>
 					<div class="span6">
-						<textarea style="  resize: none;" disabled class="span6" rows="3"
+						<textarea style="resize: none;  " disabled class="span6" rows="3"  
 							placeholder="INDICACIÓN MÉDICA" name="indicaMedica">
 							<?php if(isset($idRce)): ?>
-								<?php echo $jsonRce["results"][0]["indicacionMedica"]; ?>
+								<?php echo trim(""); echo trim($jsonRce["results"][0]["indicacionMedica"])?>
 							<?php endif; ?>	
 							</textarea>
 							
@@ -172,17 +174,17 @@ case "12": $mes_nombre="Diciembre"; break;
 							placeholder="INDICACIÓN CIERRE CASO CLÍNICO"
 							name="indicaCierreCasoClinico">
 							<?php if(isset($idRce)): ?>
-								<?php echo $jsonRce["results"][0]["indicacionCierreCaso"]; ?>
+								<?php echo trim($jsonRce["results"][0]["indicacionCierreCaso"]) ?>
 							<?php endif; ?>	
 							</textarea>
 
 					</div>
 				
 					<div class="span6">
-						<textarea style="  resize: none;" disabled class="span6" rows="3"
+						<textarea style="  resize: none;" disabled class="span6" rows="3" cols="100"
 							placeholder="HIPÓTESIS DIAGNOSTICO" name="hipoDiagnostico">
 							<?php if(isset($idRce)): ?>
-								<?php echo $jsonRce["results"][0]["hipotesisDiagnostico"]; ?>
+								<?php echo trim($jsonRce["results"][0]["hipotesisDiagnostico"]) ?>
 							<?php endif; ?>	
 							</textarea>
 					</div>
@@ -190,17 +192,23 @@ case "12": $mes_nombre="Diciembre"; break;
 				<div class="row">
 					<div class="span6">
 						
-						<select disabled class="span4" id="selecdiag" name="diagnostico">
+						<select multiple  class="span5" id="selecdiag" name="diagnostico">
 							<?php if(isset($idRce)): ?>
-								<?php $idDiag=Yii::app()->cliente->obtenerDiagnosticoporId($jsonRce["results"][0]["idDiagnostico"]["id"]);
-								$nombre= json_decode($idDiag,TRUE);
-								 $diagnosticoNombre=$nombre["results"][0]["nombre"];
-								  ?>
-							<?php endif; ?>	
+								<?php  $diagnosticoNombre=""; ?>
+								
+								<?php $listaDiag= "{\"results\":" .json_encode($jsonRce["results"][0]["listaDiagnostico"])."}"; 
+								$jsonDiagString=Yii::app()->cliente->obtenerListaDiagnosticoPorId($listaDiag);
+								$diagnosticos=json_decode($jsonDiagString);
 
-							<option hidden value="0"><?php echo $diagnosticoNombre; ?></option>
-							
+								?>
+
+							<?php endif; ?>	
+							<?php for($i=0;$i<count($diagnosticos->results);$i++): ?>
+								<?php $diagnosticoNombre=$diagnosticos->results[$i]->nombre;?>
+								<option><?php echo $diagnosticoNombre ?></option>
+							<?php endfor; ?>	
 						</select>
+					
 					</div>
 					<div class="col-lg-6">Sin Detalle GES Cita Actual</div>
 				</div>
@@ -222,23 +230,23 @@ case "12": $mes_nombre="Diciembre"; break;
 						?>
 						<div class="radio inline">
 							<label class="radio inline"><b>Paciente GES:</b> </label>
-							<label class="radio inline"> <input <?php if($pacienteGes=="si"):?>checked<?php endif;?>
+							<label class="radio inline"> <input disabled <?php if($pacienteGes=="si"):?>checked<?php endif;?>
 								type="radio" name="paciGESradio" value="si">si
-							</label> <label class="radio inline"><input type="radio" <?php if($pacienteGes=="no"):?>checked<?php endif;?>
+							</label> <label class="radio inline"><input type="radio" disabled <?php if($pacienteGes=="no"):?>checked<?php endif;?>
 								name="paciGESradio" value="no">no</label>
 						</div>
 						<div class="radio inline">
 							<label class="radio inline"><b>Patología GES:</b></label> <label class="radio inline"><input <?php if($patologiaGes=="si"):?>checked<?php endif;?>
-								type="radio" name="patoloGESradio" value="si">si</label> <label
-								class="radio inline"><input type="radio" <?php if($patologiaGes=="no"):?>checked<?php endif;?>
+								type="radio" disabled name="patoloGESradio" value="si">si</label> <label
+								class="radio inline"><input type="radio" disabled <?php if($patologiaGes=="no"):?>checked<?php endif;?>
 								name="patoloGESradio" value="no">no</label>
 						</div>
 						
 						<div class="radio inline">
 							<label class="radio inline"><b>Paciente Cronico:</b></label>
 							 <label class="radio inline"><input <?php if($pacienteCronico=="si"):?>checked<?php endif;?>
-								type="radio" name="paciCroniradio" value="si">si
-							</label> <label class="radio inline"><input type="radio" <?php if($pacienteCronico=="no"):?>checked<?php endif;?>
+								type="radio" name="paciCroniradio" disabled value="si">si
+							</label> <label class="radio inline"><input type="radio" disabled <?php if($pacienteCronico=="no"):?>checked<?php endif;?>
 								name="paciCroniradio" value="no">no</label>
 						</div>
 						<div class="radio inline">Validez:</div>
@@ -247,12 +255,20 @@ case "12": $mes_nombre="Diciembre"; break;
 
 						<div class="col-lg-11">
 							<br>
-							<textarea style="  resize: none;" disabled class="span5" rows="3"
+							<textarea style="  resize: none;" disabled class="span5" rows="14"
 								placeholder="RECETA EN MODO TEXTO" name="receta">
 								<?php if(isset($idRce)): ?>
-								<?php echo $jsonRce["results"][0]["receta"]; ?>
+									<?php $listareceta=""; ?>
+									<?php $jsonReceta=Yii::app()->cliente->buscarRecetasPoridRce($idRce); ?>
+									<?php $receta=json_decode($jsonReceta);?>
+									
+								
+									<?php for($i=0;$i<count($receta->results);$i++): ?>
+										<?php $listareceta.=$receta->results[$i]->contenido ."\n"; ?>
+									<?php endfor; ?>
+									<?php echo $listareceta ?>
 								<?php endif; ?>	
-							</textarea>
+									
 								</textarea>
 						</div>
 					</div>
@@ -304,117 +320,117 @@ case "12": $mes_nombre="Diciembre"; break;
 
 
 						<div class="clearfix visible-lg"></div>
-						<div class="col-lg-11" style="overflow: scroll; height: 200px;">
+						<div class="col-lg-11" >
 							<div class="clearfix visible-lg"></div>
 							<div class="col-lg-7">
-								<label class="radio inline"><input type="radio" <?php if($certificado1=="1"):?>checked<?php endif;?>
+								<label class="radio inline"><input type="radio" disabled <?php if($certificado1=="1"):?>checked<?php endif;?>
 									value="1" name="certialcoholemiaradio">sí</label> <label
-									class="radio inline"><input type="radio" <?php if($certificado1=="2"):?>checked<?php endif;?>
+									class="radio inline"><input type="radio" disabled <?php if($certificado1=="2"):?>checked<?php endif;?>
 									name="certialcoholemiaradio" value="2">No Alcoholemia</label>
 							</div>
 							<div class="clearfix visible-lg"></div>
 							<div class="col-lg-7">
-								<label class="radio inline"><input type="radio" <?php if($certificado2=="3"):?>checked<?php endif;?>
+								<label class="radio inline"><input type="radio" disabled <?php if($certificado2=="3"):?>checked<?php endif;?>
 									name="certivfamiliarradio" value="3">sí</label> <label
-									class="radio inline"><input type="radio" <?php if($certificado2=="4"):?>checked<?php endif;?>
+									class="radio inline"><input type="radio" disabled <?php if($certificado2=="4"):?>checked<?php endif;?>
 									name="certivfamiliarradio" value="4">No V.
 									Intrafamiliar</label>
 							</div>
 							<div class="clearfix visible-lg"></div>
 							<div class="col-lg-7">
-								<label class="radio inline"><input type="radio" <?php if($certificado3=="5"):?>checked<?php endif;?>
+								<label class="radio inline"><input type="radio" disabled <?php if($certificado3=="5"):?>checked<?php endif;?>
 									name="certidrogasradio" value="5">sí</label> <label
-									class="radio inline"><input type="radio" <?php if($certificado3=="6"):?>checked<?php endif;?>
+									class="radio inline"><input type="radio" disabled <?php if($certificado3=="6"):?>checked<?php endif;?>
 									name="certidrogasradio" value="6">No Drogas</label>
 							</div>
 							<div class="clearfix visible-lg"></div>
 							<div class="col-lg-7">
-								<label class="radio inline"><input type="radio" <?php if($certificado4=="7"):?>checked<?php endif;?>
+								<label class="radio inline"><input type="radio" disabled <?php if($certificado4=="7"):?>checked<?php endif;?>
 									name="certilecionesradio" value="7">sí</label> <label
-									class="radio inline"><input type="radio" <?php if($certificado4=="8"):?>checked<?php endif;?>
+									class="radio inline"><input type="radio" disabled <?php if($certificado4=="8"):?>checked<?php endif;?>
 									name="certilecionesradio" value="8">No Lesiones</label>
 							</div>
 							<div class="clearfix visible-lg"></div>
 							<div class="col-lg-7">
-								<label class="radio inline"><input type="radio" <?php if($certificado5=="9"):?>checked<?php endif;?>
+								<label class="radio inline"><input type="radio" disabled <?php if($certificado5=="9"):?>checked<?php endif;?>
 									name="certisuicidioradio" value="9">sí</label> <label
-									class="radio inline"><input type="radio" <?php if($certificado5=="10"):?>checked<?php endif;?>
+									class="radio inline"><input type="radio" disabled <?php if($certificado5=="10"):?>checked<?php endif;?>
 									name="certisuicidioradio" value="10">No Suicidio</label>
 							</div>
 							<div class="clearfix visible-lg"></div>
 							<div class="col-lg-7">
-								<label class="radio inline"><input type="radio" <?php if($certificado6=="11"):?>checked<?php endif;?>
+								<label class="radio inline"><input type="radio" disabled <?php if($certificado6=="11"):?>checked<?php endif;?>
 									name="certianimalradio" value="11">sí</label> <label
-									class="radio inline"><input type="radio" <?php if($certificado6=="12"):?>checked<?php endif;?>
+									class="radio inline"><input type="radio" disabled <?php if($certificado6=="12"):?>checked<?php endif;?>
 									name="certianimalradio" value="12">No Animal</label>
 							</div>
 							<div class="clearfix visible-lg"></div>
 							<div class="col-lg-7">
-								<label class="radio inline"><input type="radio" <?php if($certificado7=="13"):?>checked<?php endif;?>
+								<label class="radio inline"><input type="radio" disabled <?php if($certificado7=="13"):?>checked<?php endif;?>
 									name="certiotrosradio" value="13">sí</label> <label
-									class="radio inline"><input type="radio" <?php if($certificado7=="14"):?>checked<?php endif;?>
+									class="radio inline"><input type="radio" disabled <?php if($certificado7=="14"):?>checked<?php endif;?>
 									name="certiotrosradio" value="14">No Otros ML</label>
 							</div>
 							<div class="clearfix visible-lg"></div>
 							<div class="col-lg-7">
-								<label class="radio inline"><input type="radio" <?php if($certificado8=="15"):?>checked<?php endif;?>
+								<label class="radio inline"><input type="radio" disabled <?php if($certificado8=="15"):?>checked<?php endif;?>
 									name="certivgeneroradio" value="15">sí</label> <label
-									class="radio inline"><input type="radio" <?php if($certificado8=="16"):?>checked<?php endif;?>
+									class="radio inline"><input type="radio" disabled <?php if($certificado8=="16"):?>checked<?php endif;?>
 									name="certivgeneroradio" value="16">No V. Género</label>
 							</div>
 							<div class="clearfix visible-lg"></div>
 							<div class="col-lg-7">
-								<label class="radio inline"><input type="radio" <?php if($certificado9=="17"):?>checked<?php endif;?>
+								<label class="radio inline"><input type="radio" disabled <?php if($certificado9=="17"):?>checked<?php endif;?>
 									name="certisaludcompatibleradio" value="17">sí</label> <label
-									class="radio inline"><input type="radio" <?php if($certificado9=="18"):?>checked<?php endif;?>
+									class="radio inline"><input type="radio" disabled <?php if($certificado9=="18"):?>checked<?php endif;?>
 									name="certisaludcompatibleradio" value="18">No Salud
 									Compatible</label>
 							</div>
 							<div class="clearfix visible-lg"></div>
 							<div class="col-lg-8">
-								<label class="radio inline"><input type="radio" <?php if($certificado10=="19"):?>checked<?php endif;?>
+								<label class="radio inline"><input type="radio" disabled <?php if($certificado10=="19"):?>checked<?php endif;?>
 									name="certiatenciondiagnosticoradio" value="19">sí</label> <label
-									class="radio inline"><input type="radio" <?php if($certificado10=="20"):?>checked<?php endif;?>
+									class="radio inline"><input type="radio" disabled <?php if($certificado10=="20"):?>checked<?php endif;?>
 									name="certiatenciondiagnosticoradio" value="20">No
 									Atención Diagnóstica</label>
 							</div>
 							<div class="clearfix visible-lg"></div>
 							<div class="col-lg-8">
-								<label class="radio inline"><input type="radio" <?php if($certificado11=="21"):?>checked<?php endif;?>
+								<label class="radio inline"><input type="radio" disabled <?php if($certificado11=="21"):?>checked<?php endif;?>
 									name="certiatencionprofecionalradio" value="21">sí</label> <label
-									class="radio inline"><input type="radio" <?php if($certificado11=="22"):?>checked<?php endif;?>
+									class="radio inline"><input type="radio" disabled <?php if($certificado11=="22"):?>checked<?php endif;?>
 									name="certiatencionprofecionalradio" value="22">No
 									Atención Profesional</label>
 							</div>
 							<div class="clearfix visible-lg"></div>
 							<div class="col-lg-8">
-								<label class="radio inline"><input type="radio" <?php if($certificado12=="23"):?>checked<?php endif;?>
+								<label class="radio inline"><input type="radio" disabled <?php if($certificado12=="23"):?>checked<?php endif;?>
 									name="certiderivacioninternaradio" value="23">sí</label> <label
-									class="radio inline"><input type="radio" <?php if($certificado12=="24"):?>checked<?php endif;?>
+									class="radio inline"><input type="radio" disabled <?php if($certificado12=="24"):?>checked<?php endif;?>
 									name="certiderivacioninternaradio" value="24">No
 									Derivación Interna</label>
 							</div>
 							<div class="clearfix visible-lg"></div>
 							<div class="col-lg-7">
-								<label class="radio inline"><input type="radio" <?php if($certificado13=="25"):?>checked<?php endif;?>
+								<label class="radio inline"><input type="radio" disabled <?php if($certificado13=="25"):?>checked<?php endif;?>
 									name="certicitacionkntradio" value="25">sí</label> <label
-									class="radio inline"><input type="radio" <?php if($certificado13=="26"):?>checked<?php endif;?>
+									class="radio inline"><input type="radio" disabled <?php if($certificado13=="26"):?>checked<?php endif;?>
 									name="certicitacionkntradio" value="26">No Citacion a
 									KNT</label>
 							</div>
 							<div class="clearfix visible-lg"></div>
 							<div class="col-lg-7">
-								<label class="radio inline"><input type="radio" <?php if($certificado14=="27"):?>checked<?php endif;?>
+								<label class="radio inline"><input type="radio" disabled <?php if($certificado14=="27"):?>checked<?php endif;?>
 									name="certiordencuracionradio" value="27">sí</label> <label
-									class="radio inline"><input type="radio" <?php if($certificado14=="28"):?>checked<?php endif;?>
+									class="radio inline"><input type="radio" disabled <?php if($certificado14=="28"):?>checked<?php endif;?>
 									name="certiordencuracionradio" value="28">No Orden
 									Curación</label>
 							</div>
 							<div class="clearfix visible-lg"></div>
 							<div class="col-lg-7">
-								<label class="radio inline"><input type="radio" <?php if($certificado15=="29"):?>checked<?php endif;?>
+								<label class="radio inline"><input disabled type="radio" <?php if($certificado15=="29"):?>checked<?php endif;?>
 									name="certiordencitacionradio" value="29">sí</label> <label
-									class="radio inline"><input type="radio" <?php if($certificado15=="30"):?>checked<?php endif;?>
+									class="radio inline"><input disabled type="radio" <?php if($certificado15=="30"):?>checked<?php endif;?>
 									name="certiordencitacionradio" value="30">No Orden
 									Citación</label>
 							</div>
@@ -423,57 +439,7 @@ case "12": $mes_nombre="Diciembre"; break;
 					</div>
 				</div>
 				
-				<script>
-					$(function() {
-						$("#selecdiag").change(function() {
-							$("#procedimientos").prop('selectedIndex',0);
-							$('#actividades').prop('selectedIndex',0);
-							mostrarActividadPorDiagnostico();
-							mostrarProcedimientoPorDiagnostico();
-						});
-					});
-					//idem a la funcion de abajo
-					function mostrarProcedimientoPorDiagnostico() {
-						var valor = $("#selecdiag").val();
-
-						var largolista = document
-								.getElementById("procedimientos");
-						$("#procedimientos option").each(function() {
-							var diagActi = $(this).attr("value");
-							var idActi = diagActi.split(".");
-							
-							if (idActi[0] === valor) {
-								$(this).show();
-							} else {
-								$(this).hide();
-							}
-
-						});
-
-					}
-					function mostrarActividadPorDiagnostico() {
-						
-						//obtiene el valor de la etiqueta del diagnostico
-						var valor = $("#selecdiag").val();
-						//se selecciona la etiqueta correspondiente al select
-						var largolista = document.getElementById("actividades");
-					
-						//recorre la lista de opciones
-						$("#actividades option").each(function() {
-
-							var diagActi = $(this).attr("value");
-							var idActi = diagActi.split(".");
-							
-							if (idActi[0] === valor) {
-								$(this).show();
-							} else {
-								$(this).hide();
-							}
-
-						});
-
-					}
-				</script>
+				
 				<br>
 				<div class="row">
 					<div class="span6">
@@ -485,18 +451,24 @@ case "12": $mes_nombre="Diciembre"; break;
 						
 						<div class="clearfix visible-lg"></div>
 						<div class="span6">
-							<select disabled class="span4" id="actividades" name="actividad">
+							<select multiple  class="span4" id="actividades" name="actividad">
 							<?php if(isset($idRce)): ?>
-								<?php $idActi=Yii::app()->cliente->obtenerActividadporId($jsonRce["results"][0]["idActividad"]["id"]);
-								$nombreA= json_decode($idActi,TRUE);
-								 $actividadNombre=$nombreA["results"][0]["nombreActividad"];
-								  ?>
+								<?php $actividadNombre=""; ?>
+								<?php $listaActi= "{\"results\":" .json_encode($jsonRce["results"][0]["listaActividad"])."}"; 
+								$jsonActiString=Yii::app()->cliente->obtenerListaActividadesPorListaId($listaActi);
+								$actividades=json_decode($jsonActiString);
+
+								?>
 							<?php endif; ?>	
-								<option hidden value=""><?php echo $actividadNombre ?></option>
+								<?php for($i=0;$i<count($actividades->results);$i++): ?>
+								<?php $actividadNombre=$actividades->results[$i]->nombreActividad;?>
+								<option value=""><?php echo $actividadNombre ?></option>
+							<?php endfor; ?>
 								
 							</select>
 						</div>
-
+						
+								
 					</div>
 					<div class="span5">
 
@@ -508,15 +480,21 @@ case "12": $mes_nombre="Diciembre"; break;
 						
 						<div class="clearfix visible-lg"></div>
 						<div class="span5">
-							<select disabled class="span4" id="procedimientos"
+							<select multiple  class="span4" id="procedimientos"
 								name=procedimiento>
 									<?php if(isset($idRce)): ?>
-								<?php $idProce=Yii::app()->cliente->obtenerProcedimientosporId($jsonRce["results"][0]["idProcedimiento"]["id"]);
-								$nombreP= json_decode($idProce,TRUE);
-								 $proceNombre=$nombreP["results"][0]["nombre"];
-								  ?>
+								
+									
+								  <?php $listaProce= "{\"results\":" .json_encode($jsonRce["results"][0]["listaProcedimiento"])."}"; 
+								$jsonProceString=Yii::app()->cliente->obtenerListaProcedimientoPorId($listaProce);
+								$procedimiento=json_decode($jsonProceString);
+
+								?>
 							<?php endif; ?>	
-								<option hidden value="0"><?php echo $proceNombre?></option>
+								<?php for($i=0;$i<count($procedimiento->results);$i++): ?>
+								<?php $procedimientoNombre=$procedimiento->results[$i]->nombre;?>
+								<option value=""><?php echo $procedimientoNombre ?></option>
+							<?php endfor; ?>
 								
 							</select>
 						</div>
@@ -614,9 +592,9 @@ case "12": $mes_nombre="Diciembre"; break;
 					<div class="clearfix visible-lg"></div>
 					<div class="span3">Realizar Cierre Administrativo:</div>
 					<div class="span3">
-						<label class="radio inline"><input type="radio" <?php if($tipoEncuentro=="CIERRE ADMINISTRATIVO"):?>checked<?php endif;?>
+						<label class="radio inline"><input type="radio" disabled <?php if($tipoEncuentro=="CIERRE ADMINISTRATIVO"):?>checked<?php endif;?>
 							name="cierreAdmin" value="CIERRE ADMINISTRATIVO">sí</label> <label
-							class="radio inline"><input type="radio" <?php if($tipoEncuentro=="CATEGORIZADO"):?>checked<?php endif;?>
+							class="radio inline"><input type="radio" disabled <?php if($tipoEncuentro=="CATEGORIZADO"):?>checked<?php endif;?>
 							name="cierreAdmin" value="CATEGORIZADO">No</label>
 					</div>
 

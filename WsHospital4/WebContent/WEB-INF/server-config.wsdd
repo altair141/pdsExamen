@@ -1,0 +1,138 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="C:\Users\altair141\Desktop\pds\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\WsHospital4\WEB-INF\attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:service name="Servicio" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="registrarEncuentro" qname="ns1:registrarEncuentro" returnQName="ns1:registrarEncuentroReturn" returnType="xsd:string" soapAction="" xmlns:ns1="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:jsonEncuentro" type="xsd:string"/>
+  </ns2:operation>
+  <ns1:operation name="registrarMedicoOpenmrs" qname="ns2:registrarMedicoOpenmrs" returnQName="ns2:registrarMedicoOpenmrsReturn" returnType="xsd:string" soapAction="" xmlns:ns2="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns2:idMedico" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="registrarPacienteOpen" qname="ns3:registrarPacienteOpen" returnQName="ns3:registrarPacienteOpenReturn" returnType="xsd:string" soapAction="" xmlns:ns3="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:idPaciente" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="obtenerListaPacientes" qname="ns4:obtenerListaPacientes" returnQName="ns4:obtenerListaPacientesReturn" returnType="xsd:string" soapAction="" xmlns:ns4="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="obtenerHoraMedica" qname="ns5:obtenerHoraMedica" returnQName="ns5:obtenerHoraMedicaReturn" returnType="xsd:string" soapAction="" xmlns:ns5="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns5:idHora" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="buscarHorasPorIdPaciente" qname="ns6:buscarHorasPorIdPaciente" returnQName="ns6:buscarHorasPorIdPacienteReturn" returnType="xsd:string" soapAction="" xmlns:ns6="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns6:idPaciente" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="obtenerListaProcedimientos" qname="ns7:obtenerListaProcedimientos" returnQName="ns7:obtenerListaProcedimientosReturn" returnType="xsd:string" soapAction="" xmlns:ns7="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="obtenerListaDiagnosticos" qname="ns8:obtenerListaDiagnosticos" returnQName="ns8:obtenerListaDiagnosticosReturn" returnType="xsd:string" soapAction="" xmlns:ns8="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="obtenerListaActividades" qname="ns9:obtenerListaActividades" returnQName="ns9:obtenerListaActividadesReturn" returnType="xsd:string" soapAction="" xmlns:ns9="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:operation name="obtenerDiagnosticoporId" qname="ns10:obtenerDiagnosticoporId" returnQName="ns10:obtenerDiagnosticoporIdReturn" returnType="xsd:string" soapAction="" xmlns:ns10="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns10:idDiagnostico" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="obtenerActividadporId" qname="ns11:obtenerActividadporId" returnQName="ns11:obtenerActividadporIdReturn" returnType="xsd:string" soapAction="" xmlns:ns11="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns11:idActividad" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="obtenerHcePacientePorNombre" qname="ns12:obtenerHcePacientePorNombre" returnQName="ns12:obtenerHcePacientePorNombreReturn" returnType="xsd:string" soapAction="" xmlns:ns12="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns12:fichaMedica" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="obtenerListaDiagnosticosPorId" qname="ns13:obtenerListaDiagnosticosPorId" returnQName="ns13:obtenerListaDiagnosticosPorIdReturn" returnType="xsd:string" soapAction="" xmlns:ns13="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns13:listaDiagnostico" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="obtenerListaActividadPorId" qname="ns14:obtenerListaActividadPorId" returnQName="ns14:obtenerListaActividadPorIdReturn" returnType="xsd:string" soapAction="" xmlns:ns14="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns14:listaActividad" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="obtenerListaProcedimientoPorId" qname="ns15:obtenerListaProcedimientoPorId" returnQName="ns15:obtenerListaProcedimientoPorIdReturn" returnType="xsd:string" soapAction="" xmlns:ns15="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns15:listaProcedimiento" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="obtenerRceCompleto" qname="ns16:obtenerRceCompleto" returnQName="ns16:obtenerRceCompletoReturn" returnType="xsd:string" soapAction="" xmlns:ns16="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns16:idRce" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="buscarRecetasPoridRce" qname="ns17:buscarRecetasPoridRce" returnQName="ns17:buscarRecetasPoridRceReturn" returnType="xsd:string" soapAction="" xmlns:ns17="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns17:idRce" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="registrarConcepto" qname="ns18:registrarConcepto" returnQName="ns18:registrarConceptoReturn" returnType="xsd:string" soapAction="" xmlns:ns18="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns18:jsonConcepto" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="registrarObservacion" qname="ns19:registrarObservacion" returnQName="ns19:registrarObservacionReturn" returnType="xsd:string" soapAction="" xmlns:ns19="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns19:jsonObservacion" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="horaesAps" qname="ns20:horaesAps" returnQName="ns20:horaesApsReturn" returnType="xsd:string" soapAction="" xmlns:ns20="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns20:idHoramedica" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="buscarPacienteId" qname="ns21:buscarPacienteId" returnQName="ns21:buscarPacienteIdReturn" returnType="xsd:string" soapAction="" xmlns:ns21="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns21:idPaciente" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="obtenerPaciente" qname="ns22:obtenerPaciente" returnQName="ns22:obtenerPacienteReturn" returnType="xsd:string" soapAction="" xmlns:ns22="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns22:rut" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="obtenerHCE" qname="ns23:obtenerHCE" returnQName="ns23:obtenerHCEReturn" returnType="xsd:string" soapAction="" xmlns:ns23="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns23:idPaciente" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="obtenerIdHCE" qname="ns24:obtenerIdHCE" returnQName="ns24:obtenerIdHCEReturn" returnType="xsd:string" soapAction="" xmlns:ns24="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns24:idPaciente" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="registrarRce" qname="ns25:registrarRce" returnQName="ns25:registrarRceReturn" returnType="xsd:string" soapAction="" xmlns:ns25="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns25:json" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="registrarReceta" qname="ns26:registrarReceta" returnQName="ns26:registrarRecetaReturn" returnType="xsd:string" soapAction="" xmlns:ns26="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns26:json" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="obtenerRcePorId" qname="ns27:obtenerRcePorId" returnQName="ns27:obtenerRcePorIdReturn" returnType="xsd:string" soapAction="" xmlns:ns27="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns27:idRce" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="buscarReceta" qname="ns28:buscarReceta" returnQName="ns28:buscarRecetaReturn" returnType="xsd:string" soapAction="" xmlns:ns28="http://capaServicio" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns28:idReceta" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="buscarHorasPorIdPaciente obtenerRcePorId registrarReceta obtenerListaDiagnosticosPorId registrarEncuentro obtenerListaProcedimientoPorId buscarReceta registrarPacienteOpen registrarMedicoOpenmrs obtenerListaProcedimientos obtenerPaciente obtenerHCE obtenerHoraMedica obtenerActividadporId obtenerHcePacientePorNombre obtenerListaPacientes buscarRecetasPoridRce obtenerListaDiagnosticos registrarConcepto horaesAps registrarRce obtenerListaActividadPorId obtenerListaActividades obtenerRceCompleto obtenerDiagnosticoporId buscarPacienteId obtenerIdHCE registrarObservacion"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="Servicio"/>
+  <ns1:parameter name="className" value="capaServicio.Servicio"/>
+  <ns1:parameter name="wsdlServicePort" value="Servicio"/>
+  <ns1:parameter name="schemaQualified" value="http://capaServicio"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://capaServicio"/>
+  <ns1:parameter name="wsdlServiceElement" value="ServicioService"/>
+ </ns1:service>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>

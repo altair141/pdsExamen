@@ -206,7 +206,7 @@ case "12": $mes_nombre="Diciembre"; break;
 						</div>
 						
 						<div class="radio inline">
-							<label class="radio inline"><b>Paciente GES:</b></label>
+							<label class="radio inline"><b>Paciente Crónico:</b></label>
 							 <label class="radio inline"><input
 								type="radio" name="paciCroniradio" value="si">si
 							</label> <label class="radio inline"><input type="radio"

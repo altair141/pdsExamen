@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: 
+License Type: Evaluation
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="orm.Procedimiento" table="procedimiento" lazy="false">
+		<meta attribute="class-description">
+			procedimientos m&#233;dicos
+		</meta>
+		<id name="id" column="id" type="integer" unsaved-value="0">
+			<generator class="increment">
+			</generator>
+		</id>
+		<property name="tipoProcedimiento" column="tipoProcedimiento" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				nombre del procedimiento realizado en el paciente
+			</meta>
+		</property>
+		<many-to-one name="idDiagnostico" cascade="lock" column="idDiagnostico" class="orm.Diagnostico" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<set name="ORM_RceidRce" table="rce_procedimiento" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="procedimientoid" not-null="true"/>
+			<many-to-many column="rceidRce" class="orm.Rce">
+			</many-to-many>
+		</set>
+	</class>
+</hibernate-mapping>

@@ -18,10 +18,10 @@ $jsonPersona=Yii::app()->cliente->buscarPacienteBdLocalId($uuid);
 //echo ($jsonPersona);
 $paciente=json_decode($jsonPersona,TRUE);
 //var_dump($paciente);
-$nombre=$paciente["results"][0]["persona"]["nombre"];
-$apellido=$paciente["results"][0]["persona"]["apellidos"];
-$fechaNaci=$paciente["results"][0]["persona"]["fechaNacimiento"];
-$direccion=$paciente["results"][0]["persona"]["direccion"];
+$nombre=$paciente["results"][0]["nombre"];
+$apellido=$paciente["results"][0]["apellidos"];
+$fechaNaci=$paciente["results"][0]["fechaNacimiento"];
+$direccion=$paciente["results"][0]["direccion"];
 $ficha=$paciente["results"][0]["nroFicha"];
 $id=$paciente["results"][0]["id"];
 }

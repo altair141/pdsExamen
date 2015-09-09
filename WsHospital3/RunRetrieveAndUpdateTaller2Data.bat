@@ -1,1 +1,0 @@
-@call RunSample ormsamples.RetrieveAndUpdateTaller2Data

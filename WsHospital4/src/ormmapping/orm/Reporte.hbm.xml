@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: 
+License Type: Evaluation
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="orm.Reporte" table="reporte" lazy="false">
+		<meta attribute="class-description">
+			reporte cl&#237;nico
+		</meta>
+		<id name="id" column="id" type="integer" unsaved-value="0">
+			<generator class="increment">
+			</generator>
+		</id>
+		<many-to-one name="idDirectorHospital" cascade="lock" column="idDirectorHospital" class="orm.DirectorHospital" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<property name="fecha" column="fecha" type="date" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				fecha del reporte realizado
+			</meta>
+		</property>
+		<property name="resultado" column="resultado" type="string" length="255" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				resultado del reporte realizado
+			</meta>
+		</property>
+		<many-to-one name="idTipoReporte" cascade="lock" column="idTipoReporte" class="orm.TipoReporte" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+	</class>
+</hibernate-mapping>

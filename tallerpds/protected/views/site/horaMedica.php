@@ -15,13 +15,13 @@ if(isset($idHoraMedica)){
 		//var_dump($hora);
 		$fecha=$hora["results"][0]["fecha"];
 		$tipoHora=$hora["results"][0]["asp"];
-		$medico=$hora["results"][0]["medico"]["persona"]["nombre"];
-		if(isset($hora["results"][0]["medico"]["persona"]["apellidos"])){
-	    	$medico= $medico." ".$hora["results"][0]["medico"]["persona"]["apellidos"];
+		$medico=$hora["results"][0]["medico"]["nombre"];
+		if(isset($hora["results"][0]["medico"]["apellidos"])){
+	    	$medico= $medico." ".$hora["results"][0]["medico"]["apellidos"];
 		}
 		$especialidad=$hora["results"][0]["medico"]["especialidad"]["nombre"];
-		$box=$hora["results"][0]["box"]["nroHabitacion"];
-		$nombreHospital=$hora["results"][0]["box"]["establecimiento"]["nombre"];
+		
+		
 		if(strcmp($tipoHora,"true")!==0){
 			$tipoHora="Control";
 		}else{
@@ -87,26 +87,7 @@ if(isset($idHoraMedica)){
 
 		<div class="row">
 			<div class="well well-long span11">
-				<div class="controls" >
-					<div class="span5"  >
-						<center>
-							<h3>
-								<b>Establecimiento</b>
-							</h3>
-						</center>
-						<div class="controls">
-							<label class="span2" for="box"><b>Box:</b></label>							
-							<input type="text" class="span3" id="box"
-									placeholder="número del box" disabled value="<?php echo $box; ?>">
-						</div>
-						<div class="controls">
-							<label class="span2" for="hospital"><b>Nombre
-								Hospital:</b></label>
-							<input type="text" class="span3" id="hospital"
-									placeholder="Nombre del hospital" disabled value="<?php echo $nombreHospital; ?>">
-						</div>
-					</div>
-				</div>
+			
 				<div class="controls">						
 					<div class="span5">
 						<center>

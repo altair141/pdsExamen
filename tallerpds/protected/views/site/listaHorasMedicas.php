@@ -19,7 +19,7 @@ if(isset($idPaciente)){
 	$paciente=json_decode($jsonPersona,TRUE);
 	//echo $jsonPersona;
 	//var_dump($paciente);
-	$ficha=$paciente["results"][0]["nroFicha"];
+	$ficha=$paciente["results"][0]["nroFicha"]." - ".$paciente["results"][0]["nombre"]." ".$paciente["results"][0]["apellidos"];
 	if(strcmp($jsonPersona, $jsonpaciente) !== 0){
 		$jsonlistaHoras=Yii::app()->cliente->buscarHorasPorIdPaciente($idPaciente);
 		//echo $jsonlistaHoras;
@@ -30,14 +30,14 @@ if(isset($idPaciente)){
 
 ?>
 <script>
-function seleccionado(id,hospital,fecha,medico) {
+function seleccionado(id,fecha,medico) {
 $("#formAbrirHora").show();
 var idHora = document.getElementById("idHora");
-var nombreHospital = document.getElementById("nHospital");
+
 var fech= document.getElementById("fechaHora");
 var nombreMedico=document.getElementById("nMedico");
 idHora.value = id.innerHTML;
-nombreHospital.value = hospital.innerHTML;
+
 fech.value=fecha.innerHTML;
 nombreMedico.value=medico.innerHTML;
 }
@@ -61,7 +61,7 @@ nombreMedico.value=medico.innerHTML;
 					<thead>
 						<tr>
 							<th hidden>id</th>
-							<th>Establecimiento</th>
+							
 							<th>Fecha</th>
 							<th>Medico</th>
 							<th></th>
@@ -73,16 +73,15 @@ nombreMedico.value=medico.innerHTML;
 						if(isset($listaHoras)){
 							for($i=0;$i<count($listaHoras["results"]);$i++){
 								$apellido="";
-								if(isset($listaHoras["results"][$i]["medico"]["persona"]["apellidos"])){
-									$apellido=$listaHoras["results"][$i]["medico"]["persona"]["apellidos"];
+								if(isset($listaHoras["results"][$i]["medico"]["apellidos"])){
+									$apellido=$listaHoras["results"][$i]["medico"]["apellidos"];
 								}
 								//
 							echo "<tr>";
-							echo "<td hidden id='id".$i."'>".$listaHoras["results"][$i]["id"]."</td>";
-							echo "<td id='hospital".$i."'>".$listaHoras["results"][$i]["establecimiento"]["nombre"]."</td>";
+							echo "<td hidden id='id".$i."'>".$listaHoras["results"][$i]["id"]."</td>";							
 							echo "<td id='fecha".$i."'>".$listaHoras["results"][$i]["fecha"]."</td>";
-							echo "<td id='medico".$i."'>".$listaHoras["results"][$i]["medico"]["persona"]["nombre"]." ".$apellido."  </td>";
-							echo "<td style='width: 10%;'><button type='button' class='btn btn-success text-right' onclick='seleccionado(id".$i.",hospital".$i.",fecha".$i.",medico".$i.");'>Seleccionar</button></td>";
+							echo "<td id='medico".$i."'>".$listaHoras["results"][$i]["medico"]["nombre"]." ".$apellido."  </td>";
+							echo "<td style='width: 10%;'><button type='button' class='btn btn-success text-right' onclick='seleccionado(id".$i.",fecha".$i.",medico".$i.");'>Seleccionar</button></td>";
 							echo "</tr>";
 							}
 						}
@@ -140,12 +139,7 @@ nombreMedico.value=medico.innerHTML;
 									class="form-control" id="idPaciente" hidden name="idPaciente" value="<?php echo $idPaciente; ?>">
 							</div>
 						
-							<div class="controls ">
-								<label class="span2" for="exampleInputEmail1">Establecimiento:</label>
-								
-								 <input
-									type="text" class="span6" id="nHospital" disabled>
-							</div>
+							
 							
 							<div class="controls ">
 								<label class="span2" for="exampleInputEmail1">Fecha:</label> <input

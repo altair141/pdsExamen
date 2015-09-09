@@ -8,7 +8,7 @@ class MiCliente extends CApplicationComponent{
                 // para que reconozca nuevas funciones del WS 
                 ini_set (  'soap.wsdl_cache_enable'  ,  0  );
                 ini_set (  'soap.wsdl_cache_ttl'  ,  0  );
-                $this->client = new SoapClient("http://localhost:8080/WsHospital3/services/Servicio?wsdl");
+                $this->client = new SoapClient("http://localhost:8080/WsHospital4/services/Servicio?wsdl");
         }
         return $this->client;
     }
@@ -16,15 +16,15 @@ class MiCliente extends CApplicationComponent{
      
         public function listaPacientes(){
            
-            return $this->getClienteInt()->mostrarPacientes()->mostrarPacientesReturn;
+            return $this->getClienteInt()->obtenerListaPacientes()->obtenerListaPacientesReturn;
         }
         public function buscarPacienteBdLocal($nombrePaciente){
-            $param= array("nombre"=>$nombrePaciente);
-            return $this->getClienteInt()->buscarPacienteBdLocal($param)->buscarPacienteBdLocalReturn;
+            $param= array("rut"=>$nombrePaciente);
+            return $this->getClienteInt()->obtenerPaciente($param)->obtenerPacienteReturn;
         }
         public function buscarPacienteBdLocalId($uuidPersona){
             $param=array("idPaciente"=>$uuidPersona);
-            return $this->getClienteInt()->buscarPacienteBdLocalId($param)->buscarPacienteBdLocalIdReturn;
+            return $this->getClienteInt()->buscarPacienteId($param)->buscarPacienteIdReturn;
         }
         public function buscarHorasPorIdPaciente($idPaciente){
             $param=array("idPaciente"=>$idPaciente);
@@ -70,5 +70,25 @@ class MiCliente extends CApplicationComponent{
             $param=array("idProcedimiento"=>$idProcedimiento);
             return $this->getClienteInt()->obtenerProcedimientosporId($param)->obtenerProcedimientosporIdReturn;
         }
+
+        public function obtenerListaActividadesPorListaId($lista){
+            $param=array("listaActividad"=>$lista);
+            return $this->getClienteInt()->obtenerListaActividadPorId($param)->obtenerListaActividadPorIdReturn;
+        }
+        public function obtenerListaDiagnosticoPorId($lista){
+            $param=array("listaDiagnostico"=>$lista);
+            return $this->getClienteInt()->obtenerListaDiagnosticosPorId($param)->obtenerListaDiagnosticosPorIdReturn;   
+        }
+
+        public function obtenerListaProcedimientoPorId($lista){
+            $param=array("listaProcedimiento"=>$lista);
+            return $this->getClienteInt()->obtenerListaProcedimientoPorId($param)->obtenerListaProcedimientoPorIdReturn;   
+        }
+        public function buscarRecetasPoridRce($lista){
+           $param=array("idRce"=>$lista);
+            return $this->getClienteInt()->buscarRecetasPoridRce($param)->buscarRecetasPoridRceReturn;
+
+        }
+
     }
 ?>

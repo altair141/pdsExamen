@@ -60,33 +60,49 @@ function seleccionado(datoPersona,uuid) {
 						$jsonPacientes="no encontrado";
 						if(isset($_POST["btn_busqueda"])){
 							//$param=array("nombre"=>$_POST["textoBusqueda"]);
+
 							$nom= $_POST["textoBusqueda"];												
+							if( strcmp($nom, "")!==0){
 							$jsonPacient= Yii::app()->cliente->buscarPacienteBdLocal($nom);
 							if( strcmp($jsonPacient, "no encontrado")!==0){
 							$pacientes=json_decode($jsonPacient,TRUE);
 							 
- 							
  							//var_dump($pacientes);
  							for($i=0;$i<count($pacientes["results"]);$i++){
  								echo "<tr>";
- 								echo"<td hidden id='uuid".$i."'>".$pacientes["results"][$i]["persona"]["id"]."</td>";
- 								echo "<td id='nombre".$i."'>".$pacientes["results"][$i]["persona"]["nombre"]." ".$pacientes["results"][$i]["persona"]["apellidos"]."</td>";
- 								echo "<td style='width: 10%;'><button type='button' class='btn btn-default text-right' onclick='seleccionado(nombre".$i.",uuid".$i.")'>Seleccionar</button></td>";
+ 								echo"<td hidden id='uuid".$i."'>".$pacientes["results"][$i]["id"]."</td>";
+ 								echo "<td id='nombre".$i."'>".$pacientes["results"][$i]["nombre"]." ".$pacientes["results"][$i]["apellidos"]."</td>";
+ 								echo "<td style='width: 10%;'><button type='button' class='btn btn-success text-right' onclick='seleccionado(nombre".$i.",uuid".$i.")'>Seleccionar</button></td>";
  								echo"</tr>";
  							}
  						}
 						
+						}
+						else{
+							 $jsonPacientes=Yii::app()->cliente->listaPacientes();
+ 							 if( strcmp($jsonPacientes, "no encontrado")!==0){
+ 							$pacientes=json_decode($jsonPacientes,TRUE);
+ 							
+ 							for($i=0;$i<count($pacientes["results"]);$i++){
+ 								echo "<tr>";
+ 								echo"<td hidden id='uuid".$i."'>".$pacientes["results"][$i]["id"]."</td>";
+ 								echo "<td id='nombre".$i."'>".$pacientes["results"][$i]["nombre"]." ".$pacientes["results"][$i]["apellidos"]."</td>";
+ 								echo "<td style='width: 10%;'><button type='button' class='btn btn-success text-right' onclick='seleccionado(nombre".$i.", uuid".$i.")'>Seleccionar</button></td>";
+ 								echo"</tr>";
+ 							}
+ 						}
+						}
 							
 						}else{
 
  							 $jsonPacientes=Yii::app()->cliente->listaPacientes();
  							 if( strcmp($jsonPacientes, "no encontrado")!==0){
  							$pacientes=json_decode($jsonPacientes,TRUE);
- 							//var_dump($pacientes);
- 							for($i=0;$i<count($pacientes);$i++){
+ 							
+ 							for($i=0;$i<count($pacientes["results"]);$i++){
  								echo "<tr>";
- 								echo"<td hidden id='uuid".$i."'>".$pacientes[$i]["persona"]["id"]."</td>";
- 								echo "<td id='nombre".$i."'>".$pacientes[$i]["persona"]["nombre"]." ".$pacientes[$i]["persona"]["apellidos"]."</td>";
+ 								echo"<td hidden id='uuid".$i."'>".$pacientes["results"][$i]["id"]."</td>";
+ 								echo "<td id='nombre".$i."'>".$pacientes["results"][$i]["nombre"]." ".$pacientes["results"][$i]["apellidos"]."</td>";
  								echo "<td style='width: 10%;'><button type='button' class='btn btn-success text-right' onclick='seleccionado(nombre".$i.", uuid".$i.")'>Seleccionar</button></td>";
  								echo"</tr>";
  							}

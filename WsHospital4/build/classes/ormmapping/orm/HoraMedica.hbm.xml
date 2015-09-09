@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: 
+License Type: Evaluation
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="orm.HoraMedica" table="horaMedica" lazy="false">
+		<meta attribute="class-description">
+			horas medicas
+		</meta>
+		<id name="idHora" column="idHora" type="integer" unsaved-value="0">
+			<generator class="increment">
+			</generator>
+		</id>
+		<many-to-one name="idMedico" cascade="lock" column="idMedico" class="orm.Medico" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<many-to-one name="idBox" cascade="lock" column="idBox" class="orm.Box" not-null="true" lazy="no-proxy" access="field">
+		</many-to-one>
+		<property name="asp" column="asp" type="string" length="5" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				hora medica aps o no aps
+			</meta>
+		</property>
+		<property name="fecha" column="fecha" type="timestamp" not-null="true" lazy="false">
+			<meta attribute="field-description">
+				fecha hora medica
+			</meta>
+		</property>
+		<one-to-one name="reserva" class="orm.Reserva" cascade="save-update,lock" property-ref="idHoraMedica" lazy="no-proxy" access="field"/>
+		<set name="ORM_Rce" lazy="true" cascade="save-update,lock" inverse="true">
+			<key column="idHoraMedica" not-null="true"/>
+			<one-to-many class="orm.Rce"/>
+		</set>
+	</class>
+</hibernate-mapping>

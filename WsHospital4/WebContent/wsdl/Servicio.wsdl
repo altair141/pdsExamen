@@ -1,0 +1,1694 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://capaServicio" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://capaServicio" xmlns:intf="http://capaServicio" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://capaServicio" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="registrarEncuentro">
+    <complexType>
+     <sequence>
+      <element name="jsonEncuentro" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrarEncuentroResponse">
+    <complexType>
+     <sequence>
+      <element name="registrarEncuentroReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrarMedicoOpenmrs">
+    <complexType>
+     <sequence>
+      <element name="idMedico" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrarMedicoOpenmrsResponse">
+    <complexType>
+     <sequence>
+      <element name="registrarMedicoOpenmrsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrarPacienteOpen">
+    <complexType>
+     <sequence>
+      <element name="idPaciente" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrarPacienteOpenResponse">
+    <complexType>
+     <sequence>
+      <element name="registrarPacienteOpenReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerListaPacientes">
+    <complexType/>
+   </element>
+   <element name="obtenerListaPacientesResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerListaPacientesReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerHoraMedica">
+    <complexType>
+     <sequence>
+      <element name="idHora" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerHoraMedicaResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerHoraMedicaReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscarHorasPorIdPaciente">
+    <complexType>
+     <sequence>
+      <element name="idPaciente" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscarHorasPorIdPacienteResponse">
+    <complexType>
+     <sequence>
+      <element name="buscarHorasPorIdPacienteReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerListaProcedimientos">
+    <complexType/>
+   </element>
+   <element name="obtenerListaProcedimientosResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerListaProcedimientosReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerListaDiagnosticos">
+    <complexType/>
+   </element>
+   <element name="obtenerListaDiagnosticosResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerListaDiagnosticosReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerListaActividades">
+    <complexType/>
+   </element>
+   <element name="obtenerListaActividadesResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerListaActividadesReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerDiagnosticoporId">
+    <complexType>
+     <sequence>
+      <element name="idDiagnostico" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerDiagnosticoporIdResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerDiagnosticoporIdReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerActividadporId">
+    <complexType>
+     <sequence>
+      <element name="idActividad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerActividadporIdResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerActividadporIdReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerHcePacientePorNombre">
+    <complexType>
+     <sequence>
+      <element name="fichaMedica" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerHcePacientePorNombreResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerHcePacientePorNombreReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerListaDiagnosticosPorId">
+    <complexType>
+     <sequence>
+      <element name="listaDiagnostico" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerListaDiagnosticosPorIdResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerListaDiagnosticosPorIdReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerListaActividadPorId">
+    <complexType>
+     <sequence>
+      <element name="listaActividad" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerListaActividadPorIdResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerListaActividadPorIdReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerListaProcedimientoPorId">
+    <complexType>
+     <sequence>
+      <element name="listaProcedimiento" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerListaProcedimientoPorIdResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerListaProcedimientoPorIdReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerRceCompleto">
+    <complexType>
+     <sequence>
+      <element name="idRce" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerRceCompletoResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerRceCompletoReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscarRecetasPoridRce">
+    <complexType>
+     <sequence>
+      <element name="idRce" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscarRecetasPoridRceResponse">
+    <complexType>
+     <sequence>
+      <element name="buscarRecetasPoridRceReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrarConcepto">
+    <complexType>
+     <sequence>
+      <element name="jsonConcepto" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrarConceptoResponse">
+    <complexType>
+     <sequence>
+      <element name="registrarConceptoReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrarObservacion">
+    <complexType>
+     <sequence>
+      <element name="jsonObservacion" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrarObservacionResponse">
+    <complexType>
+     <sequence>
+      <element name="registrarObservacionReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="horaesAps">
+    <complexType>
+     <sequence>
+      <element name="idHoramedica" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="horaesApsResponse">
+    <complexType>
+     <sequence>
+      <element name="horaesApsReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscarPacienteId">
+    <complexType>
+     <sequence>
+      <element name="idPaciente" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscarPacienteIdResponse">
+    <complexType>
+     <sequence>
+      <element name="buscarPacienteIdReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerPaciente">
+    <complexType>
+     <sequence>
+      <element name="rut" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerPacienteResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerPacienteReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerHCE">
+    <complexType>
+     <sequence>
+      <element name="idPaciente" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerHCEResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerHCEReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerIdHCE">
+    <complexType>
+     <sequence>
+      <element name="idPaciente" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerIdHCEResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerIdHCEReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrarRce">
+    <complexType>
+     <sequence>
+      <element name="json" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrarRceResponse">
+    <complexType>
+     <sequence>
+      <element name="registrarRceReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrarReceta">
+    <complexType>
+     <sequence>
+      <element name="json" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="registrarRecetaResponse">
+    <complexType>
+     <sequence>
+      <element name="registrarRecetaReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerRcePorId">
+    <complexType>
+     <sequence>
+      <element name="idRce" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="obtenerRcePorIdResponse">
+    <complexType>
+     <sequence>
+      <element name="obtenerRcePorIdReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscarReceta">
+    <complexType>
+     <sequence>
+      <element name="idReceta" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="buscarRecetaResponse">
+    <complexType>
+     <sequence>
+      <element name="buscarRecetaReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="buscarRecetasPoridRceRequest">
+
+      <wsdl:part element="impl:buscarRecetasPoridRce" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrarConceptoRequest">
+
+      <wsdl:part element="impl:registrarConcepto" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrarConceptoResponse">
+
+      <wsdl:part element="impl:registrarConceptoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="horaesApsResponse">
+
+      <wsdl:part element="impl:horaesApsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDiagnosticoporIdResponse">
+
+      <wsdl:part element="impl:obtenerDiagnosticoporIdResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerPacienteRequest">
+
+      <wsdl:part element="impl:obtenerPaciente" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrarRecetaResponse">
+
+      <wsdl:part element="impl:registrarRecetaResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerHoraMedicaResponse">
+
+      <wsdl:part element="impl:obtenerHoraMedicaResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrarRecetaRequest">
+
+      <wsdl:part element="impl:registrarReceta" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerActividadporIdRequest">
+
+      <wsdl:part element="impl:obtenerActividadporId" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrarObservacionResponse">
+
+      <wsdl:part element="impl:registrarObservacionResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrarRceResponse">
+
+      <wsdl:part element="impl:registrarRceResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerRcePorIdRequest">
+
+      <wsdl:part element="impl:obtenerRcePorId" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="buscarRecetasPoridRceResponse">
+
+      <wsdl:part element="impl:buscarRecetasPoridRceResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerListaProcedimientoPorIdResponse">
+
+      <wsdl:part element="impl:obtenerListaProcedimientoPorIdResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrarMedicoOpenmrsResponse">
+
+      <wsdl:part element="impl:registrarMedicoOpenmrsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerListaActividadPorIdRequest">
+
+      <wsdl:part element="impl:obtenerListaActividadPorId" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerListaProcedimientosRequest">
+
+      <wsdl:part element="impl:obtenerListaProcedimientos" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerListaPacientesResponse">
+
+      <wsdl:part element="impl:obtenerListaPacientesResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerListaDiagnosticosPorIdRequest">
+
+      <wsdl:part element="impl:obtenerListaDiagnosticosPorId" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="buscarRecetaRequest">
+
+      <wsdl:part element="impl:buscarReceta" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrarEncuentroResponse">
+
+      <wsdl:part element="impl:registrarEncuentroResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerIdHCEResponse">
+
+      <wsdl:part element="impl:obtenerIdHCEResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrarPacienteOpenRequest">
+
+      <wsdl:part element="impl:registrarPacienteOpen" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrarRceRequest">
+
+      <wsdl:part element="impl:registrarRce" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrarPacienteOpenResponse">
+
+      <wsdl:part element="impl:registrarPacienteOpenResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="horaesApsRequest">
+
+      <wsdl:part element="impl:horaesAps" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerListaActividadPorIdResponse">
+
+      <wsdl:part element="impl:obtenerListaActividadPorIdResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerHoraMedicaRequest">
+
+      <wsdl:part element="impl:obtenerHoraMedica" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrarMedicoOpenmrsRequest">
+
+      <wsdl:part element="impl:registrarMedicoOpenmrs" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerListaDiagnosticosPorIdResponse">
+
+      <wsdl:part element="impl:obtenerListaDiagnosticosPorIdResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrarObservacionRequest">
+
+      <wsdl:part element="impl:registrarObservacion" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="buscarHorasPorIdPacienteRequest">
+
+      <wsdl:part element="impl:buscarHorasPorIdPaciente" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="buscarPacienteIdResponse">
+
+      <wsdl:part element="impl:buscarPacienteIdResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="buscarHorasPorIdPacienteResponse">
+
+      <wsdl:part element="impl:buscarHorasPorIdPacienteResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerHCEResponse">
+
+      <wsdl:part element="impl:obtenerHCEResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerListaPacientesRequest">
+
+      <wsdl:part element="impl:obtenerListaPacientes" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerActividadporIdResponse">
+
+      <wsdl:part element="impl:obtenerActividadporIdResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerListaDiagnosticosResponse">
+
+      <wsdl:part element="impl:obtenerListaDiagnosticosResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerRcePorIdResponse">
+
+      <wsdl:part element="impl:obtenerRcePorIdResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerListaActividadesRequest">
+
+      <wsdl:part element="impl:obtenerListaActividades" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerDiagnosticoporIdRequest">
+
+      <wsdl:part element="impl:obtenerDiagnosticoporId" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="registrarEncuentroRequest">
+
+      <wsdl:part element="impl:registrarEncuentro" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerHcePacientePorNombreRequest">
+
+      <wsdl:part element="impl:obtenerHcePacientePorNombre" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerRceCompletoRequest">
+
+      <wsdl:part element="impl:obtenerRceCompleto" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerListaProcedimientosResponse">
+
+      <wsdl:part element="impl:obtenerListaProcedimientosResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerRceCompletoResponse">
+
+      <wsdl:part element="impl:obtenerRceCompletoResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="buscarRecetaResponse">
+
+      <wsdl:part element="impl:buscarRecetaResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerListaProcedimientoPorIdRequest">
+
+      <wsdl:part element="impl:obtenerListaProcedimientoPorId" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerListaDiagnosticosRequest">
+
+      <wsdl:part element="impl:obtenerListaDiagnosticos" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="buscarPacienteIdRequest">
+
+      <wsdl:part element="impl:buscarPacienteId" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerHCERequest">
+
+      <wsdl:part element="impl:obtenerHCE" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerHcePacientePorNombreResponse">
+
+      <wsdl:part element="impl:obtenerHcePacientePorNombreResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerIdHCERequest">
+
+      <wsdl:part element="impl:obtenerIdHCE" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerListaActividadesResponse">
+
+      <wsdl:part element="impl:obtenerListaActividadesResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="obtenerPacienteResponse">
+
+      <wsdl:part element="impl:obtenerPacienteResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Servicio">
+
+      <wsdl:operation name="registrarEncuentro">
+
+         <wsdl:input message="impl:registrarEncuentroRequest" name="registrarEncuentroRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:registrarEncuentroResponse" name="registrarEncuentroResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrarMedicoOpenmrs">
+
+         <wsdl:input message="impl:registrarMedicoOpenmrsRequest" name="registrarMedicoOpenmrsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:registrarMedicoOpenmrsResponse" name="registrarMedicoOpenmrsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrarPacienteOpen">
+
+         <wsdl:input message="impl:registrarPacienteOpenRequest" name="registrarPacienteOpenRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:registrarPacienteOpenResponse" name="registrarPacienteOpenResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerListaPacientes">
+
+         <wsdl:input message="impl:obtenerListaPacientesRequest" name="obtenerListaPacientesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerListaPacientesResponse" name="obtenerListaPacientesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerHoraMedica">
+
+         <wsdl:input message="impl:obtenerHoraMedicaRequest" name="obtenerHoraMedicaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerHoraMedicaResponse" name="obtenerHoraMedicaResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarHorasPorIdPaciente">
+
+         <wsdl:input message="impl:buscarHorasPorIdPacienteRequest" name="buscarHorasPorIdPacienteRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:buscarHorasPorIdPacienteResponse" name="buscarHorasPorIdPacienteResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerListaProcedimientos">
+
+         <wsdl:input message="impl:obtenerListaProcedimientosRequest" name="obtenerListaProcedimientosRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerListaProcedimientosResponse" name="obtenerListaProcedimientosResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerListaDiagnosticos">
+
+         <wsdl:input message="impl:obtenerListaDiagnosticosRequest" name="obtenerListaDiagnosticosRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerListaDiagnosticosResponse" name="obtenerListaDiagnosticosResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerListaActividades">
+
+         <wsdl:input message="impl:obtenerListaActividadesRequest" name="obtenerListaActividadesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerListaActividadesResponse" name="obtenerListaActividadesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDiagnosticoporId">
+
+         <wsdl:input message="impl:obtenerDiagnosticoporIdRequest" name="obtenerDiagnosticoporIdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerDiagnosticoporIdResponse" name="obtenerDiagnosticoporIdResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerActividadporId">
+
+         <wsdl:input message="impl:obtenerActividadporIdRequest" name="obtenerActividadporIdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerActividadporIdResponse" name="obtenerActividadporIdResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerHcePacientePorNombre">
+
+         <wsdl:input message="impl:obtenerHcePacientePorNombreRequest" name="obtenerHcePacientePorNombreRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerHcePacientePorNombreResponse" name="obtenerHcePacientePorNombreResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerListaDiagnosticosPorId">
+
+         <wsdl:input message="impl:obtenerListaDiagnosticosPorIdRequest" name="obtenerListaDiagnosticosPorIdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerListaDiagnosticosPorIdResponse" name="obtenerListaDiagnosticosPorIdResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerListaActividadPorId">
+
+         <wsdl:input message="impl:obtenerListaActividadPorIdRequest" name="obtenerListaActividadPorIdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerListaActividadPorIdResponse" name="obtenerListaActividadPorIdResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerListaProcedimientoPorId">
+
+         <wsdl:input message="impl:obtenerListaProcedimientoPorIdRequest" name="obtenerListaProcedimientoPorIdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerListaProcedimientoPorIdResponse" name="obtenerListaProcedimientoPorIdResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerRceCompleto">
+
+         <wsdl:input message="impl:obtenerRceCompletoRequest" name="obtenerRceCompletoRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerRceCompletoResponse" name="obtenerRceCompletoResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarRecetasPoridRce">
+
+         <wsdl:input message="impl:buscarRecetasPoridRceRequest" name="buscarRecetasPoridRceRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:buscarRecetasPoridRceResponse" name="buscarRecetasPoridRceResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrarConcepto">
+
+         <wsdl:input message="impl:registrarConceptoRequest" name="registrarConceptoRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:registrarConceptoResponse" name="registrarConceptoResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrarObservacion">
+
+         <wsdl:input message="impl:registrarObservacionRequest" name="registrarObservacionRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:registrarObservacionResponse" name="registrarObservacionResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="horaesAps">
+
+         <wsdl:input message="impl:horaesApsRequest" name="horaesApsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:horaesApsResponse" name="horaesApsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarPacienteId">
+
+         <wsdl:input message="impl:buscarPacienteIdRequest" name="buscarPacienteIdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:buscarPacienteIdResponse" name="buscarPacienteIdResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerPaciente">
+
+         <wsdl:input message="impl:obtenerPacienteRequest" name="obtenerPacienteRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerPacienteResponse" name="obtenerPacienteResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerHCE">
+
+         <wsdl:input message="impl:obtenerHCERequest" name="obtenerHCERequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerHCEResponse" name="obtenerHCEResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerIdHCE">
+
+         <wsdl:input message="impl:obtenerIdHCERequest" name="obtenerIdHCERequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerIdHCEResponse" name="obtenerIdHCEResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrarRce">
+
+         <wsdl:input message="impl:registrarRceRequest" name="registrarRceRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:registrarRceResponse" name="registrarRceResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrarReceta">
+
+         <wsdl:input message="impl:registrarRecetaRequest" name="registrarRecetaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:registrarRecetaResponse" name="registrarRecetaResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerRcePorId">
+
+         <wsdl:input message="impl:obtenerRcePorIdRequest" name="obtenerRcePorIdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:obtenerRcePorIdResponse" name="obtenerRcePorIdResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarReceta">
+
+         <wsdl:input message="impl:buscarRecetaRequest" name="buscarRecetaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:buscarRecetaResponse" name="buscarRecetaResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ServicioSoapBinding" type="impl:Servicio">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="registrarEncuentro">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="registrarEncuentroRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="registrarEncuentroResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrarMedicoOpenmrs">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="registrarMedicoOpenmrsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="registrarMedicoOpenmrsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrarPacienteOpen">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="registrarPacienteOpenRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="registrarPacienteOpenResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerListaPacientes">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerListaPacientesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerListaPacientesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerHoraMedica">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerHoraMedicaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerHoraMedicaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarHorasPorIdPaciente">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="buscarHorasPorIdPacienteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="buscarHorasPorIdPacienteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerListaProcedimientos">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerListaProcedimientosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerListaProcedimientosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerListaDiagnosticos">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerListaDiagnosticosRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerListaDiagnosticosResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerListaActividades">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerListaActividadesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerListaActividadesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerDiagnosticoporId">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerDiagnosticoporIdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerDiagnosticoporIdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerActividadporId">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerActividadporIdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerActividadporIdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerHcePacientePorNombre">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerHcePacientePorNombreRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerHcePacientePorNombreResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerListaDiagnosticosPorId">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerListaDiagnosticosPorIdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerListaDiagnosticosPorIdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerListaActividadPorId">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerListaActividadPorIdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerListaActividadPorIdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerListaProcedimientoPorId">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerListaProcedimientoPorIdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerListaProcedimientoPorIdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerRceCompleto">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerRceCompletoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerRceCompletoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarRecetasPoridRce">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="buscarRecetasPoridRceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="buscarRecetasPoridRceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrarConcepto">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="registrarConceptoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="registrarConceptoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrarObservacion">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="registrarObservacionRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="registrarObservacionResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="horaesAps">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="horaesApsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="horaesApsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarPacienteId">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="buscarPacienteIdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="buscarPacienteIdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerPaciente">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerPacienteRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerPacienteResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerHCE">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerHCERequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerHCEResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerIdHCE">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerIdHCERequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerIdHCEResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrarRce">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="registrarRceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="registrarRceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="registrarReceta">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="registrarRecetaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="registrarRecetaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="obtenerRcePorId">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="obtenerRcePorIdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="obtenerRcePorIdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="buscarReceta">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="buscarRecetaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="buscarRecetaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ServicioService">
+
+      <wsdl:port binding="impl:ServicioSoapBinding" name="Servicio">
+
+         <wsdlsoap:address location="http://localhost:8080/WsHospital4/services/Servicio"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

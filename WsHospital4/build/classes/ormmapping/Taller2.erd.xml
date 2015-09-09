@@ -1,0 +1,1270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Model quotesql="1" tablecharset="" mysql_version="504" mssql_version="2005" derby_version="106" ingres_version="9">
+  <Entity name="persona">
+    <Column name="idPersona">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>increment</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>identificador de la persona</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="nombre">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>30</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>nombres de la persona</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="apellidos">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>40</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>apellidos de la persona</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="fechaNacimiento">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>17</Type>
+      <Length>0</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>fecha de nacimiento de la persona</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="direccion">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>100</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>dirección de la persona</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="estado">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>5</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>estado de la persona, activo o no activo</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="rut">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>true</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="sexo">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Comment>persona, ser humano</Comment>
+  </Entity>
+  <Entity name="reserva">
+    <Column name="idReserva">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>increment</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>identificador reserva</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="idPaciente">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>paciente.idPaciente</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>clave foránea paciente-reserva</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="idHoraMedica">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>horaMedica.idHora</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>clave foránea horamedica-paciente</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="idPersonaRegistra">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>persona.idPersona</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>clave foránea personaRegistra-reserva</Comment>
+      <UserTypes/>
+    </Column>
+    <Comment>reservación de horas médicas</Comment>
+  </Entity>
+  <Entity name="paciente">
+    <Column name="idPaciente">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>increment</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>identificador paciente</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="nroFichaMedica">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>true</Unique>
+      <Index>false</Index>
+      <Comment>número de ficha medica</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="idPersona">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>persona.idPersona</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>clave foránea persona-paciente</Comment>
+      <UserTypes/>
+    </Column>
+    <Comment>paciente</Comment>
+  </Entity>
+  <Entity name="horaMedica">
+    <Column name="idHora">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>increment</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>identificador hora medica</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="idMedico">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>medico.idMedico</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>clave foránea horamedica-medico</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="idBox">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>box.idHabitacion</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>clave foránea horamedica-box</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="asp">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>5</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>hora medica aps o no aps</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="fecha">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>20</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>fecha hora medica</Comment>
+      <UserTypes/>
+    </Column>
+    <Comment>horas medicas</Comment>
+  </Entity>
+  <Entity name="medico">
+    <Column name="idMedico">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>increment</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>identificadorMedico</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="especialidad">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>especialidad.idEspecialidad</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>clave foránea medico-especialidad</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="idPersona">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>persona.idPersona</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>clave foránea medico-persona</Comment>
+      <UserTypes/>
+    </Column>
+    <Comment>médico</Comment>
+  </Entity>
+  <Entity name="especialidad">
+    <Column name="idEspecialidad">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>increment</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>identificador especialidad</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="nombreEspecialidad">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>nombre de la especialidad de un médico</Comment>
+      <UserTypes/>
+    </Column>
+    <Comment>especialidad del médico</Comment>
+  </Entity>
+  <Entity name="box">
+    <Column name="idHabitacion">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>increment</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>identificador del box</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="nroHabitacion">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>30</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>número de la habitación</Comment>
+      <UserTypes/>
+    </Column>
+    <Comment>habitación del hospital</Comment>
+  </Entity>
+  <Entity name="directorHospital">
+    <Column name="id">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>increment</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>identificador directorhospital</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="idPersona">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>persona.idPersona</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>clave foránea directorHospital-persona</Comment>
+      <UserTypes/>
+    </Column>
+    <Comment>director del hospital</Comment>
+  </Entity>
+  <Entity name="reporte">
+    <Column name="id">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>increment</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="idDirectorHospital">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>directorHospital.id</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>clave foránea reporte-directorhospital</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="fecha">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>17</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>fecha del reporte realizado</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="resultado">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>resultado del reporte realizado</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="idTipoReporte">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>tipoReporte.id</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>clave foránea reporte-tiporeporte</Comment>
+      <UserTypes/>
+    </Column>
+    <Comment>reporte clínico</Comment>
+  </Entity>
+  <Entity name="tipoReporte">
+    <Column name="id">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>increment</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>identificador del tipo de reporte</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="tipo">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>50</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>nombre del tipo de reporte</Comment>
+      <UserTypes/>
+    </Column>
+    <Comment>tipo de reporte</Comment>
+  </Entity>
+  <Entity name="rce">
+    <Column name="idRce">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>increment</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>id registro clínico electrónico</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="tipoEncuentro">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>tipo de encuentro</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="idHce">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>hce.idHce</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>clave foránea hce-rce</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="idHoraMedica">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>horaMedica.idHora</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>identificar de la hora medica</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="anamnesis">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>anamnesis de del rce, término empleado para referirse a la información proporcionada por el propio paciente  </Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="alergia">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>alergias que posee el paciente</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="examenFisico">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>datos examen físico del paciente</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="indicacionMedica">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>indicaciones proporcionadas por el médico</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="indicacionCierreCaso">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>indicaciones del médico para cerrar el caso</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="hipotesisDiagnostico">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>hipótesis de cual es la enfermedad que posee el paciente</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="pacienteGes">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>paciente con Garantías Explícitas en Salud</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="patologiaGes">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>enfermedad que garantizada en el AUGE</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="pacienteCronico">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>paciente con enfermedad con un tiempo mayor de seis meses desde que dicha enfermedad fue diagnosticada</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="tipoCierre">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>tipo cierre de caso, representa el estado de la atención recibida por parte del médico</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="destino">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>lugar al cual se derivará el paciente luego de realizar la consulta médica</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="fechaAtencion">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>17</Type>
+      <Length>0</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>fecha de atención médica</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="horaInicioAtencion">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>hora de inicio de la atención medica</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="fechaCierreClinico">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>17</Type>
+      <Length>0</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>fecha de termino del caso clinico</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="horaCierreClinico">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>hora de termino del caso clinico</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="tiempoControl">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>tiempo de seguimiento de controles posteriores</Comment>
+      <UserTypes/>
+    </Column>
+    <Comment>registro clínico electrónico</Comment>
+  </Entity>
+  <Entity name="hce">
+    <Column name="idHce">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>increment</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="idPaciente">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>paciente.idPaciente</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Comment>historial clínico electrónico</Comment>
+  </Entity>
+  <Entity name="certificado">
+    <Column name="id">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>increment</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>identificador del certificado</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="tipoCertificado">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>tipo de certificado</Comment>
+      <UserTypes/>
+    </Column>
+    <Comment>certificados</Comment>
+  </Entity>
+  <Entity name="actividad">
+    <Column name="id">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>increment</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>identificador actividad medica</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="tipoActividad">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>nombre de la actividad medica</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="idDiagnostico">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>diagnostico.idDiagnostico</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>clave foránea diagnostico-actividad</Comment>
+      <UserTypes/>
+    </Column>
+    <Comment>actividad médica</Comment>
+  </Entity>
+  <Entity name="procedimiento">
+    <Column name="id">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>increment</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>identificador del proceso medico</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="tipoProcedimiento">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>nombre del procedimiento realizado en el paciente</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="idDiagnostico">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>diagnostico.idDiagnostico</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Comment>procedimientos médicos</Comment>
+  </Entity>
+  <Entity name="diagnostico">
+    <Column name="idDiagnostico">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>increment</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>identificador del diagnostico</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="nombre">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>nombre del diagnostico</Comment>
+      <UserTypes/>
+    </Column>
+    <Comment>diagnostico médico</Comment>
+  </Entity>
+  <Entity name="rce_certificado">
+    <Column name="rceidRce">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>rce.idRce</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="certificadoid">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>certificado.id</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+  </Entity>
+  <Entity name="rce_actividad">
+    <Column name="rceidRce">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>rce.idRce</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="actividadid">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>actividad.id</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+  </Entity>
+  <Entity name="rce_procedimiento">
+    <Column name="rceidRce">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>rce.idRce</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="procedimientoid">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>procedimiento.id</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+  </Entity>
+  <Entity name="rce_diagnostico">
+    <Column name="rceidRce">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>rce.idRce</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="diagnosticoidDiagnostico">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>diagnostico.idDiagnostico</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+  </Entity>
+  <Entity name="receta">
+    <Column name="id">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>identity</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>identificador receta</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="contenido">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <Comment>contenido de la receta</Comment>
+      <UserTypes/>
+    </Column>
+    <Column name="idRce">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>rce.idRce</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>assigned</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+  </Entity>
+  <ForeignKey name="FKreserva759021">
+    <ReferenceTable>reserva</ReferenceTable>
+    <ReferencedTable>persona</ReferencedTable>
+    <Columns>
+      <Column>idPersonaRegistra</Column>
+    </Columns>
+    <RefColumns>
+      <Column>idPersona</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKreserva35156">
+    <ReferenceTable>reserva</ReferenceTable>
+    <ReferencedTable>paciente</ReferencedTable>
+    <Columns>
+      <Column>idPaciente</Column>
+    </Columns>
+    <RefColumns>
+      <Column>idPaciente</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKpaciente532367">
+    <ReferenceTable>paciente</ReferenceTable>
+    <ReferencedTable>persona</ReferencedTable>
+    <Columns>
+      <Column>idPersona</Column>
+    </Columns>
+    <RefColumns>
+      <Column>idPersona</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKreserva909264">
+    <ReferenceTable>reserva</ReferenceTable>
+    <ReferencedTable>horaMedica</ReferencedTable>
+    <Columns>
+      <Column>idHoraMedica</Column>
+    </Columns>
+    <RefColumns>
+      <Column>idHora</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKhoraMedica653351">
+    <ReferenceTable>horaMedica</ReferenceTable>
+    <ReferencedTable>medico</ReferencedTable>
+    <Columns>
+      <Column>idMedico</Column>
+    </Columns>
+    <RefColumns>
+      <Column>idMedico</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKmedico655469">
+    <ReferenceTable>medico</ReferenceTable>
+    <ReferencedTable>especialidad</ReferencedTable>
+    <Columns>
+      <Column>especialidad</Column>
+    </Columns>
+    <RefColumns>
+      <Column>idEspecialidad</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKmedico647483">
+    <ReferenceTable>medico</ReferenceTable>
+    <ReferencedTable>persona</ReferencedTable>
+    <Columns>
+      <Column>idPersona</Column>
+    </Columns>
+    <RefColumns>
+      <Column>idPersona</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKhoraMedica451396">
+    <ReferenceTable>horaMedica</ReferenceTable>
+    <ReferencedTable>box</ReferencedTable>
+    <Columns>
+      <Column>idBox</Column>
+    </Columns>
+    <RefColumns>
+      <Column>idHabitacion</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKdirectorHo484753">
+    <ReferenceTable>directorHospital</ReferenceTable>
+    <ReferencedTable>persona</ReferencedTable>
+    <Columns>
+      <Column>idPersona</Column>
+    </Columns>
+    <RefColumns>
+      <Column>idPersona</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKreporte633664">
+    <ReferenceTable>reporte</ReferenceTable>
+    <ReferencedTable>directorHospital</ReferencedTable>
+    <Columns>
+      <Column>idDirectorHospital</Column>
+    </Columns>
+    <RefColumns>
+      <Column>id</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKreporte208370">
+    <ReferenceTable>reporte</ReferenceTable>
+    <ReferencedTable>tipoReporte</ReferencedTable>
+    <Columns>
+      <Column>idTipoReporte</Column>
+    </Columns>
+    <RefColumns>
+      <Column>id</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKrce258372">
+    <ReferenceTable>rce</ReferenceTable>
+    <ReferencedTable>hce</ReferencedTable>
+    <Columns>
+      <Column>idHce</Column>
+    </Columns>
+    <RefColumns>
+      <Column>idHce</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKhce938722">
+    <ReferenceTable>hce</ReferenceTable>
+    <ReferencedTable>paciente</ReferencedTable>
+    <Columns>
+      <Column>idPaciente</Column>
+    </Columns>
+    <RefColumns>
+      <Column>idPaciente</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKrce_certif127026">
+    <ReferenceTable>rce_certificado</ReferenceTable>
+    <ReferencedTable>rce</ReferencedTable>
+    <Columns>
+      <Column>rceidRce</Column>
+    </Columns>
+    <RefColumns>
+      <Column>idRce</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKrce_certif380835">
+    <ReferenceTable>rce_certificado</ReferenceTable>
+    <ReferencedTable>certificado</ReferencedTable>
+    <Columns>
+      <Column>certificadoid</Column>
+    </Columns>
+    <RefColumns>
+      <Column>id</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKactividad155576">
+    <ReferenceTable>actividad</ReferenceTable>
+    <ReferencedTable>diagnostico</ReferencedTable>
+    <Columns>
+      <Column>idDiagnostico</Column>
+    </Columns>
+    <RefColumns>
+      <Column>idDiagnostico</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKprocedimie625288">
+    <ReferenceTable>procedimiento</ReferenceTable>
+    <ReferencedTable>diagnostico</ReferencedTable>
+    <Columns>
+      <Column>idDiagnostico</Column>
+    </Columns>
+    <RefColumns>
+      <Column>idDiagnostico</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKrce_activi476582">
+    <ReferenceTable>rce_actividad</ReferenceTable>
+    <ReferencedTable>rce</ReferencedTable>
+    <Columns>
+      <Column>rceidRce</Column>
+    </Columns>
+    <RefColumns>
+      <Column>idRce</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKrce_activi147203">
+    <ReferenceTable>rce_actividad</ReferenceTable>
+    <ReferencedTable>actividad</ReferencedTable>
+    <Columns>
+      <Column>actividadid</Column>
+    </Columns>
+    <RefColumns>
+      <Column>id</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKrce_proced236269">
+    <ReferenceTable>rce_procedimiento</ReferenceTable>
+    <ReferencedTable>rce</ReferencedTable>
+    <Columns>
+      <Column>rceidRce</Column>
+    </Columns>
+    <RefColumns>
+      <Column>idRce</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKrce_proced287571">
+    <ReferenceTable>rce_procedimiento</ReferenceTable>
+    <ReferencedTable>procedimiento</ReferencedTable>
+    <Columns>
+      <Column>procedimientoid</Column>
+    </Columns>
+    <RefColumns>
+      <Column>id</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKrce_diagno661339">
+    <ReferenceTable>rce_diagnostico</ReferenceTable>
+    <ReferencedTable>rce</ReferencedTable>
+    <Columns>
+      <Column>rceidRce</Column>
+    </Columns>
+    <RefColumns>
+      <Column>idRce</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKrce_diagno60291">
+    <ReferenceTable>rce_diagnostico</ReferenceTable>
+    <ReferencedTable>diagnostico</ReferencedTable>
+    <Columns>
+      <Column>diagnosticoidDiagnostico</Column>
+    </Columns>
+    <RefColumns>
+      <Column>idDiagnostico</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKrce944995">
+    <ReferenceTable>rce</ReferenceTable>
+    <ReferencedTable>horaMedica</ReferencedTable>
+    <Columns>
+      <Column>idHoraMedica</Column>
+    </Columns>
+    <RefColumns>
+      <Column>idHora</Column>
+    </RefColumns>
+  </ForeignKey>
+  <ForeignKey name="FKreceta744854">
+    <ReferenceTable>receta</ReferenceTable>
+    <ReferencedTable>rce</ReferencedTable>
+    <Columns>
+      <Column>idRce</Column>
+    </Columns>
+    <RefColumns>
+      <Column>idRce</Column>
+    </RefColumns>
+  </ForeignKey>
+</Model>
